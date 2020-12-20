@@ -1,6 +1,8 @@
 import axios from 'axios';
-import ReactDOM from 'react-dom';
 
- const url ='http://localhost:5000/ListItems';  // this url as like the backend 
 
-  export const fetchItems =() => axios.get(url);
+const url = 'http://localhost:4000';// this url as like the backend 
+
+export const fetchOrders = () => axios.get(url + '/ItemsList');
+export const createOrder = (newOrder) => axios.post(url+ '/items', newOrder);
+

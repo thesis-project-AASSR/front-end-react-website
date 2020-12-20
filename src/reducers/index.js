@@ -1,11 +1,15 @@
-import { combineReducers } from 'redux';
-import ListItems from './ListItems';
+// import { FETCH_ALL, CREATE, UPDATE, DELETE, LIKE } from '../constants/actionTypes';
 
-export default combineReducers({
+const reducers = (orders = [], action) => {
+  switch (action.type) {
+    case "FETCH_ALL":
     
-    // ListItems: ListItems, -- now here the key and the value the same we can just do this 
-    ListItems,
+      return action.payload;
+   case "CREATE":
+      return [...orders, action.payload];
+    default:
+      return orders;
+  }
+};
 
-})
-
-// now we are succesfully we did the exoprt for the main index js which we import reducer in it 
+export default reducers;
