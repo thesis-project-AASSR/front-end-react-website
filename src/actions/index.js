@@ -1,3 +1,10 @@
+
+
+
+ // the besic syntax of action 
+ // action take two things (type proparty for this action , data it self  where we store our items which called payload)
+ //  const action ={type:'FETCH_ALL',payload:[]}
+
 import * as api from '../Api/index.js';
 
 // now we have create action 
@@ -28,3 +35,4 @@ import * as api from '../Api/index.js';
     }
   };
   
+
