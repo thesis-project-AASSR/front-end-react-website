@@ -1,7 +1,13 @@
-import { combineReducers } from 'redux';
+ const Items = (state = [], action) => {
+    switch (action.type) {
+      case "FETCH_ALL":
+       return action.payload;
+       case "CREATE":
+      return [...state, action.payload];
+        default:
+        return state;
+    }
+  };
 
-import orders from './index';
-import user from './authReducer';
-import saveduser from './authInReducer';
+  export default Items;
 
-export default combineReducers({ orders, user, saveduser });
