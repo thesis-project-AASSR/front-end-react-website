@@ -7,7 +7,8 @@ const url = 'http://localhost:5000';
 //http requests to routes
 export const getALLItems = () => axios.get(url + '/ItemsList');
 export const createOrder = (newOrder) => axios.post(url + '/items', newOrder);
-export const createUser = (newUser) => axios.post(url + '/signup', newUser);
-export const checkUser = (savedUser) => axios.post(url + '/signin', savedUser);
+export const createUser = (newUser) => axios.post(url + '/signup', newUser)
+
+export const checkUser = (savedUser) => axios.post(url + '/signin', savedUser)
 
 

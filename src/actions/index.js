@@ -37,17 +37,24 @@ export const getALLItems = () => async (dispatch) => {
       console.log("DISPATCH(ADD) : ", dispatch({ type: "ADD", payload: user}))
     } catch (error) {
       console.log(error.message);
+      alert("email already exist");
     }
   };
   
 //action to check if user is saved to sign in
   export const checkUser = (saveduser) => async (dispatch) => {
     try {
-      const {data} = await api.checkUser(saveduser);
+      const {data} = await api.checkUser(saveduser).then((res)=>{
+       localStorage.setItem('token', res.data.token)
+       console.log( res.data)
+      localStorage.setItem('user_id', res.data.result[0].userID)
+       
+      });
       dispatch({ type: "CHECK", payload: saveduser});
       console.log("DISPATCH(CHECK) : ", dispatch({ type: "CHECK", payload: saveduser}));
     } catch (error) {
       console.log(error.message);
+      alert("email or password is incorrect");
     }
   };
 
