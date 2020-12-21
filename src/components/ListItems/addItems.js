@@ -6,7 +6,7 @@ import { createOrder } from '../../actions/index';
 // import { reducers }   from '../../reducers/index';
 
 const AddItems = ({ currentId }) => {
-    const [orderData, setOrderData] = useState({  category: '', quantity: '', wights: '', description: ''});
+    const [orderData, setOrderData] = useState({  category: '', quantity: '', weight: '', description: ''});
     const dispatch = useDispatch();
     // const order = useSelector((state) => (orderData ? state.posts.find((message) => message._id === currentId) : null));
     // const order = useSelector(state => state.reducers)
@@ -59,13 +59,13 @@ const AddItems = ({ currentId }) => {
                 </div>
                 <br />
                 <div className="col">
-                <label>Wights</label>
+                <label>weight</label>
                 <input
                 required="true"
                   type = "text"
                   className = "form-control"
                    value = {orderData.wights}
-                  onChange = {(e) => setOrderData({ ...orderData ,wights : e.target.value})}
+                  onChange = {(e) => setOrderData({ ...orderData ,weight : e.target.value})}
                   text-align = "center"
                   placeholder = "Insert Wights"/>
                 </div>
