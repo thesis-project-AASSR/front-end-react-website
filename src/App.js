@@ -15,7 +15,7 @@ import {useSelector} from 'react-redux'
 
 function App() {
 
-  // we need to define this dispatch using hoox
+  // we need to define this dispatch using hooks
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getALLItems());
