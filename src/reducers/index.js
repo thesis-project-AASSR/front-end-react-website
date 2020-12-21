@@ -2,8 +2,9 @@
 
 import { combineReducers } from 'redux';
 import Items from './reducer.js';
-
-const AllReducers = combineReducers({ Items });
+import AuthReducer from './authReducer'
+import authInReducer from './authInReducer'
+const AllReducers = combineReducers({ Items,AuthReducer,authInReducer });
 
 export default  AllReducers;
 

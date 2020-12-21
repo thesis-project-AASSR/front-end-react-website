@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import ReactDOM from 'react-dom';
-
 
 export default class Navbar extends Component {
   constructor(props) {
@@ -16,7 +14,6 @@ export default class Navbar extends Component {
     <div>
     <nav>
     <Link to="/" > DAWERHA </Link>
-
     <Link to="/SellerItems"> seller Items</Link>
     <Link to="/sign" >sign in</Link>
     <Link to="/AdminItems"> Admin Items </Link>

@@ -15,11 +15,11 @@ import {useSelector} from 'react-redux'
 
 function App() {
 
-  // we need to define this dispatch using hooks
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(getALLItems());
-  }, [dispatch]);
+  // we need to define this dispatch using hoox
+  // const dispatch = useDispatch();
+  // useEffect(() => {
+  //   dispatch(getALLItems());
+  // }, [dispatch]);
   return (
     <div>
       <Router className="container">
