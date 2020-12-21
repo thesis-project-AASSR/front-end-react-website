@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React , {useEffect} from 'react';
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import AdminProfile from './components/Profile/admin'
 import SellerProfile from './components/Profile/user'
@@ -7,8 +7,9 @@ import SellerItems from './components/ListItems/SellerItems'
 import Homepage from './components/NavBar&homepage/homepage'
 import AddItems from './components/ListItems/addItems'
 import Sign from './components/Profile/Sign'
-import { getOrders } from './actions';
+import { getALLItems } from './actions';
 import { useDispatch } from 'react-redux';
+<<<<<<< HEAD
 function App() {
   // we need to define this dispatch using hooks
   const dispatch = useDispatch();
@@ -16,6 +17,19 @@ function App() {
   useEffect(()=>{
     dispatch(getOrders());    // here we want to dispatch an action so we need to creat an action 
   },[dispatch])
+=======
+import {useSelector} from 'react-redux'
+
+
+
+function App() {
+
+  // we need to define this dispatch using hooks
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getALLItems());
+  }, [dispatch]);
+>>>>>>> 2f299135a1ed1ae0763017f1159069fb19e7db48
   return (
     <div>
       <Router className="container">
