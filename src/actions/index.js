@@ -34,7 +34,8 @@ export const getALLItems = () => async (dispatch) => {
     try {
       const {data} = await api.createUser(user);
       dispatch({ type: "ADD", payload: user});
-      console.log("DISPATCH(ADD) : ", dispatch({ type: "ADD", payload: user}))
+      console.log("DISPATCH(ADD) : ", dispatch({ type: "ADD", payload: user}));
+      alert ('Congrats, you can log in now');
     } catch (error) {
       console.log(error.message);
       alert("email already exist");
@@ -44,14 +45,10 @@ export const getALLItems = () => async (dispatch) => {
 //action to check if user is saved to sign in
   export const checkUser = (saveduser) => async (dispatch) => {
     try {
-      const {data} = await api.checkUser(saveduser).then((res)=>{
-       localStorage.setItem('token', res.data.token)
-       console.log( res.data)
-      localStorage.setItem('user_id', res.data.result[0].userID)
-       
-      });
+      const {data} = await api.checkUser(saveduser);
       dispatch({ type: "CHECK", payload: saveduser});
       console.log("DISPATCH(CHECK) : ", dispatch({ type: "CHECK", payload: saveduser}));
+      window.location = '/';
     } catch (error) {
       console.log(error.message);
       alert("email or password is incorrect");
