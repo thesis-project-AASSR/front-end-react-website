@@ -2,18 +2,11 @@
   "name": "front-end-react-website",
   "version": "0.1.0",
   "private": true,
-<<<<<<< HEAD
   "proxy": "http://localhost:5000",
-=======
-
-  "proxy": "http://localhost:5000",
-
->>>>>>> 2f299135a1ed1ae0763017f1159069fb19e7db48
   "dependencies": {
     "@material-ui/core": "^4.9.10",
     "@material-ui/icons": "^4.9.1",
     "@testing-library/jest-dom": "^4.2.4",
-<<<<<<< HEAD
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
     "axios": "^0.21.0",
@@ -23,20 +16,6 @@
     "react-redux": "^7.2.2",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.1",
-=======
-    "@testing-library/react": "^9.3.2",
-    "@testing-library/user-event": "^7.1.2",
-    "axios": "^0.19.2",
-    "bootstrap": "^4.5.3",
-    "moment": "^2.27.0",
-    "react": "^16.12.0",
-    "react-bootstrap": "^1.4.0",
-    "react-dom": "^16.14.0",
-    "react-file-base64": "^1.0.3",
-    "react-redux": "^7.1.3",
-    "react-router-dom": "^5.2.0",
-    "react-scripts": "^4.0.1",
->>>>>>> 2f299135a1ed1ae0763017f1159069fb19e7db48
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0"
   },

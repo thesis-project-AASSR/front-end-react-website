@@ -9,7 +9,7 @@ import * as api from '../Api/index.js';
 //retreiving all the items and Dispatching them
 export const getALLItems = () => async (dispatch) => {
   try {
-    const {data} = await api.fetchOrders();
+    const {data} = await api.getALLItems();
     dispatch({ type: 'FETCH_ALL', payload: data });
   } catch (error) {
     console.log(error.message);

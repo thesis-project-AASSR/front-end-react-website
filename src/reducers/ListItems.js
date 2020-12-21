@@ -1,7 +1,7 @@
 // here let start define reduser 
 //what are redusers:it is function  that accept state and action and beasd on the action type he will do some logic
  //our state will have the items as array this is why we declare empty array
- export default (ListItems =[] , action )=>{
+const listitems =  (ListItems =[] , action ) => {
     switch (action.type){
         // here the state (List Items) will chande besd on the action 
         case 'FETCH_ALL':
@@ -12,3 +12,5 @@
             return ListItems;
     }
 }
+//
+export default listitems;

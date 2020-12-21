@@ -3,47 +3,31 @@ import {useSelector} from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { createUser } from '../../actions/index';
 import { checkUser } from '../../actions/index';
-<<<<<<< HEAD
-=======
 
->>>>>>> 2f299135a1ed1ae0763017f1159069fb19e7db48
+//Sign up/in component 
 const Sign = ({ currentId }) => {
+  ////this is for sign up
     const [userData, setUserData] = useState({  username: '', email: '', password: '', phoneNumber: '', location: '', image: '', iBan: ''});
-    ///////
+  ////this is for sign in
     const [savedUserData, setSavedUserData] = useState({ email: '', password: ''});
-<<<<<<< HEAD
-    const dispatch = useDispatch();
-    const onSubmit = async (e) => {
-        e.preventDefault();
-          dispatch(createUser(userData));
-          console.log("userData",userData)       
-      };
-      /////
-      const onSignIn = async (e) => {
-        e.preventDefault();
-          dispatch(checkUser(savedUserData));
-          console.log("savedUserData",savedUserData)       
-      };
-=======
-
-    const dispatch = useDispatch();
-
-    const onSubmit = async (e) => {
-        e.preventDefault();
     
+    const dispatch = useDispatch();
+   ////sigin up button
+    const onSubmit = async (e) => {
+        e.preventDefault();
+
           dispatch(createUser(userData));
           console.log("userData",userData)       
       };
 
-      /////
+    ////sigin in button
       const onSignIn = async (e) => {
         e.preventDefault();
-    
+
           dispatch(checkUser(savedUserData));
           console.log("savedUserData",savedUserData)       
       };
 
->>>>>>> 2f299135a1ed1ae0763017f1159069fb19e7db48
     return (
         <div>
         <div>
@@ -179,8 +163,5 @@ const Sign = ({ currentId }) => {
         </div>
     )
 }
-<<<<<<< HEAD
-=======
 
->>>>>>> 2f299135a1ed1ae0763017f1159069fb19e7db48
 export default Sign;
