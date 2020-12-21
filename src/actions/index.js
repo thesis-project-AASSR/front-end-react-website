@@ -27,4 +27,24 @@ import * as api from '../Api/index.js';
       console.log(error.message);
     }
   };
+
+  export const createUser = (user) => async (dispatch) => {
+    try {
+      const {data} = await api.createUser(user);
+      dispatch({ type: "ADD", payload: user});
+      console.log("DISPATCH(ADD) : ", dispatch({ type: "ADD", payload: user}))
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+  
+  export const checkUser = (saveduser) => async (dispatch) => {
+    try {
+      const {data} = await api.checkUser(saveduser);
+      dispatch({ type: "CHECK", payload: saveduser});
+      console.log("DISPATCH(CHECK) : ", dispatch({ type: "CHECK", payload: saveduser}))
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
   

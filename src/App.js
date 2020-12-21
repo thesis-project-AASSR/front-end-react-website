@@ -15,7 +15,7 @@ import { useDispatch } from 'react-redux';
 
 function App() {
 
-  // we need to define this dispatch using hoox
+  // we need to define this dispatch using hooks
   const dispatch = useDispatch();
   // now we have access to this dispatch we need to find away where we will dispatch this action ---the best way inside use Effect  : it is like component didmount
   useEffect(()=>{
