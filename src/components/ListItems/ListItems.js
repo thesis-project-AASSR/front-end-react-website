@@ -1,7 +1,7 @@
 import React from 'react';
 import addItems from './AddItems';
 // import  Item from './Item/Item';
-
+import {withRouter} from 'react-router-dom';
 
 
 
@@ -19,4 +19,4 @@ const ListItems =() =>{
       </>
     );
 }
-export default ListItems;
+export default withRouter(ListItems);
