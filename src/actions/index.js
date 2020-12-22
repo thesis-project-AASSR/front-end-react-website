@@ -48,6 +48,9 @@ export const getALLItems = () => async (dispatch) => {
       const {data} = await api.checkUser(saveduser);
       dispatch({ type: "CHECK", payload: saveduser});
       console.log("DISPATCH(CHECK) : ", dispatch({ type: "CHECK", payload: saveduser}));
+      console.log(data);
+      localStorage.setItem('token', data.token);
+      localStorage.setItem('user_id', data.result[0].userID);
       window.location = '/';
     } catch (error) {
       console.log(error.message);
