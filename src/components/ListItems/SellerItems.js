@@ -1,18 +1,20 @@
-import React, { useEffect } from 'react';
+import React, { useEffect , useState } from 'react';
 import { getOrders } from '../../actions';
 import { useDispatch,useSelector } from 'react-redux';
+import { updateOrder,deleteOrder } from '../../actions/index';
 
-const SellerItems =() =>{
+const SellerItems =({ setCurrentId }) =>{
     const dispatch = useDispatch();
+    const [orderData, setOrderData] = useState({  category: '', quantity: '', wights: '', description: ''});
+
     const orders = useSelector(state => state.orders)
     console.log("orders",orders)
     useEffect(() => {
       dispatch(getOrders());
     }, [dispatch]);
 
-    // useEffect(()=>{
-    //     dispatch(getOrders());    // here we want to dispatch an action so we need to creat an action 
-    //   })
+    
+
     
     return (
 
@@ -29,7 +31,14 @@ const SellerItems =() =>{
         description:{post.description}
         <br></br>
         image:{post.image}
+        <div>
+
+                <button type="submit" onClick={() =>   dispatch(updateOrder(post.itemID))} >update</button>
+                <button  type="submit" onClick={() => dispatch(deleteOrder(post.itemID))}>Delete</button>
+                </div>
+                
         </div>
+        
        
           ))}
            </div>

@@ -8,13 +8,13 @@ import { useDispatch,useSelector } from 'react-redux';
 
 
 
-const AddItems = ({ currentId  ,setCurrentId}) => {
+const EditItems = ({ currentId  ,setCurrentId}) => {
+  console.log(currentId)
     const [orderData, setOrderData] = useState({  category: '', quantity: '', weight: '', description: ''});
 
     const dispatch = useDispatch();
-    
-    const order = useSelector((state) => currentId ? state.orders.find((p) => p._id === currentId) : null);
-    // const order = useSelector(state => state.reducers)
+    const order = useSelector((state) => currentId ? state.orders.find((p) => p.itemID === currentId) : null);
+
     useEffect(() => {
         if (order) setOrderData(order);
       }, [order]);
@@ -36,7 +36,7 @@ const AddItems = ({ currentId  ,setCurrentId}) => {
         <br />
         <div className = "container">
           <form className="text-center border border-light p-9" action="#!"  >
-            <p className="h4 mb-4">Help your environment by recycling trash</p>
+            <p className="h4 mb-4">Editing </p>
             <br />
                 <div className="col">
                 <label>Select Category</label>
@@ -114,4 +114,4 @@ const AddItems = ({ currentId  ,setCurrentId}) => {
     )
     
 }
-export default AddItems;
+export default EditItems;

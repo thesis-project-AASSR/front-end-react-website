@@ -9,7 +9,7 @@ import * as api from '../Api/index.js';
 
     try {
       const { data } = await api.fetchOrders();
-  
+      console.log(data)
       dispatch({ type: "FETCH_ALL", payload: data });
       console.log("data:",data)
     } catch (error) {
@@ -20,9 +20,31 @@ import * as api from '../Api/index.js';
   export const createOrder = (order) => async (dispatch) => {
     try {
       const { data } = await api.createOrder(order);
+
   
       dispatch({ type: "CREATE", payload: order });
       console.log( "DISPAATCH(ACTION) :",dispatch({ type: "CREATE", payload: order }))
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
+  export const updateOrder = (id, order) => async (dispatch) => {
+    try {
+      const { data } = await api.updateOrder(id, order);
+  
+      dispatch({ type: "UPDATE", payload: order });
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+  
+  export const deleteOrder = (id) => async (dispatch) => {
+    try {
+      await await api.deleteOrder(id);
+ 
+  
+      dispatch({ type: "DELETE", payload: id });
     } catch (error) {
       console.log(error.message);
     }
