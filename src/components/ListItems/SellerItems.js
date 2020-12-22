@@ -1,13 +1,13 @@
 import React, { useEffect } from 'react';
-import { getOrders } from '../../actions';
+import { getALLItems } from '../../actions';
 import { useDispatch,useSelector } from 'react-redux';
 
 const SellerItems =() =>{
     const dispatch = useDispatch();
-    const orders = useSelector(state => state.orders)
-    console.log("orders",orders)
+    const orders = useSelector(state => state.Items)
+   
     useEffect(() => {
-      dispatch(getOrders());
+      dispatch(getALLItems());
     }, [dispatch]);
 
     // useEffect(()=>{

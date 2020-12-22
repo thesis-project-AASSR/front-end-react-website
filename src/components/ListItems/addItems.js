@@ -1,27 +1,47 @@
 import React, { useState } from 'react';
 // import { render } from 'react-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { createOrder } from '../../actions/index';
+import  { useEffect } from 'react';
+  import { getPrice } from '../../actions';
 // import FileBase from 'react-file-base64';
 // import { reducers }   from '../../reducers/index';
 
-const AddItems = ({ currentId }) => {
-    const [orderData, setOrderData] = useState({  category: '', quantity: '', wights: '', description: ''});
-    const dispatch = useDispatch();
-    // const order = useSelector((state) => (orderData ? state.posts.find((message) => message._id === currentId) : null));
-    // const order = useSelector(state => state.reducers)
-    // useEffect(() => {
-    //     if (order) setOrderData(order);
-    //   }, [order]);
 
-      const onSubmit = async (e) => {
-        e.preventDefault();
+var Total 
+// var Quantity
+// var Weight
+// var price 
+const AddItems = ({ currentId }) => {
+    const [orderData, setOrderData] = useState({  category: '', quantity: '', weight: '', description: ''});
+    const dispatch = useDispatch();
+    const order = useSelector(state => state.Items)
+    // console.log("order:",order)
     
-          dispatch(createOrder(orderData));
-          console.log("orderData",orderData)
-        //   clear();
-        
-      };
+    /// to get the object of costs for each material(category) 
+    var priceObj = getPrice();
+    var category=orderData.category
+    /// to get the price for the entered material
+    for (var key in priceObj){
+      if(category===key)
+      var price = priceObj[key]         
+    }
+    console.log("price:",price)
+    // to get the entered Quantity and Weight 
+    var Quantity=orderData.quantity
+    var Weight=orderData.weight
+    //To calculate the total price for the order
+    Total = Weight*price*Quantity
+    console.log("Total2:",Total)
+
+    const onSubmit = async (e) => {
+      e.preventDefault();
+  
+        dispatch(createOrder(orderData));
+        console.log("orderData",orderData)
+      //   clear();
+      
+    };
     return (
         <div>
         <h1>Form</h1>
@@ -59,13 +79,13 @@ const AddItems = ({ currentId }) => {
                 </div>
                 <br />
                 <div className="col">
-                <label>Wights</label>
+                <label>weight</label>
                 <input
                 required="true"
                   type = "text"
                   className = "form-control"
                    value = {orderData.wights}
-                  onChange = {(e) => setOrderData({ ...orderData ,wights : e.target.value})}
+                  onChange = {(e) => setOrderData({ ...orderData ,weight : e.target.value})}
                   text-align = "center"
                   placeholder = "Insert Wights"/>
                 </div>
@@ -80,6 +100,9 @@ const AddItems = ({ currentId }) => {
                   onChange = {(e) => setOrderData({ ...orderData ,description : e.target.value})}
                     placeholder = " Insert a description "/>
                 </div>
+                
+                  Total: {Total}
+               
                 <br />
                 {/* <div className = "col">
                             <label>Image</label>
