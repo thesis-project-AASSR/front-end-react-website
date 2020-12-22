@@ -32,6 +32,8 @@ const AddItems = ({ currentId }) => {
     var Weight=orderData.weight
     //To calculate the total price for the order
     Total = Weight*price*Quantity
+    //add the order price to the orderData object to save it on the database
+    orderData.price = Total
     console.log("Total2:",Total)
 
     const onSubmit = async (e) => {
