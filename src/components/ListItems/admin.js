@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
 import { getALLItems } from '../../actions';
 import { useDispatch,useSelector } from 'react-redux';
-import {Button} from 'react-bootstrap'
+import {Button} from 'react-bootstrap';
+
 // we are retreiving all the admin items 
 const AdminItems =() =>{
     // we are dipatching th state
@@ -20,14 +21,14 @@ const AdminItems =() =>{
 
         category: {Item.category}
         <br></br>
-        quantity: {Item.quantity}
+        quantity:  {Item.quantity}
         <br></br>
-        weight:{Item.weight}
+        weight:  {Item.weight}
         <br></br>
-        description:{Item.description}
+        description:  {Item.description}
         <br></br>
-        image:{Item.image}
-        <Button variant="primary" >hey </Button>
+        image:  {Item.image}
+        <Button variant="outline-primary">Primary</Button>{' '}
         </div>
        
           ))}
@@ -39,8 +40,3 @@ const AdminItems =() =>{
 export default AdminItems;
 
 
-// const dispatch = useDispatch();
-//   // // now we have access to this dispatch we need to find away where we will dispatch this action ---the best way inside use Effect  : it is like component didmount
-//   useEffect(()=>{
-//     dispatch(getALLItems());    // here we want to dispatch an action so we need to creat an action 
-//   },[dispatch])

@@ -4,8 +4,9 @@
        return action.payload;
        case "CREATE":
       return [...state, action.payload];
-        default:
+      default:
         return state;
+
     }
   };
 

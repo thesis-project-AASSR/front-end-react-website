@@ -6,7 +6,7 @@ import { createOrder } from '../../actions/index';
 // import { reducers }   from '../../reducers/index';
 
 const AddItems = ({ currentId }) => {
-    const [orderData, setOrderData] = useState({  category: '', quantity: '', weight: '', description: ''});
+    const [orderData, setOrderData] = useState({  category: '', quantity: '', weight: '', description: '',image:'hi', price:'sdsa'});
     const dispatch = useDispatch();
     // const order = useSelector((state) => (orderData ? state.posts.find((message) => message._id === currentId) : null));
     // const order = useSelector(state => state.reducers)

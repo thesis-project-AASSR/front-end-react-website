@@ -1,10 +1,10 @@
-import React, { useEffect , useState } from 'react';
-import { getALLItems } from '../../actions';
-import { useDispatch,useSelector } from 'react-redux';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { updateOrder } from '../../actions/index';
 
-import { updateOrder,deleteOrder } from '../../actions/index';
 
-const SellerItems =({currentId}) =>{
+
+const editItems =({currentId}) =>{
     const dispatch = useDispatch();
 
     const [orderData, setOrderData] = useState({  category: '', quantity: '', wights: '', description: ''})
@@ -19,11 +19,6 @@ const SellerItems =({currentId}) =>{
     //     dispatch(getOrders());    // here we want to dispatch an action so we need to creat an action 
     //   })
 
-    const onSubmitupdate = async (e) => {
-      e.preventDefault();
-      dispatch(updateOrder(currentId, orderData));
-    //  window.location='/addItems'
-    }
     return (
 
 <div>
@@ -42,7 +37,7 @@ const SellerItems =({currentId}) =>{
 
 
         <div>
-                <button type="submit" onClick= {onSubmitupdate} className="btn btn-deep-orange darken-4">update</button>
+                <button type="submit" onClick= {onSubmitupdate} className="btn btn-deep-orange darken-4">submit</button>
                 {/* <button  type="submit" onClick={() => dispatch(deleteOrder(order._id))}>Delete</button> */}
                 </div>
 
@@ -60,4 +55,4 @@ const SellerItems =({currentId}) =>{
 
 }
 
-export default SellerItems;
+export default editItems;
