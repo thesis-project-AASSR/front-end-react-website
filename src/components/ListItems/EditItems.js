@@ -1,20 +1,17 @@
 import React, { useState ,useEffect} from 'react';
-// import { render } from 'react-dom';
-
 import { createOrder,updateOrder} from '../../actions/index';
-// import FileBase from 'react-file-base64';
 // import { reducers }   from '../../reducers/index';
 import { useDispatch,useSelector } from 'react-redux';
-
-
 
 const EditItems = ({ currentId  ,setCurrentId}) => {
   console.log(currentId)
     const [orderData, setOrderData] = useState({  category: '', quantity: '', weight: '', description: ''});
-
     const dispatch = useDispatch();
+
+    // fetch the data 
     const order = useSelector((state) => currentId ? state.orders.find((p) => p.itemID === currentId) : null);
 
+    // we will use the useEffect to display the data
     useEffect(() => {
         if (order) setOrderData(order);
       }, [order]);

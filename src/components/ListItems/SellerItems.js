@@ -2,8 +2,9 @@ import React, { useEffect , useState } from 'react';
 import { getOrders } from '../../actions';
 import { useDispatch,useSelector } from 'react-redux';
 import { updateOrder,deleteOrder } from '../../actions/index';
-
+import {  Link} from "react-router-dom" ;
 const SellerItems =({ setCurrentId }) =>{
+  // console.log(setCurrentId)
     const dispatch = useDispatch();
     const [orderData, setOrderData] = useState({  category: '', quantity: '', wights: '', description: ''});
 
@@ -14,7 +15,8 @@ const SellerItems =({ setCurrentId }) =>{
     }, [dispatch]);
 
     
-
+    //console.log(orders.itemID)// undefine
+    console.log()
     
     return (
 
@@ -33,7 +35,8 @@ const SellerItems =({ setCurrentId }) =>{
         image:{post.image}
         <div>
 
-                <button type="submit" onClick={() =>   dispatch(updateOrder(post.itemID))} >update</button>
+                {/* <button type="submit" onClick={() => setCurrentId(post.itemID) } >update</button> */}
+                <Link to ={"/EditItems/"+post.itemID}  >update</Link>
                 <button  type="submit" onClick={() => dispatch(deleteOrder(post.itemID))}>Delete</button>
                 </div>
                 

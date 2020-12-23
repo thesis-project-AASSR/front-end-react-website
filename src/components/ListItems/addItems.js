@@ -21,10 +21,12 @@ const AddItems = ({ currentId  ,setCurrentId}) => {
    
       const onSubmit = async (e) => {
         e.preventDefault();
-     
-          dispatch(createOrder(orderData));
-          console.log("orderData",orderData)
-        //   clear();
+      if (currentId){
+        dispatch(updateOrder(currentId,orderData));
+      }else{
+        dispatch(createOrder(orderData));
+        console.log("orderData",orderData)
+      }
         
       };
       
