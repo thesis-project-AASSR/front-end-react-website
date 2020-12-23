@@ -7,9 +7,11 @@ import SellerItems from './components/ListItems/SellerItems'
 import Homepage from './components/NavBar&homepage/homepage'
 import AddItems from './components/ListItems/addItems'
 import Sign from './components/Profile/Sign'
+import Form from './components/Profile/form'
 import { getALLItems } from './actions';
 import ProtectedRoute from './ProtectedRoute';
 import {useState} from 'react';
+
 // import { useDispatch } from 'react-redux';
 // import {useSelector} from 'react-redux';
 
@@ -28,6 +30,7 @@ return (
     <Router className="container">
     <div>
       <Route path="/" component={Homepage} />
+      <Route path="/form" component={Form} />
       <ProtectedRoute path="/SellerItems" component={SellerItems} token = {token}/>
       <ProtectedRoute path="/AdminItems" component={AdminItems} />
       <ProtectedRoute path = "/AdminProfile"  component = {AdminProfile} />
