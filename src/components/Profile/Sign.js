@@ -40,7 +40,7 @@ const Sign = ({ currentId }) => {
                 <div className="col">
                 <label>Username</label>
                 <input
-                required="true"
+                required={true}
                   type = "text"
                   className = "form-control"
                    value = {userData.username}
@@ -52,8 +52,8 @@ const Sign = ({ currentId }) => {
                 <div className="col">
                 <label>Email</label>
                 <input
-                required="true"
-                  type = "text"
+                required={true}
+                  type = "email"
                   className = "form-control"
                    value = {userData.email}
                   onChange = {(e) => setUserData({ ...userData ,email : e.target.value})}
@@ -65,18 +65,20 @@ const Sign = ({ currentId }) => {
                   <label>Password</label>
                   <input
                     type = "password"
-                    required="true"
+                    required={true}
                     className = "form-control"
                      value = {userData.password}
                   onChange = {(e) => setUserData({ ...userData ,password : e.target.value})}
-                    placeholder = " Insert a password"/>
+                    placeholder = " Insert a password"
+                    pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
+                    />
                 </div>
                 <br/>
                 <div className="col">
                 <label>Phone Number</label>
                 <input
-                required="true"
-                  type = "text"
+                required={true}
+                  type = "tel"
                   className = "form-control"
                    value = {userData.phoneNumber}
                   onChange = {(e) => setUserData({ ...userData ,phoneNumber : e.target.value})}
@@ -87,7 +89,7 @@ const Sign = ({ currentId }) => {
               <div className="col">
                 <label>Location</label>
                 <input
-                required="true"
+                required={true}
                   type = "text"
                   className = "form-control"
                    value = {userData.location}
@@ -99,7 +101,7 @@ const Sign = ({ currentId }) => {
                 <div className="col">
                 <label>image</label>
                 <input
-                required="true"
+                required={true}
                   type = "text"
                   className = "form-control"
                    value = {userData.image}
@@ -111,7 +113,7 @@ const Sign = ({ currentId }) => {
                 <div className="col">
                 <label>iBan</label>
                 <input
-                required="true"
+                required={true}
                   type = "text"
                   className = "form-control"
                    value = {userData.iBan}
@@ -135,8 +137,8 @@ const Sign = ({ currentId }) => {
                 <div className="col">
                 <label>Email</label>
                 <input
-                required="true"
-                  type = "text"
+                required={true}
+                  type = "email"
                   className = "form-control"
                    value = {savedUserData.email}
                   onChange = {(e) => setSavedUserData({ ...savedUserData ,email : e.target.value})}
@@ -148,7 +150,7 @@ const Sign = ({ currentId }) => {
                   <label>Password</label>
                   <input
                     type = "password"
-                    required="true"
+                    required={true}
                     className = "form-control"
                      value = {savedUserData.password}
                   onChange = {(e) => setSavedUserData({ ...savedUserData ,password : e.target.value})}
