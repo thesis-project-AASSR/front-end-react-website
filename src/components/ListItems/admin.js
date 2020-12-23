@@ -9,6 +9,7 @@ const AdminItems =() =>{
     const dispatch = useDispatch();
     //we are declaring a new const called items which will save all the items in it 
     const Items = useSelector(state => state.Items)
+
     // we are rendering the whole items instantly when we load our page 
     useEffect(() => {
       dispatch(getALLItems());

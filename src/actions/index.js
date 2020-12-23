@@ -5,6 +5,7 @@ export const getALLItems = () => async (dispatch) => {
  
     const {data} = await api.fetchOrders()
     dispatch({ type: 'FETCH_ALL', payload: data });
+    
   
    } catch (error) {
     console.log(error.message);
@@ -60,10 +61,10 @@ export const checkUser = (saveduser) => async (dispatch) => {
   try {
     const {data} = await api.checkUser(saveduser);
     dispatch({ type: "CHECK", payload: data });
-    console.log("DISPATCH(CHECK) : ", dispatch({ type: "CHECK", payload: data}));
+    console.log("DISPATCH(CHECK) : ", dispatch({ type: "CHECK", payload: data.result[0].userID}));
     localStorage.setItem('token',data.token )
     localStorage.setItem('UserId',data.result[0].userID )
-    window.location = '/';
+    // window.location = '/';
   } catch (error) {
     console.log(error.message);
     alert("email or password is incorrect");
@@ -75,6 +76,17 @@ export const getAdmin = () => async (dispatch) => {
     const {data} = await api.AdminProfile();
 
     dispatch({ type: 'AdminInfo', payload: data });
+  
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
+export const getUser = () => async (dispatch) => {
+  try {
+    const {data} = await api.UserProfile();
+      
+    dispatch({ type: 'UserInfo', payload: data });
   
   } catch (error) {
     console.log(error.message);
