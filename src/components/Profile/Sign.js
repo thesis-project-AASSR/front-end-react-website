@@ -15,15 +15,39 @@ const Sign = ({ currentId }) => {
    ////sigin up button
     const onSubmit = async (e) => {
         e.preventDefault();
+        /*
+        Input Email conditions:
+        @ should present.
+        mysite@.com.my  [tld (Top Level domain) can not start with dot "."]
+        @you.me.net [ No character before @ ]
+        mysite123@gmail.b [ ".b" is not a valid tld ]
+        mysite@.org.org [ tld can not start with dot "." ]
+        .mysite@mysite.org [ an email should not be start with "." ]
+        mysite()*@gmail.com [ here the regular expression only allows character, digit, underscore, and dash ]
+        mysite..1234@yahoo.com [double dots are not allowed]
+         */
 
+        if ( !(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(userData.email)) ) {
+          alert("You have entered an invalid email address!");
+        }
+        //Input Password and Submit [8 to 15 characters which contain at least one lowercase letter, one uppercase letter, one numeric digit, and one special character
+        else if ( !(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/.test(userData.password)) ) {
+          alert("You have entered weak password!");
+        }
+        //Input PhoneNumber should be 10 digits with no comma, no spaces, no punctuation and there will be no + sign in front the number
+        else if ( !(/^\d{10}$/.test(userData.phoneNumber)) ) {
+          alert("You have entered an invalid Phone Number!");
+        }
+         else {
           dispatch(createUser(userData));
-          console.log("userData",userData)       
+          console.log("userData",userData);
+        }
+               
       };
 
     ////sigin in button
       const onSignIn = async (e) => {
         e.preventDefault();
-
           dispatch(checkUser(savedUserData));
           console.log("savedUserData",savedUserData);
             //  if (!savedUserData.email)  {

@@ -25,13 +25,14 @@ function App() {
 
 console.log(localStorage.getItem('token'))
 const [token, setToken] = useState(localStorage.getItem('token'));
+const [id, setID] = useState(localStorage.getItem('user_id'));
 return (
   <div>
 
     <Router className="container">
     <div>
       <Route path="/" component={Homepage} />
-      <ProtectedRoute path="/SellerItems" component={SellerItems} token = {token}/>
+      <ProtectedRoute path="/SellerItems" component={SellerItems} token = {token} id={id}/>
       <ProtectedRoute path="/AdminItems" component={AdminItems} />
       <Route path = "/AdminProfile"  component = {AdminProfile} />
       <ProtectedRoute path="/SellerProfile" component={SellerProfile} token = {token}/>
