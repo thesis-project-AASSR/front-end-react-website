@@ -13,6 +13,7 @@ export default class Homepage extends Component {
     return (
     <div>
     <Navbar/>
+
     </div>
     );
   }

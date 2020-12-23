@@ -1,42 +1,39 @@
 import React, { useState ,useEffect} from 'react';
-// import { render } from 'react-dom';
-
 import { createOrder,updateOrder} from '../../actions/index';
-// import FileBase from 'react-file-base64';
 // import { reducers }   from '../../reducers/index';
 import { useDispatch,useSelector } from 'react-redux';
 
-
-
-const AddItems = ({ currentId  ,setCurrentId}) => {
-  console.log(currentId)
-    const [orderData, setOrderData] = useState({  category: '', quantity: '', weight: '', description: ''});
-
-
-const AddItems = ({ currentId }) => {
-    const [orderData, setOrderData] = useState({  category: '', quantity: '', weight: '', description: ''});
-
-    const dispatch = useDispatch();
+const EditItems = (props) => {
     
-    const order = useSelector((state) => currentId ? state.orders.find((p) => p._id === currentId) : null);
-    // const order = useSelector(state => state.reducers)
-    useEffect(() => {
-        if (order) setOrderData(order);
-      }, [order]);
+    const [orderData, setOrderData] = useState({  category: '', quantity: '', weight: '', description: ''});
+    const dispatch = useDispatch();
+    const currentId =props.match.params.id
+
+    // fetch the data 
+//     const order = useSelector((state) => currentId ? state.orders.find((p) => p.itemID === currentId) : null);
+// console.log(order)
+// console.log(orderData)
+const orders = useSelector(state => state.orders)
+// var item =local
+const filteredItems = orders.filter(order=> currentId === order.itemID)
+console.log(filteredItems)
+
+    // we will use the useEffect to display the data
+    // useEffect(() => {
+    //     if (order) setOrderData(order);
+    //   }, [currentId,order]);
    
       const onSubmit = async (e) => {
         e.preventDefault();
-        console.log(currentId)
-      if (currentId){
-        dispatch(updateOrder(currentId,orderData));
-      }else{
-        dispatch(createOrder(orderData));
-        console.log("orderData",orderData)
-      }
+     
+          dispatch(updateOrder(currentId,orderData));
+          console.log("orderData",orderData)
+
+        //   clear();
         
       };
       
-     
+
       
     return (
         <div>
@@ -44,7 +41,7 @@ const AddItems = ({ currentId }) => {
         <br />
         <div className = "container">
           <form className="text-center border border-light p-9" action="#!"  >
-            <p className="h4 mb-4">Help your environment by recycling trash</p>
+            <p className="h4 mb-4">Editing </p>
             <br />
                 <div className="col">
                 <label>Select Category</label>
@@ -122,4 +119,4 @@ const AddItems = ({ currentId }) => {
     )
     
 }
-export default AddItems;
+export default EditItems;
