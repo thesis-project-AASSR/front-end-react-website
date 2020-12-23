@@ -7,13 +7,13 @@ import SellerItems from './components/ListItems/SellerItems'
 import Homepage from './components/NavBar&homepage/homepage'
 import AddItems from './components/ListItems/addItems'
 import Sign from './components/Profile/Sign'
-import Form from './components/Profile/form'
 import { getALLItems } from './actions';
+import { useDispatch } from 'react-redux';
+import {useSelector} from 'react-redux';
 import ProtectedRoute from './ProtectedRoute';
 import {useState} from 'react';
 
-// import { useDispatch } from 'react-redux';
-// import {useSelector} from 'react-redux';
+
 
 function App() {
 //   // we need to define this dispatch using hooks
@@ -27,19 +27,19 @@ console.log(localStorage.getItem('token'))
 const [token, setToken] = useState(localStorage.getItem('token'));
 return (
   <div>
+
     <Router className="container">
     <div>
       <Route path="/" component={Homepage} />
-      <Route path="/form" component={Form} />
       <ProtectedRoute path="/SellerItems" component={SellerItems} token = {token}/>
       <ProtectedRoute path="/AdminItems" component={AdminItems} />
-      <ProtectedRoute path = "/AdminProfile"  component = {AdminProfile} />
+      <Route path = "/AdminProfile"  component = {AdminProfile} />
       <ProtectedRoute path="/SellerProfile" component={SellerProfile} token = {token}/>
-      {/* <Route path="/AddItems" component={AddItems} /> */}
-      <Route path="/sign" exact component={Sign} />
       <ProtectedRoute path = "/AddItems" component = {AddItems} token = {token}/>
+      <Route path="/sign" exact component={Sign} />
     </div>
   </Router>
+
 </div>
 );
 }

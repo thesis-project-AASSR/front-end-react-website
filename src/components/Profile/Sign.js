@@ -25,8 +25,12 @@ const Sign = ({ currentId }) => {
         e.preventDefault();
 
           dispatch(checkUser(savedUserData));
-          console.log("savedUserData",savedUserData)       
+          console.log("savedUserData",savedUserData);
+            //  if (!savedUserData.email)  {
+            //   alert("empty email")
+            //  }
       };
+ 
 
     return (
         <div>

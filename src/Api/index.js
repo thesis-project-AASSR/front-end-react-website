@@ -11,4 +11,7 @@ export const createUser = (newUser) => axios.post(url + '/signup', newUser)
 
 export const checkUser = (savedUser) => axios.post(url + '/signin', savedUser)
 
-
+//getting the admin info
+export const AdminProfile = () => axios.get(url+'/AdminUser' );
+//getting the user profile
+export const UserProfile = () => axios.get(url + '/UserProfile' );

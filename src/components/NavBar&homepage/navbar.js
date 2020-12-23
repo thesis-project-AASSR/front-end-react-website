@@ -16,7 +16,6 @@ export default class Navbar extends Component {
     <div>
     <nav>
     <Link to="/" > DAWERHA </Link>
-    <Link to="/form">Form </Link>
     <Link to="/SellerItems"> seller Items</Link>
     <Link to="/sign" >sign in</Link>
     <Link to="/AdminItems"> Admin Items </Link>
