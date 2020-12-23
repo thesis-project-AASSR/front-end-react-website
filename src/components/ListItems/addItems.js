@@ -6,7 +6,7 @@ import  { useEffect } from 'react';
   import { getPrice } from '../../actions';
 // import FileBase from 'react-file-base64';
 // import { reducers }   from '../../reducers/index';
-
+import { storage } from '../Profile/firbase'
 
 var Total 
 // var Quantity
@@ -14,10 +14,37 @@ var Total
 // var price 
 const AddItems = ({ currentId }) => {
     const [orderData, setOrderData] = useState({  category: '', quantity: '', weight: '', description: ''});
+    const [image, setUserImage] = useState(null)
     const dispatch = useDispatch();
     const order = useSelector(state => state.Items)
     // console.log("order:",order)
-    
+    function handleChangeImage(e){
+      e.preventDefault();
+        setUserImage( e.target.files[0])      
+      }
+
+      const imageUpload  = async (e) => {
+        const imageLink = storage.ref(`images/${image.name}`).put(image)
+        imageLink.on(
+           "state_changed",
+           snapshot => {},
+           error => {
+             console.log(error)
+           },
+           () => {
+             
+             storage
+             .ref("images")
+             .child(image.name)
+             .getDownloadURL()
+             .then(url => {
+     
+              orderData.image = url
+               console.log(url)
+             })
+           })
+        
+      }
     /// to get the object of costs for each material(category) 
     var priceObj = getPrice();
     var category=orderData.category
@@ -90,6 +117,16 @@ const AddItems = ({ currentId }) => {
                   onChange = {(e) => setOrderData({ ...orderData ,weight : e.target.value})}
                   text-align = "center"
                   placeholder = "Insert Wights"/>
+                </div>
+                <div className="col">
+                <label>image</label>
+                <input 
+                  required={true}
+                  type='file' 
+                  className = "form-control"
+                  onChange = {handleChangeImage}
+                  />
+                   <button type="submit" onClick= {imageUpload} className="btn btn-deep-orange darken-4">upload Image</button>
                 </div>
                 <br />
                 <div className = "col">

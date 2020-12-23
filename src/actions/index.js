@@ -23,36 +23,33 @@ export const getALLItems = () => async (dispatch) => {
     }
   };
 
+  export const checkUser = (saveduser) => async (dispatch) => {
+    try {
+      const {data} = await api.checkUser(saveduser);
+      dispatch({ type: "CHECK", payload: data });
+      console.log("DISPATCH(CHECK) : ", dispatch({ type: "CHECK", payload: data}));
+      localStorage.setItem('token',data.token )
+      localStorage.setItem('UserId',data.result[0].userID )
+      window.location = '/';
+    } catch (error) {
+      console.log(error.message);
+      alert("email or password is incorrect");
+    }
+  };
+  // getting the admin info
+
+  
+  
+
   export const createUser = (user) => async (dispatch) => {
     try {
       const {data} = await api.createUser(user);
       dispatch({ type: "ADD", payload: user});
-      console.log("DISPATCH(ADD) : ", dispatch({ type: "ADD", payload: user}))
+      console.log("DISPATCH(ADD) : ", user )
     } catch (error) {
       console.log(error.message);
     }
   };
-  
-  export const checkUser = (saveduser) => async (dispatch) => {
-    try {
-      const {data} = await api.checkUser(saveduser);
-      dispatch({ type: "CHECK", payload: saveduser});
-      console.log("DISPATCH(CHECK) : ", dispatch({ type: "CHECK", payload: saveduser}))
-    } catch (error) {
-      console.log(error.message);
-    }
-  };
-  
-
-  // export const createUser = (user) => async (dispatch) => {
-  //   try {
-  //     const {data} = await api.createUser(user);
-  //     dispatch({ type: "ADD", payload: user});
-  //     console.log("DISPATCH(ADD) : ", dispatch({ type: "ADD", payload: user}))
-  //   } catch (error) {
-  //     console.log(error.message);
-  //   }
-  // };
   
   export const getPrice = () =>  {
     try {
