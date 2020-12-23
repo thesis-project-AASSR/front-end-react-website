@@ -3,29 +3,37 @@ import { createOrder,updateOrder} from '../../actions/index';
 // import { reducers }   from '../../reducers/index';
 import { useDispatch,useSelector } from 'react-redux';
 
-const EditItems = ({ currentId  ,setCurrentId}) => {
-  console.log(currentId)
+const EditItems = (props) => {
+    
     const [orderData, setOrderData] = useState({  category: '', quantity: '', weight: '', description: ''});
     const dispatch = useDispatch();
+    const currentId =props.match.params.id
 
     // fetch the data 
-    const order = useSelector((state) => currentId ? state.orders.find((p) => p.itemID === currentId) : null);
+//     const order = useSelector((state) => currentId ? state.orders.find((p) => p.itemID === currentId) : null);
+// console.log(order)
+// console.log(orderData)
+const orders = useSelector(state => state.orders)
+// var item =local
+const filteredItems = orders.filter(order=> currentId === order.itemID)
+console.log(filteredItems)
 
     // we will use the useEffect to display the data
-    useEffect(() => {
-        if (order) setOrderData(order);
-      }, [order]);
+    // useEffect(() => {
+    //     if (order) setOrderData(order);
+    //   }, [currentId,order]);
    
       const onSubmit = async (e) => {
         e.preventDefault();
      
-          dispatch(createOrder(orderData));
+          dispatch(updateOrder(currentId,orderData));
           console.log("orderData",orderData)
+
         //   clear();
         
       };
       
-     
+
       
     return (
         <div>

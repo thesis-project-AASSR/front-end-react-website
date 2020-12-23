@@ -8,9 +8,9 @@ const reducers = (orders = [], action) => {
    case "CREATE":
       return [...orders, action.payload];
       case "UPDATE":
-      return orders.map((order) => (order.itemID === action.payload.itemID ? action.payload : order));
+      return action.payload;
       case "DELETE":
-        return orders.filter((order) => order.itemID !== action.payload);
+        return action.payload;
     default:
       return orders;
   }

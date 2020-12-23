@@ -32,8 +32,9 @@ import * as api from '../Api/index.js';
   export const updateOrder = (id, order) => async (dispatch) => {
     try {
       const { data } = await api.updateOrder(id, order);
+   
   
-      dispatch({ type: "UPDATE", payload: order });
+      dispatch({ type: "UPDATE", payload: id, order });
     } catch (error) {
       console.log(error.message);
     }
@@ -41,7 +42,7 @@ import * as api from '../Api/index.js';
   
   export const deleteOrder = (id) => async (dispatch) => {
     try {
-      await await api.deleteOrder(id);
+     const {data}=await api.deleteOrder(id);
  
   
       dispatch({ type: "DELETE", payload: id });

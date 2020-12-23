@@ -15,33 +15,28 @@ import EditItems from './components/ListItems/EditItems'
 function App() {
 
 
-  const [currentId, setCurrentId] = useState(0);
-
   // we need to define this dispatch using hoox
   const dispatch = useDispatch();
   // now we have access to this dispatch we need to find away where we will dispatch this action ---the best way inside use Effect  : it is like component didmount
   useEffect(()=>{
     dispatch(getOrders());    // here we want to dispatch an action so we need to creat an action 
-  },[ currentId,dispatch])
+  },[ dispatch])
 
   return (
     <div>
       <Router className="container">
       <div>
         <Route path="/" component={Homepage} />
-        <Route path="/SellerItems" component={SellerItems} />
-        <Route path="/EditItems"  component={EditItems} />
+        {/* <Route path="/SellerItems" component={SellerItems} /> */}
+        <Route path="/EditItems/:id" component={EditItems}  />
         <Route path="/AdminItems" component={AdminItems} />
         <Route path = "/AdminProfile"  component = {AdminProfile} />
         <Route path="/SellerProfile" component={SellerProfile} />
         <Route path="/AddItems" component={AddItems} />
         <Route path="/sign"  component={Sign} />
-        <Route path="/SellerProfile" render={(props) => (
-    <SellerProfile {...props}  setCurrentId={setCurrentId}/>)}
-              />
-        <Route path="/AddItems"  render={(props) => (
-    <AddItems{...props} currentId={currentId} setCurrentId={setCurrentId} />
-        )}/>
+        <Route path="/SellerItems"  component={SellerItems} />
+           
+      
       </div>
     </Router>
   

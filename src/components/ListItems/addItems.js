@@ -9,6 +9,7 @@ import { useDispatch,useSelector } from 'react-redux';
 
 
 const AddItems = ({ currentId  ,setCurrentId}) => {
+  console.log(currentId)
     const [orderData, setOrderData] = useState({  category: '', quantity: '', weight: '', description: ''});
 
     const dispatch = useDispatch();
@@ -21,6 +22,7 @@ const AddItems = ({ currentId  ,setCurrentId}) => {
    
       const onSubmit = async (e) => {
         e.preventDefault();
+        console.log(currentId)
       if (currentId){
         dispatch(updateOrder(currentId,orderData));
       }else{
