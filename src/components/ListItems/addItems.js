@@ -1,6 +1,15 @@
 import React, { useState ,useEffect} from 'react';
 // import { render } from 'react-dom';
 
+import { useDispatch, useSelector } from 'react-redux';
+import { createOrder } from '../../actions/index';
+import  { useEffect } from 'react';
+  import { getPrice } from '../../actions';
+// import FileBase from 'react-file-base64';
+// import { reducers }   from '../../reducers/index';
+import { storage } from '../Profile/firbase'
+
+
 import { createOrder,updateOrder} from '../../actions/index';
 // import FileBase from 'react-file-base64';
 // import { reducers }   from '../../reducers/index';
@@ -13,8 +22,72 @@ const AddItems = ({ currentId  ,setCurrentId}) => {
     const [orderData, setOrderData] = useState({  category: '', quantity: '', weight: '', description: ''});
 
 
+
+var Total 
+// var Quantity
+// var Weight
+// var price 
 const AddItems = ({ currentId }) => {
     const [orderData, setOrderData] = useState({  category: '', quantity: '', weight: '', description: ''});
+
+    const [image, setUserImage] = useState(null)
+    const dispatch = useDispatch();
+    const order = useSelector(state => state.Items)
+    // console.log("order:",order)
+    function handleChangeImage(e){
+      e.preventDefault();
+        setUserImage( e.target.files[0])      
+      }
+
+      const imageUpload  = async (e) => {
+        const imageLink = storage.ref(`images/${image.name}`).put(image)
+        imageLink.on(
+           "state_changed",
+           snapshot => {},
+           error => {
+             console.log(error)
+           },
+           () => {
+             
+             storage
+             .ref("images")
+             .child(image.name)
+             .getDownloadURL()
+             .then(url => {
+     
+              orderData.image = url
+               console.log(url)
+             })
+           })
+        
+      }
+    /// to get the object of costs for each material(category) 
+    var priceObj = getPrice();
+    var category=orderData.category
+    /// to get the price for the entered material
+    for (var key in priceObj){
+      if(category===key)
+      var price = priceObj[key]         
+    }
+    console.log("price:",price)
+    // to get the entered Quantity and Weight 
+    var Quantity=orderData.quantity
+    var Weight=orderData.weight
+    //To calculate the total price for the order
+    Total = Weight*price*Quantity
+    //add the order price to the orderData object to save it on the database
+    orderData.price = Total
+    console.log("Total2:",Total)
+
+    const onSubmit = async (e) => {
+      e.preventDefault();
+  
+        dispatch(createOrder(orderData));
+        console.log("orderData",orderData)
+      //   clear();
+      
+    };
+=======
 
     const dispatch = useDispatch();
     
@@ -38,6 +111,7 @@ const AddItems = ({ currentId }) => {
       
      
       
+
     return (
         <div>
         <h1>Form</h1>
@@ -85,6 +159,16 @@ const AddItems = ({ currentId }) => {
                   text-align = "center"
                   placeholder = "Insert Wights"/>
                 </div>
+                <div className="col">
+                <label>image</label>
+                <input 
+                  required={true}
+                  type='file' 
+                  className = "form-control"
+                  onChange = {handleChangeImage}
+                  />
+                   <button type="submit" onClick= {imageUpload} className="btn btn-deep-orange darken-4">upload Image</button>
+                </div>
                 <br />
                 <div className = "col">
                   <label>Description  </label>
@@ -96,6 +180,9 @@ const AddItems = ({ currentId }) => {
                   onChange = {(e) => setOrderData({ ...orderData ,description : e.target.value})}
                     placeholder = " Insert a description "/>
                 </div>
+                
+                  Total: {Total}
+               
                 <br />
                 {/* <div className = "col">
                             <label>Image</label>

@@ -53,18 +53,28 @@ const SellerItems =({currentId}) =>{
 
 <div>
           {orders.map((post) => (
+
+        <div  key={post.id} style={{ border: '1px solid black', margin: "6px" }} >
+
         <div style={{ border: '1px solid black', margin: "6px" }} >
           
+
 
         category: {post.category}
         <br></br>
         quantity: {post.quantity}
         <br></br>
-        weight:{post.weight}
+        weight:{post.weight}  
         <br></br>
         description:{post.description}
         <br></br>
         image:{post.image}
+
+        <br></br>
+        <button id="btn" on click ={() =>{}} >buy </button>
+        </div>
+     
+
 
         <div>
 
@@ -91,6 +101,7 @@ const SellerItems =({currentId}) =>{
 
         </div>
         
+
        
           ))}
            </div>

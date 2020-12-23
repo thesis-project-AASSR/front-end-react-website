@@ -33,49 +33,57 @@ export const getALLItems = () => async (dispatch) => {
     }
   };
 
+
+  export const checkUser = (saveduser) => async (dispatch) => {
+    try {
+      const {data} = await api.checkUser(saveduser);
+      dispatch({ type: "CHECK", payload: data });
+      console.log("DISPATCH(CHECK) : ", dispatch({ type: "CHECK", payload: data}));
+      localStorage.setItem('token',data.token )
+      localStorage.setItem('UserId',data.result[0].userID )
+      window.location = '/';
+    } catch (error) {
+      console.log(error.message);
+      alert("email or password is incorrect");
+    }
+  };
+  // getting the admin info
+
+  
+  
+
+  export const createUser = (user) => async (dispatch) => {
+    try {
+      const {data} = await api.createUser(user);
+      dispatch({ type: "ADD", payload: user});
+      console.log("DISPATCH(ADD) : ", user )
+
   export const updateOrder = (id, order) => async (dispatch) => {
     try {
       const { data } = await api.updateOrder(id, order);
    
   
       dispatch({ type: "UPDATE", payload: id, order });
+
     } catch (error) {
       console.log(error.message);
     }
   };
   
-  export const deleteOrder = (id) => async (dispatch) => {
+
+  export const getPrice = () =>  {
     try {
-     const {data}=await api.deleteOrder(id);
- 
+      const costs = {Iron: 5,
+                      wood:4,
+                      glass:3,
+                      plastic:2
+                    }
   
-      dispatch({ type: "DELETE", payload: id });
-    } catch (error) {
-      console.log(error.message);
-    }
-  };
+      
+     return costs
+
   
-
-    dispatch({ type: 'FETCH_ALL', payload: data });
-   
-  } catch (error) {
-    console.log(error.message);
-  }
-};
-
-export const createOrder = (order) => async (dispatch) => {
-  try {
-    const { data } = await api.createOrder(order);
-
-    dispatch({ type: "CREATE", payload: order });
-    console.log( "DISPAATCH(ACTION) :",dispatch({ type: "CREATE", payload: order }))
-  } catch (error) {
-    console.log(error.message);
-  }
-};
-
-
-
+<
 export const updateOrder = (id, order) => async (dispatch) => {
   try {
     const { data } = await api.updateOrder(id, order);
