@@ -1,5 +1,6 @@
 // import { FETCH_ALL, CREATE, UPDATE, DELETE, LIKE } from '../constants/actionTypes';
 
+
 const reducers = (orders = [], action) => {
   switch (action.type) {
     case "FETCH_ALL":
@@ -16,4 +17,12 @@ const reducers = (orders = [], action) => {
   }
 };
 
-export default reducers;
+import { combineReducers } from 'redux';
+import Items from './reducer.js';
+import AuthReducer from './authReducer'
+import authInReducer from './authInReducer'
+const AllReducers = combineReducers({ Items,AuthReducer,authInReducer });
+
+export default  AllReducers;
+
+

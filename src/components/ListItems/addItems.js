@@ -12,6 +12,10 @@ const AddItems = ({ currentId  ,setCurrentId}) => {
   console.log(currentId)
     const [orderData, setOrderData] = useState({  category: '', quantity: '', weight: '', description: ''});
 
+
+const AddItems = ({ currentId }) => {
+    const [orderData, setOrderData] = useState({  category: '', quantity: '', weight: '', description: ''});
+
     const dispatch = useDispatch();
     
     const order = useSelector((state) => currentId ? state.orders.find((p) => p._id === currentId) : null);
