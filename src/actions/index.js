@@ -57,7 +57,7 @@ export const getALLItems = () => async (dispatch) => {
       console.log(data);
       localStorage.setItem('token', data.token);
       localStorage.setItem('user_id', data.result[0].userID);
-      window.location = '/';
+      window.location = '/home';
     } catch (error) {
       if (!saveduser.email || !saveduser.password) {
      alert("email or password is empty");
