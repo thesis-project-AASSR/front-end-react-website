@@ -11,6 +11,7 @@ import { getALLItems } from './actions';
 import { useDispatch } from 'react-redux';
 import {useSelector} from 'react-redux';
 import ProtectedRoute from './ProtectedRoute';
+import ProtectedAdmin from './ProtectedAdmin';
 import {useState} from 'react';
 
 
@@ -34,9 +35,9 @@ return (
       <Route path="/" component={Homepage} />
       <ProtectedRoute path="/SellerItems" component={SellerItems} token = {token}/>
       <ProtectedRoute path="/AdminItems" component={AdminItems} token = {token} id={1}/>
-      <ProtectedRoute path = "/AdminProfile"  component = {AdminProfile} token = {token} id={1}/>
+      <ProtectedRoute path = "/AdminProfile"  component = {AdminProfile} token = {token}   id={1}/>
       <ProtectedRoute path="/SellerProfile" component={SellerProfile} token = {token} />
-      <ProtectedRoute path = "/AddItems" component = {AddItems} token = {token} />
+      <ProtectedRoute path = "/AddItems" component = {AddItems} token = {token}/>
       <Route path="/sign" exact component={Sign}/>
     </div>
   </Router>
