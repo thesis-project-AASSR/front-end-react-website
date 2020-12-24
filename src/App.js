@@ -4,7 +4,7 @@ import AdminProfile from './components/Profile/admin'
 import SellerProfile from './components/Profile/user'
 import AdminItems from './components/ListItems/admin'
 import SellerItems from './components/ListItems/SellerItems'
-import Homepage from './components/NavBar&homepage/homepage'
+import Homepage from './components/HomePage/homepage'
 import AddItems from './components/ListItems/addItems'
 import Sign from './components/Profile/Sign'
 import { getALLItems } from './actions';
@@ -12,8 +12,9 @@ import { useDispatch } from 'react-redux';
 import {useSelector} from 'react-redux';
 import ProtectedRoute from './ProtectedRoute';
 import ProtectedAdmin from './ProtectedAdmin';
+import View from './components/View/view';
 import {useState} from 'react';
-
+import homeNav from './components/Navbar/homeNav';
 
 
 function App() {
@@ -29,16 +30,21 @@ const [token, setToken] = useState(localStorage.getItem('token'));
 const [id, setID] = useState(localStorage.getItem('user_id'));
 return (
   <div>
-
+    
     <Router className="container">
     <div>
-      <Route path="/" component={Homepage} />
+      {/* the user can't access admin's pages */}
+      <Route path="/" exact component={View} />
+      <Route path="/home" component={Homepage} />
+      <Route path="/sign" exact component={Sign}/>
       <ProtectedRoute path="/SellerItems" component={SellerItems} token = {token}/>
-      <ProtectedRoute path="/AdminItems" component={AdminItems} token = {token} id={1}/>
-      <ProtectedRoute path = "/AdminProfile"  component = {AdminProfile} token = {token}   id={1}/>
       <ProtectedRoute path="/SellerProfile" component={SellerProfile} token = {token} />
       <ProtectedRoute path = "/AddItems" component = {AddItems} token = {token}/>
-      <Route path="/sign" exact component={Sign}/>
+      <ProtectedRoute path = "/AdminProfile"  component = {AdminProfile} token = {token}   id={1}/>
+      <ProtectedRoute path="/AdminItems" component={AdminItems} token = {token} id={1}/>
+      
+      
+      
     </div>
   </Router>
 

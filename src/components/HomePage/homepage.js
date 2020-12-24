@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Navbar from './navbar'
+import HomeNav from '../Navbar/homeNav';
 
 export default class Homepage extends Component {
   constructor(props) {
@@ -12,7 +12,8 @@ export default class Homepage extends Component {
   render() {
     return (
     <div>
-    <Navbar/>
+    <HomeNav/>
+    instructions to user how to use our app!
     </div>
     );
   }
