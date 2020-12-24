@@ -1,22 +1,188 @@
+import React, {useState,useEffect} from 'react';
+import {useSelector} from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { createUser } from '../../actions/index';
+import { checkUser } from '../../actions/index';
+import { storage } from './firbase'
+const Sign = ({ currentId }) => {
+    const [userData, setUserData] = useState({  username: '', email: '', password: '', phoneNumber: '', location: '',  iBan: '',url:''});
+    const [image, setUserImage] = useState(null)
+    const [savedUserData, setSavedUserData] = useState({ email: '', password: ''});
+    const dispatch = useDispatch();
 
-
-
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-  <title>Dawerha</title>
-  <base href="/">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
-</head>
-<body>
-  <div id="root"></div>
-  <script src="https://kit.fontawesome.com/d8f2bcef3e.js" crossorigin="anonymous"></script>
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-</body>
-</html> 
+   function handleChangeImage(e){
+    e.preventDefault();
+      setUserImage( e.target.files[0])      
+    }
+    /// to get the image url and save it on the firebase 
+    const imageUpload  = async (e) => {
+      const imageLink = storage.ref(`images/${image.name}`).put(image)
+      imageLink.on(
+         "state_changed",
+         snapshot => {},
+         error => {
+           console.log(error)
+         },
+         () => {
+           
+           storage
+           .ref("images")
+           .child(image.name)
+           .getDownloadURL()
+           .then(url => {
+   
+            userData.image = url
+             console.log(url)
+           })
+         })
+      
+    }
+    /// send the data to the backend
+    const onSubmit = async (e) => {
+     e.preventDefault();
+     dispatch(createUser(userData));
+     console.log("userDataBefore",userData)
+     };
+    
+      console.log("username",userData)
+      console.log("image",userData.image)
+      const onSignIn = async (e) => {
+        e.preventDefault();
+          dispatch(checkUser(savedUserData));
+          console.log("savedUserData",savedUserData)       
+      };
+    return (
+        <div>
+        <div>
+        <h1>Sign Up</h1>
+        <br />
+        <div className = "container">
+          <form className="text-center border border-light p-9" action="#!"  >
+            <p className="h4 mb-4">Please register your Info</p>
+            <br />
+                <div className="col">
+                <label>Username</label>
+                <input
+                required={true}
+                  type = "text"
+                  className = "form-control"
+                   value = {userData.username}
+                  onChange = {(e) => setUserData({ ...userData ,username : e.target.value})}
+                  text-align = "center"
+                  placeholder = "Insert Name"/>
+                </div>
+                <br />
+                <div className="col">
+                <label>Email</label>
+                <input
+                required={true}
+                  type = "text"
+                  className = "form-control"
+                   value = {userData.email}
+                  onChange = {(e) => setUserData({ ...userData ,email : e.target.value})}
+                  text-align = "center"
+                  placeholder = "Insert Email"/>
+                </div>
+                <br />
+                <div className = "col">
+                  <label>Password</label>
+                  <input
+                    type = "text"
+                    required={true}
+                    className = "form-control"
+                     value = {userData.password}
+                  onChange = {(e) => setUserData({ ...userData ,password : e.target.value})}
+                    placeholder = " Insert a password"/>
+                </div>
+                <br/>
+                <div className="col">
+                <label>Phone Number</label>
+                <input
+                required={true}
+                  type = "text"
+                  className = "form-control"
+                   value = {userData.phoneNumber}
+                  onChange = {(e) => setUserData({ ...userData ,phoneNumber : e.target.value})}
+                  text-align = "center"
+                  placeholder = "Insert Phone Number"/>
+                </div>
+              <br />
+              <div className="col">
+                <label>Location</label>
+                <input
+                required={true}
+                  type = "text"
+                  className = "form-control"
+                   value = {userData.location}
+                  onChange = {(e) => setUserData({ ...userData ,location : e.target.value})}
+                  text-align = "center"
+                  placeholder = "Insert Location"/>
+                </div>
+                <br/>
+                <div className="col">
+                <label>image</label>
+                <input 
+                  required={true}
+                  type='file' 
+                  className = "form-control"
+                  onChange = {handleChangeImage}
+                  />
+                   <button type="submit" onClick= {imageUpload} className="btn btn-deep-orange darken-4">upload Image</button>
+                </div>
+                <br/>
+                <div className="col">
+                <label>iBan</label>
+                <input
+                required={true}
+                  type = "text"
+                  className = "form-control"
+                   value = {userData.iBan}
+                  onChange = {(e) => setUserData({ ...userData ,iBan : e.target.value})}
+                  text-align = "center"
+                  placeholder = "Insert iBan"/>
+                </div>
+                <div>
+                <button type="submit" onClick= {onSubmit} className="btn btn-deep-orange darken-4">Sign Up</button>
+                </div>
+          </form>
+        </div>
+        </div>
+        <div>
+        <h1>Sign In</h1>
+        <br />
+        <div className = "container">
+          <form className="text-center border border-light p-9" action="#!"  >
+            <p className="h4 mb-4">Please enter your Info</p>
+                <br />
+                <div className="col">
+                <label>Email</label>
+                <input
+                required={true}
+                  type = "text"
+                  className = "form-control"
+                   value = {savedUserData.email}
+                  onChange = {(e) => setSavedUserData({ ...savedUserData ,email : e.target.value})}
+                  text-align = "center"
+                  placeholder = "Insert Email"/>
+                </div>
+                <br />
+                <div className = "col">
+                  <label>Password</label>
+                  <input
+                    type = "text"
+                    required={true}
+                    className = "form-control"
+                     value = {savedUserData.password}
+                  onChange = {(e) => setSavedUserData({ ...savedUserData ,password : e.target.value})}
+                    placeholder = " Insert a password"/>
+                </div>
+                <div>
+                <button type="submit" onClick= {onSignIn} className="btn btn-deep-orange darken-4">Sign In</button>
+                </div>
+          </form>
+        </div>
+        </div>
+        </div>
+    )
+}
+export default Sign;
