@@ -28,7 +28,7 @@ const AdminItems =() =>{
         <br></br>
         description:  {Item.description}
         <br></br>
-        image:  {Item.image}
+        image:  <img src={Item.image}/>
         <Button variant="outline-primary">Primary</Button>{' '}
         </div>
        

@@ -7,6 +7,7 @@ import SellerItems from './components/ListItems/SellerItems'
 import Homepage from './components/NavBar&homepage/homepage'
 import AddItems from './components/ListItems/addItems'
 import Sign from './components/Profile/Sign'
+import EditItems from './components/ListItems/EditItems'
 import { getALLItems } from './actions';
 import { useDispatch } from 'react-redux';
 import {useSelector} from 'react-redux'
@@ -31,6 +32,7 @@ function App() {
         <Route path="/SellerProfile" component={SellerProfile} />
         <Route path="/AddItems" component={AddItems} />
         <Route path="/sign"  component={Sign} />
+        <Route path="/EditItems/:id" component={EditItems}  />
       </div>
     </Router>
   

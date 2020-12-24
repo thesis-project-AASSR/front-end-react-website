@@ -28,16 +28,20 @@ export const createOrder = (order) => async (dispatch) => {
 export const updateOrder = (id, order) => async (dispatch) => {
   try {
     const { data } = await api.updateOrder(id, order);
-    dispatch({ type: "UPDATE", payload: order });
-    console.log(order)
+ 
+
+    dispatch({ type: "UPDATE", payload: id, order });
   } catch (error) {
     console.log(error.message);
   }
 };
+
 export const deleteOrder = (id) => async (dispatch) => {
   try {
-    await await api.deleteOrder(id);
-    dispatch({ type: 'DELETE', payload: id });
+   const {data}=await api.deleteOrder(id);
+
+
+    dispatch({ type: "DELETE", payload: id });
   } catch (error) {
     console.log(error.message);
   }
@@ -92,5 +96,24 @@ export const getUser = () => async (dispatch) => {
     console.log(error.message);
   }
 };
+
+
+export const getPrice = () =>  {
+  try {
+    const costs = {Iron: 5,
+                    wood:4,
+                    glass:3,
+                    plastic:2
+                  }
+   return costs
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
+
+
+
+
 
 
