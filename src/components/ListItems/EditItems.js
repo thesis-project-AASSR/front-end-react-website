@@ -15,8 +15,8 @@ const EditItems = (props) => {
 // console.log(orderData)
 const orders = useSelector(state => state.orders)
 // var item =local
-const filteredItems = orders.filter(order=> currentId === order.itemID)
-console.log(filteredItems)
+// const filteredItems = orders.filter(order=> currentId === order.itemID)
+// console.log(filteredItems)
 
     // we will use the useEffect to display the data
     // useEffect(() => {
