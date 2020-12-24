@@ -3,6 +3,9 @@ import { getALLItems } from '../../actions';
 import { useDispatch,useSelector } from 'react-redux';
 import {  Link} from "react-router-dom" ;
 import { updateOrder,deleteOrder } from '../../actions/index';
+import ItemsNav from '../Navbar/itemsNav';
+import {withRouter} from 'react-router-dom';
+
 
 const SellerItems =({currentId}) =>{
     const dispatch = useDispatch();
@@ -25,12 +28,9 @@ const SellerItems =({currentId}) =>{
 
  };
  
-   
-
- 
-    return (
-
+   return (
 <div>
+  <ItemsNav/>
           {orders.map((post) => (
         <div style={{ border: '1px solid black', margin: "6px" }} >
 
@@ -49,14 +49,7 @@ const SellerItems =({currentId}) =>{
         <Link to ={"/EditItems/"+post.itemID} >update</Link>
                 <button  type="submit" onClick={() => onSubmit(post.itemID) }>Delete</button>
                 </div>
-
-
-
-
-
-
-
-        </div>
+ </div>
        
           ))}
            </div>
@@ -64,4 +57,4 @@ const SellerItems =({currentId}) =>{
 
 }
 
-export default SellerItems;
+export default withRouter(SellerItems);
