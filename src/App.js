@@ -5,6 +5,7 @@ import SellerProfile from './components/Profile/user'
 import AdminItems from './components/ListItems/admin'
 import SellerItems from './components/ListItems/SellerItems'
 import Homepage from './components/HomePage/homepage'
+import Viewpage from './components/View/view'
 import AddItems from './components/ListItems/addItems'
 import Sign from './components/Profile/Sign'
 import { getALLItems } from './actions';
@@ -12,7 +13,6 @@ import { useDispatch } from 'react-redux';
 import {useSelector} from 'react-redux';
 import ProtectedRoute from './ProtectedRoute';
 import ProtectedAdmin from './ProtectedAdmin';
-import View from './components/View/view';
 import {useState} from 'react';
 import homeNav from './components/Navbar/homeNav';
 
@@ -34,7 +34,7 @@ return (
     <Router className="container">
     <div>
       {/* the user can't access admin's pages */}
-      <Route path="/" exact component={View} />
+      <Route path="/" exact component={Viewpage} />
       <Route path="/home" component={Homepage} />
       <Route path="/sign" exact component={Sign}/>
       <ProtectedRoute path="/SellerItems" component={SellerItems} token = {token}/>
