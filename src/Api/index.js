@@ -8,8 +8,6 @@ export const createOrder = (newOrder) => axios.post(url+ '/items', newOrder);
 export const AdminProfile = () => axios.get(url+'/AdminUser' );
 //getting the user profile
 export const UserProfile = () => axios.get(url + '/UserProfile' );
-
-
 export const updateOrder = (id, updateOrder) => axios.put(`${url}/items/${id}`, updateOrder);
 export const deleteOrder = (id) => axios.delete(`${url}/delete/${id}`);
 export const createUser = (newUser) => axios.post(url+ '/signup', newUser);

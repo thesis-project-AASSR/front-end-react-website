@@ -1,6 +1,6 @@
 import React, { useState ,useEffect} from 'react';
-import { createOrder,updateOrder} from '../../actions/index';
-// import { reducers }   from '../../reducers/index';
+import {updateOrder} from '../../actions/index';
+
 import { useDispatch,useSelector } from 'react-redux';
 
 const EditItems = (props) => {
@@ -9,25 +9,22 @@ const EditItems = (props) => {
     const dispatch = useDispatch();
     const currentId =props.match.params.id
 
-    // fetch the data 
-//     const order = useSelector((state) => currentId ? state.orders.find((p) => p.itemID === currentId) : null);
-// console.log(order)
-// console.log(orderData)
 const orders = useSelector(state => state.orders)
-// var item =local
-// const filteredItems = orders.filter(order=> currentId === order.itemID)
-// console.log(filteredItems)
 
-    // we will use the useEffect to display the data
-    // useEffect(() => {
-    //     if (order) setOrderData(order);
-    //   }, [currentId,order]);
-   
+    //we will use the useEffect to display the data
+    
+
+    // useEffect(  () => {
+      
+    //   dispatch(getALLItems());
+    //      }, [dispatch]);
+
       const onSubmit = async (e) => {
         e.preventDefault();
      
           dispatch(updateOrder(currentId,orderData));
-          console.log("orderData",orderData)
+         
+          window.location = '/SellerItems'
 
         //   clear();
         
@@ -77,7 +74,7 @@ const orders = useSelector(state => state.orders)
                 required="true"
                   type = "text"
                   className = "form-control"
-                   value = {orderData.wights}
+                   value = {orderData.weight}
                   onChange = {(e) => setOrderData({ ...orderData ,weight : e.target.value})}
                   text-align = "center"
                   placeholder = "Insert Wights"/>
@@ -94,20 +91,7 @@ const orders = useSelector(state => state.orders)
                     placeholder = " Insert a description "/>
                 </div>
                 <br />
-                {/* <div className = "col">
-                            <label>Image</label>
-                           <div  id='image' > <img src={this.state.url || "http://via.placeholder.com/50*50"}
-                            alt="firebase"  /></div>
-                           <input  type="file" onChange={this.handleChangeImage.bind(this)} className="btn btn-deep-orange darken-4" />
-                           <button  onClick={this.handleUpload.bind(this)} className="btn btn-deep-orange darken-4">Upload</button>
-                           </div>
-                            <br />
-                  <br /> */}
-                {/* <div className = "col">
-              <label>Image</label>
-              <FileBase type="file" multiple={true}
-               onDone={({ base64 }) => setOrderData({ ...orderData, selectedFile: base64 })} />
-                </div> */}
+               
               <br />
                 <div>
                 <button type="submit" onClick= {onSubmit} className="btn btn-deep-orange darken-4">Submit</button>

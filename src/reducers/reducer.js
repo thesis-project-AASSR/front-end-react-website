@@ -7,7 +7,7 @@
       case "UPDATE":
       return action.payload;
       case "DELETE":
-        return action.payload;
+       
       default:
         return state;
 
