@@ -3,6 +3,7 @@ import React, { useEffect } from 'react';
 import { getAdmin } from '../../actions';
 import { useDispatch,useSelector } from 'react-redux';
 import Button from 'react-bootstrap/Button';
+import AdminNav from '../Navbar/adminNav'
 // we are retreiving all the admin items 
 const AdminProfile =() =>{
     // we are dipatching th state
@@ -15,6 +16,7 @@ const AdminProfile =() =>{
     }, [dispatch]);
     return (
          <div>
+           <AdminNav/>
           {AdminProfile.map((Info) => (
         <div style={{ border: '1px solid black', margin: "6px" }} >
          username: {Info.username}

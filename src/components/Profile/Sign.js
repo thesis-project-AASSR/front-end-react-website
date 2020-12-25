@@ -7,7 +7,7 @@ import { checkUser } from '../../actions/index';
 //Sign up/in component 
 const Sign = ({ currentId }) => {
   ////this is for sign up
-    const [userData, setUserData] = useState({  username: '', email: '', password: '', phoneNumber: '', location: '', image: '', iBan: ''});
+    const [userData, setUserData] = useState({  username: '', email: '', password: '', phoneNumber: '', location: '', image: '', iBan: '', emailError:"", passwordError:"",phoneError:""});
   ////this is for sign in
     const [savedUserData, setSavedUserData] = useState({ email: '', password: ''});
     
@@ -26,21 +26,30 @@ const Sign = ({ currentId }) => {
         mysite()*@gmail.com [ here the regular expression only allows character, digit, underscore, and dash ]
         mysite..1234@yahoo.com [double dots are not allowed]
          */
-
+         
+         
         if ( !(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(userData.email)) ) {
-          alert("You have entered an invalid email address!");
+          // alert("You have entered an invalid email address!");
+          console.log(userData.emailError);
+          setUserData({...userData,  emailError : "you have entered err email"}); 
         }
         //Input Password and Submit [8 to 15 characters which contain at least one lowercase letter, one uppercase letter, one numeric digit, and one special character
         else if ( !(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/.test(userData.password)) ) {
-          alert("You have entered weak password!");
+          // alert("You have entered weak password!");
+          setUserData({...userData,  passwordError : "You have entered weak password!"}); 
         }
         //Input PhoneNumber should be 10 digits with no comma, no spaces, no punctuation and there will be no + sign in front the number
         else if ( !(/^\d{10}$/.test(userData.phoneNumber)) ) {
-          alert("You have entered an invalid Phone Number!");
+          // alert("You have entered an invalid Phone Number!");
+          setUserData({...userData,  phoneError : "You have entered an invalid Phone Number!"}); 
         }
          else {
+          setUserData({...userData,  emailError : ""});
+          setUserData({...userData,  passwordError : ""});
+          setUserData({...userData,  phoneError : ""});
           dispatch(createUser(userData));
           console.log("userData",userData);
+          
         }
                
       };
@@ -87,6 +96,7 @@ const Sign = ({ currentId }) => {
                   onChange = {(e) => setUserData({ ...userData ,email : e.target.value})}
                   text-align = "center"
                   placeholder = "Insert Email"/>
+                  <strong>{userData.emailError}</strong>
                 </div>
                 <br />
                 <div className = "col">
@@ -100,6 +110,7 @@ const Sign = ({ currentId }) => {
                     placeholder = " Insert a password"
                     pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
                     />
+                    <strong>{userData.passwordError}</strong>
                 </div>
                 <br/>
                 <div className="col">
@@ -112,6 +123,7 @@ const Sign = ({ currentId }) => {
                   onChange = {(e) => setUserData({ ...userData ,phoneNumber : e.target.value})}
                   text-align = "center"
                   placeholder = "Insert Phone Number"/>
+                  <strong>{userData.phoneError}</strong>
                 </div>
               <br />
               <div className="col">

@@ -57,7 +57,11 @@ export const getALLItems = () => async (dispatch) => {
       console.log(data);
       localStorage.setItem('token', data.token);
       localStorage.setItem('user_id', data.result[0].userID);
+      if (data.result[0].userID === 1) {
+        window.location = 'AdminProfile';
+      } else {
       window.location = '/home';
+      }
     } catch (error) {
       if (!saveduser.email || !saveduser.password) {
      alert("email or password is empty");

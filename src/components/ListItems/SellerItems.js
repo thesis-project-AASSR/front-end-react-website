@@ -3,6 +3,8 @@ import { getALLItems } from '../../actions';
 import { useDispatch,useSelector } from 'react-redux';
 import {withRouter} from 'react-router-dom';
 import ItemsNav from '../Navbar/itemsNav';
+import AdminItemsNav from '../Navbar/adminItemsNav';
+
 
 const SellerItems =() =>{
     const dispatch = useDispatch();
@@ -19,7 +21,8 @@ const SellerItems =() =>{
     return (
 
 <div>
-  <ItemsNav/>
+{localStorage.getItem('user_id') === 1?   <ItemsNav/> :  <AdminItemsNav/>}
+
           {orders.map((post) => (
         <div style={{ border: '1px solid black', margin: "6px" }} >
 
