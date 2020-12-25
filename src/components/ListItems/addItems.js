@@ -3,9 +3,13 @@ import { useDispatch } from 'react-redux';
 import { createOrder } from '../../actions/index';
 import { getPrice } from '../../actions';
 import { storage } from '../Profile/firbase'
+import AddNav from '../Navbar/addNav';
+import {withRouter} from 'react-router-dom';
+
+
 var Total
 const AddItems = ({ currentId }) => {
-    const [orderData, setOrderData] = useState({  category: '', quantity: '', weight: '', description: '', price:'',image:null,user_id:localStorage.getItem('UserId') });
+    const [orderData, setOrderData] = useState({  category: '', quantity: '', weight: '', description: '', price:'',image:null,user_id:localStorage.getItem('user_id') });
     const dispatch = useDispatch();
     const [image, setUserImage] = useState(null)
     const onSubmit = async (e) => {
@@ -61,6 +65,7 @@ const AddItems = ({ currentId }) => {
    
     return (
         <div>
+          <AddNav/>
         <h1>Form</h1>
         <br />
         <div className = "container">
@@ -142,7 +147,7 @@ const AddItems = ({ currentId }) => {
     )
     
 }
-export default AddItems;
+export default withRouter (AddItems);
 
 
 

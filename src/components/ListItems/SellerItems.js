@@ -1,34 +1,37 @@
 import React, { useEffect , useState } from 'react';
-import { getALLItems ,checkUser } from '../../actions';
+import { getALLItems } from '../../actions';
 import { useDispatch,useSelector } from 'react-redux';
 import {  Link} from "react-router-dom" ;
 import { updateOrder,deleteOrder } from '../../actions/index';
+import ItemsNav from '../Navbar/itemsNav';
+import {withRouter} from 'react-router-dom';
+
 
 const SellerItems =({currentId}) =>{
     const dispatch = useDispatch();
 
-    // const [orderData, setOrderData] = useState({  category: '', quantity: '', wights: '', description: ''})
-    var Userb = localStorage.getItem('UserId')
-    const [loggedin,setLoggedin] = useState(Userb)
-
-    // useSelector(state => state.authInReducer[0])
-    const orders = useSelector(state => state.Items)
     
+
+    const orders = useSelector(state => state.Items)
    
     useEffect(() => {
-      
       dispatch(getALLItems());
     }, [dispatch]);
-   
 
 
-   
-   
-    return (
+    
 
+    const onSubmit = async (e) => {
+ 
+      dispatch(deleteOrder(e))
+      window.location.href = '/SellerItems'
+
+ };
+ 
+   return (
 <div>
-          {orders.filter ( order  => order.user_id == loggedin
-         ).map((post) => (
+  <ItemsNav/>
+          {orders.map((post) => (
         <div style={{ border: '1px solid black', margin: "6px" }} >
 
         category: {post.category}
@@ -44,18 +47,9 @@ const SellerItems =({currentId}) =>{
 
         <div>
         <Link to ={"/EditItems/"+post.itemID} >update</Link>
-                {/* <Link to ={"/delete/:id"} onClick={() => dispatch(deleteOrder(post.itemID))}>Delete</Link> */}
-                <button  type="submit" onClick={() =>dispatch(deleteOrder(post.itemID))}>Delete</button>
-                {/* <input type="submit" value="Update Admin" className="btn btn-primary" /> */}
+                <button  type="submit" onClick={() => onSubmit(post.itemID) }>Delete</button>
                 </div>
-
-                
-
-
-
-
-
-        </div>
+ </div>
        
           ))}
            </div>
@@ -63,4 +57,4 @@ const SellerItems =({currentId}) =>{
 
 }
 
-export default SellerItems;
+export default withRouter(SellerItems);

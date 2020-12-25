@@ -1,11 +1,11 @@
 /// the team member who is handiling this task  add delete update should add the required folders here 
-
-
-
 import React, { useEffect,useState} from 'react';
 import { getUser } from '../../actions';
 import { useDispatch,useSelector } from 'react-redux';
 import Button from 'react-bootstrap/Button';
+import ProfileNav from '../Navbar/profileNav'
+
+
 // we are retreiving all the admin items 
 const UserProfile =() =>{
     // we are dipatching th state
@@ -13,9 +13,10 @@ const UserProfile =() =>{
     //we are declaring a new const called items which will save all the items in it 
     // authInreducers
     // const loggedin = useSelector(state => state.authInReducer)
-    var Userb=localStorage.getItem('UserId')
-    const [loggedin,setLoggedin] = useState(Userb)
-  console.log(loggedin)
+    var Userb=localStorage.getItem('user_id')
+    console.log(Userb)
+  //   const [loggedin,setLoggedin] = useState(Userb)
+  // console.log(loggedin)
     const UserProfile = useSelector(state => state.Profiles)
     
   
@@ -28,8 +29,8 @@ const UserProfile =() =>{
     
     return (
          <div>
-              
-              {UserProfile.filter (Users  => Users.userID == loggedin
+             < ProfileNav/>
+              {UserProfile.filter (Users  => Users.userID == Userb
          ).map((Info) => (
         <div style={{ border: '1px solid black', margin: "6px" }} >
 
