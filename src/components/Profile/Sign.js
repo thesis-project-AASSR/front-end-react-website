@@ -12,7 +12,7 @@ const Sign = ({ currentId }) => {
     const [savedUserData, setSavedUserData] = useState({ email: '', password: ''});
     
     const dispatch = useDispatch();
-   ////sigin up button
+   ////sign up button
     const onSubmit = async (e) => {
         e.preventDefault();
         /*
@@ -26,31 +26,34 @@ const Sign = ({ currentId }) => {
         mysite()*@gmail.com [ here the regular expression only allows character, digit, underscore, and dash ]
         mysite..1234@yahoo.com [double dots are not allowed]
          */
-         
-         
-        if ( !(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(userData.email)) ) {
-          // alert("You have entered an invalid email address!");
+        // debugger;
+
+        if  ( !(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(userData.email)) ) {
+          alert("You have entered an invalid email address!");
           console.log(userData.emailError);
-          setUserData({...userData,  emailError : "you have entered err email"}); 
+          // setUserData({...userData ,  emailError : "you have entered err email"}); 
         }
+
         //Input Password and Submit [8 to 15 characters which contain at least one lowercase letter, one uppercase letter, one numeric digit, and one special character
-        else if ( !(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/.test(userData.password)) ) {
-          // alert("You have entered weak password!");
-          setUserData({...userData,  passwordError : "You have entered weak password!"}); 
-        }
+         if ( !(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/.test(userData.password)) ) {
+          alert("You have entered weak password!");
+          // setUserData({ ...userData , passwordError : "You have entered weak password!"}); 
+        } 
+
         //Input PhoneNumber should be 10 digits with no comma, no spaces, no punctuation and there will be no + sign in front the number
-        else if ( !(/^\d{10}$/.test(userData.phoneNumber)) ) {
-          // alert("You have entered an invalid Phone Number!");
-          setUserData({...userData,  phoneError : "You have entered an invalid Phone Number!"}); 
-        }
-         else {
-          setUserData({...userData,  emailError : ""});
-          setUserData({...userData,  passwordError : ""});
-          setUserData({...userData,  phoneError : ""});
+          if ( !(/^\d{10}$/.test(userData.phoneNumber)) ) {
+          alert("You have entered an invalid Phone Number!");
+          // setUserData({ ...userData , phoneError : "You have entered an invalid Phone Number!"}); 
+        } 
+
+        if ((/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(userData.email)) && (/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/.test(userData.password)) &&  (/^\d{10}$/.test(userData.phoneNumber)))  {
+          // setUserData({  emailError : ""});
+          // setUserData({  passwordError : ""});
+          // setUserData({  phoneError : ""});
           dispatch(createUser(userData));
           console.log("userData",userData);
+        } 
           
-        }
                
       };
 
@@ -96,7 +99,7 @@ const Sign = ({ currentId }) => {
                   onChange = {(e) => setUserData({ ...userData ,email : e.target.value})}
                   text-align = "center"
                   placeholder = "Insert Email"/>
-                  <strong>{userData.emailError}</strong>
+                  <p>{userData.emailError}</p>
                 </div>
                 <br />
                 <div className = "col">
@@ -110,7 +113,7 @@ const Sign = ({ currentId }) => {
                     placeholder = " Insert a password"
                     pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
                     />
-                    <strong>{userData.passwordError}</strong>
+                    <p>{userData.passwordError}</p>
                 </div>
                 <br/>
                 <div className="col">
@@ -123,7 +126,7 @@ const Sign = ({ currentId }) => {
                   onChange = {(e) => setUserData({ ...userData ,phoneNumber : e.target.value})}
                   text-align = "center"
                   placeholder = "Insert Phone Number"/>
-                  <strong>{userData.phoneError}</strong>
+                  <p>{userData.phoneError}</p>
                 </div>
               <br />
               <div className="col">
