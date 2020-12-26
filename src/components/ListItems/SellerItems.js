@@ -32,7 +32,7 @@ const SellerItems =({currentId}) =>{
  
    return (
 <div>
-{localStorage.getItem('user_id') === 1? < ItemsNav/> :  <AdminItemsNav/>}
+      <ItemsNav/>
   
           {orders.map((post) => (
         <div style={{ border: '1px solid black', margin: "6px" }} >

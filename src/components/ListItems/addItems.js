@@ -16,7 +16,8 @@ const AddItems = ({ currentId }) => {
         e.preventDefault();
     
           dispatch(createOrder(orderData));
-          console.log("orderData",orderData)
+         window.location='/SellerItems'
+
     }
 
           function handleChangeImage(e){

@@ -10,7 +10,7 @@ export default class ProfileNav extends Component {
     return (
     <div>
     <nav>
-    <Link to="/" > DAWERHA </Link>
+    
     <Link to="/home"> Home </Link>
     <Link to="/AddItems"> Add Items </Link>
     <Link to="/SellerItems"> seller Items</Link>

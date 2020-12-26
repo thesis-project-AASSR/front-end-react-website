@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { getALLItems } from '../../actions';
 import { useDispatch,useSelector } from 'react-redux';
 import {Button} from 'react-bootstrap';
-
+import AdminItemsNav from '../Navbar/adminItemsNav';
 // we are retreiving all the admin items 
 const AdminItems =() =>{
     // we are dipatching th state
@@ -17,6 +17,7 @@ const AdminItems =() =>{
 
     return (
          <div>
+           <AdminItemsNav/>
           {Items.map((Item) => (
         <div style={{ border: '1px solid black', margin: "6px" }} >
 
