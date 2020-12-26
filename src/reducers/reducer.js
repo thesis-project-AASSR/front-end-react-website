@@ -4,10 +4,16 @@
        return action.payload;
        case "CREATE":
       return [...state, action.payload];
-        default:
+      case "UPDATE":
+      return action.payload;
+      case "DELETE":
+        case "PURCHASE":
+        return action.payload;
+       
+      default:
         return state;
+
     }
   };
 
   export default Items;
-

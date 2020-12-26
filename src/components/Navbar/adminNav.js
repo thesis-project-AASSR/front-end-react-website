@@ -10,9 +10,9 @@ export default class AdminNav extends Component {
     return (
     <div>
     <nav>
-    {/* <Link to="/home" > DAWERHA </Link> */}
-    <Link to="/AdminItems"> all Items</Link>
-    <Link to="/" onClick={() => {localStorage.removeItem('token'); localStorage.removeItem('user_id'); window.location.reload()}}> Sign out </Link>
+   
+    <Link to="/AdminItems"> All Items</Link>
+    <Link to="/" onClick={() => {localStorage.removeItem('token'); localStorage.removeItem('user_id'); window.location='/'}}> Sign out </Link>
     </nav>
     </div>
     );

@@ -6,8 +6,11 @@ const Profiles = (Profiles = [], action) => {
         //getting the user
         case "UserInfo":
           return action.payload;
+        
         default:
         return Profiles;
+
     }
   };
+
   export default Profiles;
