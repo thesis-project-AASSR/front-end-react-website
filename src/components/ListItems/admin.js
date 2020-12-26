@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { getALLItems } from '../../actions';
 import { useDispatch,useSelector } from 'react-redux';
+import AdminItemsNav from '../Navbar/adminItemsNav';
 // import {Button} from 'react-bootstrap'
 // we are retreiving all the admin items 
 const AdminItems =() =>{
@@ -15,6 +16,7 @@ const AdminItems =() =>{
 
     return (
          <div>
+           <AdminItemsNav/>
           {Items.map((Item) => (
         <div style={{ border: '1px solid black', margin: "6px" }} >
 

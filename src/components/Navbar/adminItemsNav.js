@@ -10,8 +10,8 @@ export default class AdminItemsNav extends Component {
     return (
     <div>
     <nav>
-    <Link to="/home" > DAWERHA </Link>
-    <Link to="/AdminProfile"> Users Profiles </Link>
+    {/* <Link to="/home" > DAWERHA </Link> */}
+    <Link to="/AdminProfile"> Profile </Link>
     <Link to="/" onClick={() => {localStorage.removeItem('token'); localStorage.removeItem('user_id'); window.location.reload()}}> Sign out </Link>
     </nav>
     </div>

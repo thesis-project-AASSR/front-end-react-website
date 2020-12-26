@@ -35,7 +35,7 @@ return (
     <div>
       {/* the user can't access admin's pages */}
       <Route path="/" exact component={Viewpage} />
-      <ProtectedRoute path="/home" component={Homepage} />
+      <Route path="/home" component={Homepage} />
       <Route path="/sign" exact component={Sign}/>
       <ProtectedRoute path="/SellerItems" component={SellerItems} token = {token}/>
       <ProtectedRoute path="/SellerProfile" component={SellerProfile} token = {token} />

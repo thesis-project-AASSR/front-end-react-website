@@ -17,8 +17,8 @@ export default class ItemsNav extends Component {
     <div>
     <nav>
 
-    <Link to="/" > DAWERHA </Link>
-    <Link to="/home"> Home </Link>
+    {/* <Link to="/" > DAWERHA </Link> */}
+    <Link to="/home"> Daweha </Link>
     <Link to="/SellerProfile"> Profile </Link>
     <Link to="/AddItems"> Add Items</Link>
     
