@@ -2,10 +2,10 @@
 
 import { combineReducers } from 'redux';
 import Items from './reducer.js';
-import user from './authReducer';
-import saveduser from './authInReducer';
-
-const AllReducers =  combineReducers({ Items, user, saveduser });
+import Profiles from './profiles.js';
+import AuthReducer from './authReducer'
+import authInReducer from './authInReducer'
+const AllReducers = combineReducers({ Items,AuthReducer,authInReducer,Profiles });
 
 export default  AllReducers;
 
