@@ -17,7 +17,7 @@ export default class AddNav extends Component {
     <div>
     <nav>
 
-    <Link to="/" > DAWERHA </Link>
+    <Link to="/home" > DAWERHA </Link>
     <Link to="/SellerProfile"> SellerProfile </Link>
     <Link to="/SellerItems"> seller Items</Link>
     

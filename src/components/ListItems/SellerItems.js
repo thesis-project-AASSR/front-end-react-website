@@ -21,7 +21,7 @@ const SellerItems =() =>{
     return (
 
 <div>
-{localStorage.getItem('user_id') === 1?   <ItemsNav/> :  <AdminItemsNav/>}
+{localStorage.getItem('user_id') !== 1?   <ItemsNav/> :  <AdminItemsNav/>}
 
           {orders.map((post) => (
         <div style={{ border: '1px solid black', margin: "6px" }} >
