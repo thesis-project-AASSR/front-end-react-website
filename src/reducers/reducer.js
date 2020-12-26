@@ -6,6 +6,8 @@
         return [...state, action.payload];
       case "FETCH_PRICE":
         return action.payload;
+      case "PURCHASE":
+        return action.payload;
       default:
         return state;
     }
