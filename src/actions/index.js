@@ -137,6 +137,18 @@ export const purchaseProcess = (purchaseInfo) => async (dispatch) => {
   }
 };
 
+export const itemActions = (actionsInfo) => async (dispatch) => {
+  try {
+    const {data} = await api.Actions(actionsInfo);
+    
+    dispatch({ type: 'ACTIONS', payload: data });
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
+
+
 
 
 

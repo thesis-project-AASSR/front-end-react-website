@@ -18,3 +18,5 @@ export const createUser = (newUser) => axios.post(url+ '/signup', newUser);
 export const checkUser = (savedUser) => axios.post(url+ '/signin', savedUser)
 
 export const payPal = (purchaseInfo) => axios.post(url+ '/purchase', purchaseInfo)
+
+export const Actions = (actionsInfo) => axios.post(url+ '/actions', actionsInfo)
