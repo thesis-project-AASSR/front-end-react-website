@@ -3,7 +3,7 @@ import {Route, Redirect} from 'react-router-dom' ;
 function ProtectedRoute({token: token, component: Component, ...rest}) {
     return (<Route {...rest} render = {(props) => {
    if (token) {
-       return <Component />
+       return <Component {...props}/>
    } else {
        return ( <Redirect to = { {pathname: '/', state: {from: props.location}} }/> )
      }

@@ -10,7 +10,7 @@ export default class AddNav extends Component {
     return (
     <div>
     <nav>
-    <Link to="/" > DAWERHA </Link>
+   
     <Link to="/SellerProfile"> SellerProfile </Link>
     <Link to="/SellerItems"> seller Items</Link>
     </nav>

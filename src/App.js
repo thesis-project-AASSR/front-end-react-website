@@ -7,11 +7,8 @@ import SellerItems from './components/ListItems/SellerItems'
 import Homepage from './components/HomePage/homepage'
 import AddItems from './components/ListItems/addItems'
 import Sign from './components/Profile/Sign'
-import { getALLItems } from './actions';
-import { useDispatch } from 'react-redux';
-import {useSelector} from 'react-redux';
 import ProtectedRoute from './ProtectedRoute';
-
+import EditUser from './components/Profile/EditUser'
 import Viewpage from './components/View/view';
 import {useState} from 'react';
 import homeNav from './components/Navbar/homeNav';
@@ -34,7 +31,8 @@ return (
       <Route path="/" exact component={Viewpage} />
       <Route path="/home" component={Homepage} />
       <Route path="/sign" exact component={Sign}/>
-      <ProtectedRoute path="/EditItems/:id" component={EditItems}  />
+      <ProtectedRoute path="/EditItems/:id" component={EditItems} token = {token} />
+      <ProtectedRoute path="/EditUser/:id" component={EditUser} token = {token} />
       <ProtectedRoute path="/SellerItems" component={SellerItems} token = {token}/>
       <ProtectedRoute path="/SellerProfile" component={SellerProfile} token = {token} />
       <ProtectedRoute path = "/AddItems" component = {AddItems} token = {token}/>

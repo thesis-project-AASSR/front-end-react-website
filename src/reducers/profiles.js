@@ -6,6 +6,7 @@ const Profiles = (Profiles = [], action) => {
         //getting the user
         case "UserInfo":
           return action.payload;
+         case 'UPDATEUSER':
         
         default:
         return Profiles;

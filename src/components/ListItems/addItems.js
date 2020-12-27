@@ -7,16 +7,17 @@ import AddNav from '../Navbar/addNav';
 import {withRouter} from 'react-router-dom';
 
 
-var Total
+var Total=0
 const AddItems = ({ currentId }) => {
-    const [orderData, setOrderData] = useState({  category: '', quantity: '', weight: '', description: '', price:'',image:null,user_id:localStorage.getItem('UserId') });
+    const [orderData, setOrderData] = useState({  category: '', quantity: '', weight: '', description: '', price:'',image:null,user_id:localStorage.getItem('user_id') });
     const dispatch = useDispatch();
     const [image, setUserImage] = useState(null)
     const onSubmit = async (e) => {
         e.preventDefault();
     
           dispatch(createOrder(orderData));
-          console.log("orderData",orderData)
+         window.location='/SellerItems'
+
     }
 
           function handleChangeImage(e){
@@ -38,7 +39,7 @@ const AddItems = ({ currentId }) => {
                    .getDownloadURL()
                    .then(url => {
                     orderData.image = url
-                     console.log(url)
+                    
                    })
                  })
             }
@@ -51,7 +52,7 @@ const AddItems = ({ currentId }) => {
       if(category===key)
       var price = priceObj[key]
     }
-    console.log("price:",price)
+    
     // to get the entered Quantity and Weight
     var Quantity=orderData.quantity
     var Weight=orderData.weight
@@ -81,6 +82,7 @@ const AddItems = ({ currentId }) => {
                   onChange = {(e) => setOrderData({ ...orderData ,category : e.target.value})}
                   text-align = "center"
                  >
+                    <option value = "">please select a category </option>
                      <option value = "Iron">Iron</option>
                     <option value = "wood">wood</option>
                     <option value = "glass">glass</option>

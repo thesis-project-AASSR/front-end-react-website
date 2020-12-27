@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
-import { getALLItems } from '../../actions';
+import { getALLItems, purchaseProcess } from '../../actions';
 import { useDispatch,useSelector } from 'react-redux';
 import {Button} from 'react-bootstrap';
+import AdminItemsNav from '../Navbar/adminItemsNav';
 
 // we are retreiving all the admin items 
 const AdminItems =() =>{
@@ -15,8 +16,20 @@ const AdminItems =() =>{
       dispatch(getALLItems());
     }, [dispatch]);
 
+
+    function purchaseFunc(itemId,price){
+      var purchaseInfo ={
+        sender_item_id : itemId,
+        price: price
+      }
+      
+      dispatch(purchaseProcess(purchaseInfo));
+      window.location='/AdminItems'
+    }
+
     return (
          <div>
+           <AdminItemsNav/>
           {Items.map((Item) => (
         <div style={{ border: '1px solid black', margin: "6px" }} >
 
@@ -29,7 +42,7 @@ const AdminItems =() =>{
         description:  {Item.description}
         <br></br>
         image:  <img src={Item.image}/>
-        <Button variant="outline-primary">Primary</Button>{' '}
+        <button type="primary" onClick= {()=> {purchaseFunc(Item.id,Item.price)}} >Buy </button>
         </div>
        
           ))}

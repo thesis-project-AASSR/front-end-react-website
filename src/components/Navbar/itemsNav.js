@@ -10,8 +10,7 @@ export default class ItemsNav extends Component {
     return (
     <div>
     <nav>
-    <Link to="/" > DAWERHA </Link>
-    <Link to="/home"> Home </Link>
+   
     <Link to="/SellerProfile"> Profile </Link>
     <Link to="/AddItems"> Add Items</Link>
     </nav>

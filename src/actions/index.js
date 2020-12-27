@@ -64,7 +64,7 @@ export const createUser = (user) => async (dispatch) => {
   }
 };
 //action to check if user is saved to sign in
- export const checkUser = (saveduser) => async (dispatch) => {
+export const checkUser = (saveduser) => async (dispatch) => {
   try {
     const {data} = await api.checkUser(saveduser);
     dispatch({ type: "CHECK", payload: data});
@@ -73,7 +73,11 @@ export const createUser = (user) => async (dispatch) => {
       localStorage.setItem('token', data.token)
       localStorage.setItem('user_id',data.result[0].userID)
       // localStorage.setItem('isAuth', data.auth);
-      window.location = '/home';
+      if (data.result[0].userID === 1) {
+        window.location = 'AdminProfile';
+      } else {
+         window.location = '/home';
+      }
       console.log(data)
     // console.log(saveduser)
   } catch (error) {
@@ -122,8 +126,29 @@ export const getPrice = () =>  {
   }
 };
 
+export const purchaseProcess = (purchaseInfo) => async (dispatch) => {
+  try {
+    const {data} = await api.payPal(purchaseInfo);
+    
+    dispatch({ type: 'PURCHASE', payload: data });
+    console.log("DISPATCH(ADD) : ", purchaseInfo )
+  } catch (error) {
+    console.log(error.message);
+  }
+};
 
 
+//update user 
+export const updateUser = (id, Info) => async (dispatch) => {
+  try {
+    const { data } = await api.updateUser(id, Info);
+ 
+
+    dispatch({ type: "UPDATEUSER", payload: id, Info });
+  } catch (error) {
+    console.log(error.message);
+  }
+};
 
 
 

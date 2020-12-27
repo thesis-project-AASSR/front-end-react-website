@@ -2,9 +2,9 @@
 import React, { useEffect,useState} from 'react';
 import { getUser } from '../../actions';
 import { useDispatch,useSelector } from 'react-redux';
-import Button from 'react-bootstrap/Button';
-import ProfileNav from '../Navbar/profileNav'
 
+import ProfileNav from '../Navbar/profileNav'
+import {  Link} from "react-router-dom" ;
 
 // we are retreiving all the admin items 
 const UserProfile =() =>{
@@ -13,9 +13,10 @@ const UserProfile =() =>{
     //we are declaring a new const called items which will save all the items in it 
     // authInreducers
     // const loggedin = useSelector(state => state.authInReducer)
-    var Userb=localStorage.getItem('UserId')
-    const [loggedin,setLoggedin] = useState(Userb)
-  console.log(loggedin)
+    var Userb=localStorage.getItem('user_id')
+   
+  //   const [loggedin,setLoggedin] = useState(Userb)
+  // console.log(loggedin)
     const UserProfile = useSelector(state => state.Profiles)
     
   
@@ -29,20 +30,21 @@ const UserProfile =() =>{
     return (
          <div>
              < ProfileNav/>
-              {UserProfile.filter (Users  => Users.userID == loggedin
+              {UserProfile.filter (Users  => Users.userID == Userb
          ).map((Info) => (
         <div style={{ border: '1px solid black', margin: "6px" }} >
-
+          profile picture : <img src =  {Info.image}/>
+              <br></br>
          username: {Info.username}
         <br></br>
         email:   {Info.email}
         <br></br>
-        phoneNummber:  {Info.phoneNummber}
+        phoneNumber:  {Info.phoneNumber}
         <br></br>
         location:   {Info.location}
         <br></br>
-        image:   {Info.image}
-        <Button variant="outline-primary">Primary</Button>{' '}
+        
+        <Link to ={"/EditUser/"+Info.userID} >Edit</Link>
         </div>
        
           ))}
