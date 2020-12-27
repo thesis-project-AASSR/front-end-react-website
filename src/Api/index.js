@@ -1,25 +1,20 @@
-
-import axios from 'axios';
-//we  use the same port of our server port (heroku local)
-const url = 'http://localhost:4000';
-// const headers = {
-//     'content-type': 'application/x-www-form-urlencoded;charset=utf-8'
-//   }
-export const fetchOrders = () => axios.get(url + '/ItemsList');
+import  axios from 'axios';
+const url = 'http://localhost:3001';
+//get all items
+export const fetchOrders = () => axios.get(url+'/ItemsList' );
+//create an item
 export const createOrder = (newOrder) => axios.post(url+ '/items', newOrder);
-export const createUser = (newUser) => axios.post(url+ '/signup', newUser
-// , {
-//     headers:  {
-//         'content-type': 'application/x-www-form-urlencoded;charset=utf-8'
-//       }
-//   }
-
-// , {
-//     headers:  {
-//         'Content-Type': 'application/json'
-//       }
-//   }
-  );
+//getting the admin info
+export const AdminProfile = () => axios.get(url+'/AdminUser' );
+//getting the user profile
+export const UserProfile = () => axios.get(url + '/UserProfile' );
+//updating the item
+export const updateOrder = (id, updateOrder) => axios.put(`${url}/items/${id}`, updateOrder);
+//deleting the item
+export const deleteOrder = (id) => axios.delete(`${url}/delete/${id}`);
+//creating the new user
+export const createUser = (newUser) => axios.post(url+ '/signup', newUser);
+//checking the user to login 
 export const checkUser = (savedUser) => axios.post(url+ '/signin', savedUser)
+
 export const payPal = (purchaseInfo) => axios.post(url+ '/purchase', purchaseInfo)
-// export const fetchPrice = () => axios.get(url + '/ItemsList');

@@ -1,38 +1,58 @@
-import React, { useEffect } from 'react';
+import React, { useEffect , useState } from 'react';
 import { getALLItems } from '../../actions';
 import { useDispatch,useSelector } from 'react-redux';
+import {  Link} from "react-router-dom" ;
+import { updateOrder,deleteOrder } from '../../actions/index';
 
-const SellerItems =() =>{
+import {withRouter} from 'react-router-dom';
+import ItemsNav from '../Navbar/itemsNav';
+import AdminItemsNav from '../Navbar/adminItemsNav';
+
+
+const SellerItems =({currentId}) =>{
     const dispatch = useDispatch();
+
+    
+
     const orders = useSelector(state => state.Items)
    
     useEffect(() => {
       dispatch(getALLItems());
     }, [dispatch]);
 
-    // useEffect(()=>{
-    //     dispatch(getOrders());    // here we want to dispatch an action so we need to creat an action 
-    //   })
-    
-    return (
 
+    
+
+    const onSubmit = async (e) => {
+ 
+      dispatch(deleteOrder(e))
+      window.location.href = '/SellerItems'
+
+ };
+ 
+   return (
 <div>
+      <ItemsNav/>
+  
           {orders.map((post) => (
-        <div  key={post.id} style={{ border: '1px solid black', margin: "6px" }} >
+        <div style={{ border: '1px solid black', margin: "6px" }} >
 
         category: {post.category}
         <br></br>
         quantity: {post.quantity}
         <br></br>
-        weight:{post.weight}  
+        weight:{post.weight}
         <br></br>
         description:{post.description}
         <br></br>
         image:{post.image}
-        <br></br>
-        <button id="btn" on click ={() =>{}} >buy </button>
-        </div>
-     
+
+
+        <div>
+        <Link to ={"/EditItems/"+post.itemID} >update</Link>
+                <button  type="submit" onClick={() => onSubmit(post.itemID) }>Delete</button>
+                </div>
+ </div>
        
           ))}
            </div>
@@ -40,4 +60,4 @@ const SellerItems =() =>{
 
 }
 
-export default SellerItems;
+export default withRouter(SellerItems);
