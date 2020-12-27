@@ -57,13 +57,13 @@ export default class Viewpage extends Component {
     </div>
     
   <div>
-      <section className="jumbotron text-center">
+      <section className="jumbotron text-center" id="img">
         <div className="container">
           <h1 className="jumbotron-heading" style={{color:"black"}}>Dawerha</h1>
           <p className="lead text-muted">can benefit our community and the environment, by collecting and processing materials that would otherwise be thrown away as trash and turning them into new products.</p>
           <p>
             <a href="/sign" className="btn btn-outline-success">Join Us</a>
-            <a href="/sign" className="btn btn-outline-success" id="button">Sign in</a>
+            <a href="/login" className="btn btn-outline-success" id="button">Sign in</a>
           </p>
         </div>
       </section>

@@ -74,7 +74,7 @@ export const checkUser = (saveduser) => async (dispatch) => {
       localStorage.setItem('user_id',data.result[0].userID)
       // localStorage.setItem('isAuth', data.auth);
       if (data.result[0].userID === 1) {
-        window.location = 'AdminProfile';
+        window.location = '/AdminProfile';
       } else {
          window.location = '/home';
       }

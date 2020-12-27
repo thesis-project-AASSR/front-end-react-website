@@ -2,23 +2,23 @@ import React, {useState,useEffect} from 'react';
 import {useSelector} from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { createUser } from '../../actions/index';
-import { checkUser } from '../../actions/index';
 import { storage } from './firbase'
+
 const Sign = ({ currentId }) => {
   ///this is for sign up
     const [userData, setUserData] = useState({  username: '', email: '', password: '', phoneNumber: '', location: '', image: '', iBan: ''});
   ////this is for sign in
   const [image, setUserImage] = useState(null)
    
-    const [savedUserData, setSavedUserData] = useState({ email: '', password: ''});
+
     const dispatch = useDispatch();
    ////sigin up button
     const onSubmit = async (e) => {
         e.preventDefault();
         /*
         Input Email conditions:
-        @ should present.
-        mysite@.com.my  [tld (Top Level domain) can not start with dot "."]
+        @ should present
+        .mysite@.com.my  [ can not start with dot "."]
         @you.me.net [ No character before @ ]
         mysite123@gmail.b [ ".b" is not a valid tld ]
         mysite@.org.org [ tld can not start with dot "." ]
@@ -39,18 +39,10 @@ const Sign = ({ currentId }) => {
         }
          if ((/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(userData.email)) && (/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/.test(userData.password)) &&  (/^\d{10}$/.test(userData.phoneNumber))){
           dispatch(createUser(userData));
+          window.location = '/login';
           console.log("userData",userData);
         }
       };
-    ////sigin in button
-      const onSignIn = async (e) => {
-        e.preventDefault();
-          dispatch(checkUser(savedUserData));
-          console.log("savedUserData",savedUserData);
-            //  if (!savedUserData.email)  {
-            //   alert("empty email")
-            //  }
-      };  
 
     
 
@@ -84,26 +76,27 @@ const Sign = ({ currentId }) => {
    
     return (
         <div>
-        <div>
-        <h1>Sign Up</h1>
-        <br />
+        <div id="bg">
+          <br/>
         <div className = "container">
-          <form className="text-center border border-light p-9" action="#!"  >
-            <p className="h4 mb-4">Please register your Info</p>
-            <br />
-                <div className="col">
+          <form className="text-center border border-light p-1" action="#!"  >
+            <p className="h4 mb-2">Sign up</p>
+            <br/>
+                <div className="col-lg-6 col-xl-6 mx-auto">
                 <label>Username</label>
                 <input
                 required={true}
                   type = "text"
                   className = "form-control"
                    value = {userData.username}
-                  onChange = {(e) => setUserData({ ...userData ,username : e.target.value})}
+                  onChange = {(e) => setUserData({ ...userData , username : e.target.value})}
                   text-align = "center"
-                  placeholder = "Insert Name"/>
+                  placeholder = "username"
+                  // style={{width: "200px"}}
+                  />
                 </div>
                 <br />
-                <div className="col">
+                <div className="col-lg-6 col-xl-6 mx-auto">
                 <label>Email</label>
                 <input
                 required={true}
@@ -112,10 +105,10 @@ const Sign = ({ currentId }) => {
                    value = {userData.email}
                   onChange = {(e) => setUserData({ ...userData ,email : e.target.value})}
                   text-align = "center"
-                  placeholder = "Insert Email"/>
+                  placeholder = "Your Email should be valid"/>
                 </div>
                 <br />
-                <div className = "col">
+                <div className = "col-lg-6 col-xl-6 mx-auto">
                   <label>Password</label>
                   <input
                     type = "password"
@@ -123,10 +116,10 @@ const Sign = ({ currentId }) => {
                     className = "form-control"
                      value = {userData.password}
                   onChange = {(e) => setUserData({ ...userData ,password : e.target.value})}
-                    placeholder = " Insert a password"/>
+                    placeholder = "Your password should contain at least one lowercase letter, one uppercase letter, one numeric digit, and one special character"/>
                 </div>
                 <br/>
-                <div className="col">
+                <div className="col-lg-6 col-xl-6 mx-auto">
                 <label>Phone Number</label>
                 <input
                 required={true}
@@ -135,10 +128,10 @@ const Sign = ({ currentId }) => {
                    value = {userData.phoneNumber}
                   onChange = {(e) => setUserData({ ...userData ,phoneNumber : e.target.value})}
                   text-align = "center"
-                  placeholder = "Insert Phone Number"/>
+                  placeholder = "Your phone number should be valid"/>
                 </div>
               <br />
-              <div className="col">
+              <div className="col-lg-6 col-xl-6 mx-auto">
                 <label>Location</label>
                 <input
                 required={true}
@@ -150,7 +143,7 @@ const Sign = ({ currentId }) => {
                   placeholder = "Insert Location"/>
                 </div>
                 <br/>
-                <div className="col">
+                <div className="col-lg-6 col-xl-6 mx-auto">
                 <label>image</label>
                 <input 
                   required={true}
@@ -161,54 +154,8 @@ const Sign = ({ currentId }) => {
                    <button type="submit" onClick= {imageUpload} className="btn btn-deep-orange darken-4">upload Image</button>
                 </div>
                 <br/>
-                <div className="col">
-                <label>iBan</label>
-                <input
-                required={true}
-                  type = "text"
-                  className = "form-control"
-                   value = {userData.iBan}
-                  onChange = {(e) => setUserData({ ...userData ,iBan : e.target.value})}
-                  text-align = "center"
-                  placeholder = "Insert iBan"/>
-                </div>
                 <div>
                 <button type="submit" onClick= {onSubmit} className="btn btn-deep-orange darken-4">Sign Up</button>
-                </div>
-          </form>
-        </div>
-        </div>
-        <div>
-        <h1>Sign In</h1>
-        <br />
-        <div className = "container">
-          <form className="text-center border border-light p-9" action="#!"  >
-            <p className="h4 mb-4">Please enter your Info</p>
-                <br />
-                <div className="col">
-                <label>Email</label>
-                <input
-                required={true}
-                  type = "email"
-                  className = "form-control"
-                   value = {savedUserData.email}
-                  onChange = {(e) => setSavedUserData({ ...savedUserData ,email : e.target.value})}
-                  text-align = "center"
-                  placeholder = "Insert Email"/>
-                </div>
-                <br />
-                <div className = "col">
-                  <label>Password</label>
-                  <input
-                    type = "password"
-                    required={true}
-                    className = "form-control"
-                     value = {savedUserData.password}
-                  onChange = {(e) => setSavedUserData({ ...savedUserData ,password : e.target.value})}
-                    placeholder = " Insert a password"/>
-                </div>
-                <div>
-                <button type="submit" onClick= {onSignIn} className="btn btn-deep-orange darken-4">Sign In</button>
                 </div>
           </form>
         </div>
@@ -283,7 +230,7 @@ export default Sign;
 //           <form className="text-center border border-light p-9" action="#!"  >
 //             <p className="h4 mb-4">Please register your Info</p>
 //             <br />
-//                 <div className="col">
+//                 <div className="col-lg-6 col-xl-6 mx-auto">
 //                 <label>Username</label>
 //                 <input
 //                 required="true"

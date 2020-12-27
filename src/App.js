@@ -11,11 +11,12 @@ import { getALLItems } from './actions';
 import { useDispatch } from 'react-redux';
 import {useSelector} from 'react-redux';
 import ProtectedRoute from './ProtectedRoute';
-
+import Login from './components/Profile/login';
 import Viewpage from './components/View/view';
 import {useState} from 'react';
 import homeNav from './components/Navbar/homeNav';
-import EditItems from './components/ListItems/EditItems'
+import EditItems from './components/ListItems/EditItems';
+
 function App() {
 //   // we need to define this dispatch using hooks
 //   const dispatch = useDispatch();
@@ -34,6 +35,7 @@ return (
       <Route path="/" exact component={Viewpage} />
       <Route path="/home" component={Homepage} />
       <Route path="/sign" exact component={Sign}/>
+      <Route path="/login" exact component={Login}/>
       <ProtectedRoute path="/EditItems/:id" component={EditItems} token = {token} />
       <ProtectedRoute path="/SellerItems" component={SellerItems} token = {token}/>
       <ProtectedRoute path="/SellerProfile" component={SellerProfile} token = {token} />
