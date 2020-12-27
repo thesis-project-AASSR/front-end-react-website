@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { getALLItems, purchaseProcess } from '../../actions';
 import { useDispatch,useSelector } from 'react-redux';
-import {Button} from 'react-bootstrap';
+
 import AdminItemsNav from '../Navbar/adminItemsNav';
 
 // we are retreiving all the admin items 
@@ -41,7 +41,7 @@ const AdminItems =() =>{
         <br></br>
         description:  {Item.description}
         <br></br>
-        image:  <img src={Item.image}/>
+        image:  <img src={Item.image} alt=''/>
         <button type="primary" onClick= {()=> {purchaseFunc(Item.id,Item.price)}} >Buy </button>
         </div>
        

@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react';
+import React , { useEffect }from 'react';
 import { getAdmin } from '../../actions';
-import { useDispatch,useSelector } from 'react-redux';
+import { useDispatch,useSelector} from 'react-redux';
 
 import AdminNav from '../Navbar/adminNav'
 import {  Link} from "react-router-dom" ;
@@ -21,7 +21,7 @@ const AdminProfile =() =>{
            <AdminNav/>
           {AdminProfile.map((Info) => (
         <div style={{ border: '1px solid black', margin: "6px" }} >
-          profile picture : <img src = {Info.image}/>
+          profile picture : <img src = {Info.image} alt=''/>
             <br/>
 
          username: {Info.username}

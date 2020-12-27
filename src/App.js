@@ -1,5 +1,5 @@
-import React , {useEffect} from 'react';
-import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
+import React  from 'react';
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import AdminProfile from './components/Profile/admin'
 import SellerProfile from './components/Profile/user'
 import AdminItems from './components/ListItems/admin'
@@ -11,7 +11,7 @@ import ProtectedRoute from './ProtectedRoute';
 import EditUser from './components/Profile/EditUser'
 import Viewpage from './components/View/view';
 import {useState} from 'react';
-import homeNav from './components/Navbar/homeNav';
+
 import EditItems from './components/ListItems/EditItems'
 function App() {
 //   // we need to define this dispatch using hooks
@@ -21,8 +21,8 @@ function App() {
 //     dispatch(getAllItems());    // here we want to dispatch an action so we need to creat an action 
 //   },[dispatch])
 console.log(localStorage.getItem('token'))
-const [token, setToken] = useState(localStorage.getItem('token'));
-const [id, setID] = useState(localStorage.getItem('user_id'));
+const token = useState(localStorage.getItem('token'));
+
 return (
   <div>
     <Router className="container">
