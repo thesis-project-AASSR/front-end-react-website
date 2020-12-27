@@ -9,7 +9,7 @@ import {withRouter} from 'react-router-dom';
 
 var Total
 const AddItems = ({ currentId }) => {
-    const [orderData, setOrderData] = useState({  category: '', quantity: '', weight: '', description: '', price:'',image:null,user_id:localStorage.getItem('user_id') });
+    const [orderData, setOrderData] = useState({  category: '', quantity: '', weight: '', description: '', price:'',image:null,user_id:localStorage.getItem('user_id') , status:"Pending", acceptationStat: false, rejectionStat:false});
     const dispatch = useDispatch();
     const [image, setUserImage] = useState(null)
     const onSubmit = async (e) => {

@@ -7,7 +7,7 @@ import $ from "jquery";
 // import con from '../../../../server/app/models/db';
 // we are retreiving all the admin items 
 const AdminItems =() =>{
-  // const [accepSelector, setStatus] = useState(false)
+  const [status, setStatus] = useState({accepSelectorStat:false,selectorStat:false})
     // we are dipatching th state
     const dispatch = useDispatch();
     //we are declaring a new const called items which will save all the items in it 
@@ -16,17 +16,19 @@ console.log("Items:",Items)
     // we are rendering the whole items instantly when we load our page 
     useEffect(() => {
       dispatch(getALLItems());
+    
     }, [dispatch]);
-// for(var i = 0; i < Items.length;i++){
+//       for(var i = 1; i < 5;i++){
 
 //       var getStatus =localStorage.getItem(i)
-//       // var strToArr = getStatus.split(",")
-//       var strToArr = [true, false]
+//       var strToArr = getStatus.split(",")
+//       // var strToArr = [true, false]
 //       for(var i= 0; i < 2; i++){
 //        if(strToArr[i]==="false") 
 //         strToArr[i]=false
 //       strToArr[i]=true 
 //       }
+//       console.log("strToArr:",strToArr)
 //       var idToStr = i +""
 //       console.log("idToStr:",idToStr)
 //       var  accepSelector= "#"+idToStr
@@ -35,13 +37,14 @@ console.log("Items:",Items)
 //       $(selector).prop('disabled', strToArr[1]);
 
 // }
-    
 
     function purchaseFunc(itemId,price){
       var purchaseInfo ={
         itemId : itemId,
         price: price,
-        status:"Collected"
+        status:"Collected",
+        acceptationStat: true,
+        rejectionStat: true
       }
       var idToStr =purchaseInfo.itemId +""
       var accepSelector= "#"+idToStr
@@ -58,7 +61,10 @@ console.log("Items:",Items)
 
       var rejectionInfo ={
         itemId : itemId,
-        status:"Rejected"
+        status:"Rejected",
+        acceptationStat: false,
+        rejectionStat: true
+     
       }
    
       var idToStr =rejectionInfo.itemId +""
@@ -68,7 +74,7 @@ console.log("Items:",Items)
       // $(selector).html("Rejected");
       $(selector).prop('disabled', true);
       $(accepSelector).prop('disabled', false);
-      $(accepSelector).html("Accept");
+      // $(accepSelector).html("Accept");
       dispatch(itemActions(rejectionInfo));
     }
 
@@ -81,6 +87,7 @@ console.log("Items:",Items)
     // console.log("yyyyyyyyy",y)
     // console.log("xxxxxxxxxxxxx",x)
     function acceptation(itemId,status){
+      
     // if(status==="Accepted"){
     //   setStatus(true)
     //   }
@@ -88,17 +95,20 @@ console.log("Items:",Items)
       // console.log("strToArr:",strToArr[0])
       var acceptationInfo ={
         itemId : itemId,
-        status:"Accepted"
+        status:"Accepted",
+        acceptationStat: true,
+        rejectionStat: false
       }
       // setStatus(true)
-      var accepSelectorStat =true
-      var selector = false
-          localStorage.setItem(itemId, [accepSelectorStat,selector])
+      setStatus({ ...status ,acceptationStat : true})
+      // var accepSelectorStat =true
+      // var selectorStat = false
+          // localStorage.setItem(itemId, [accepSelectorStat,selectorStat])
       // butStatus=true
       var idToStr =acceptationInfo.itemId +""
       var accepSelector= "#"+idToStr
       var selector= "."+idToStr
-      $(accepSelector).html("Accepted");
+      // $(accepSelector).html("Accepted");
       $(accepSelector).prop('disabled', true);
       $(selector).prop('disabled', false);
       dispatch(itemActions(acceptationInfo));
@@ -147,9 +157,15 @@ console.log("Items:",Items)
         description:  {Item.description}
         <br></br>
         image:  <img src={Item.image}/>
-        <button className={Item.id} type="primary"    onClick= {()=> {purchaseFunc(Item.id,Item.price)}} >Buy </button>
-        <button className={Item.id} type="primary"   onClick= {()=> {rejection(Item.id)}} > Reject </button>
-        <button id={Item.id} type="primary"   onClick= {()=> {acceptation(Item.id,Item.status)}} > Accept </button>
+        {/* <button className={Item.id} type="primary" onClick= {()=> {purchaseFunc(Item.id,Item.price)}} >Buy </button>
+        <button className={Item.id} type="primary" onClick= {()=> {rejection(Item.id)}} > Reject </button>
+        <button id={Item.id} type="primary"   onClick= {()=> {acceptation(Item.id,Item.status)}} > Accept </button> */}
+
+        <button className={Item.id} type="primary" disabled={Item.rejectionStat} onClick= {()=> {purchaseFunc(Item.id,Item.price)}} >Buy </button>
+        <button className={Item.id} type="primary" disabled={Item.rejectionStat} onClick= {()=> {rejection(Item.id)}} > Reject </button>
+   
+        <button id={Item.id} type="primary" disabled={Item.acceptationStat} onClick= {()=> {acceptation(Item.id,Item.status)}} > Accept </button>
+
         </div>
        
           ))}
