@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Navbar from './navbar'
-import MapContainer from '../map.js'
+import LocationSearchModal from '../map.js'
 
 export default class Homepage extends Component {
   constructor(props) {
@@ -14,7 +14,7 @@ export default class Homepage extends Component {
     return (
     <div>
     <Navbar/>
-   <MapContainer/>
+   <LocationSearchModal/>
     </div>
     );
   }
