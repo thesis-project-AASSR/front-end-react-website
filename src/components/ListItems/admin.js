@@ -39,7 +39,9 @@ console.log("Items:",Items)
 // }
 
     function purchaseFunc(itemId,price){
-      var purchaseInfo ={
+      var confirmation = window.confirm("Are you sure you want to Purchase this item?");
+       if(confirmation){
+        var purchaseInfo ={
         itemId : itemId,
         price: price,
         status:"Collected",
@@ -53,13 +55,17 @@ console.log("Items:",Items)
       $(selector).prop('disabled', true);
       dispatch(purchaseProcess(purchaseInfo));
       // window.location='/AdminItems'
+      alert('Great !! Your purchase was successful, you can check your PayPal account ');
     }
+    else
+      alert('Your purchase has been cancelled,Thank you!');
 
- 
+  }
 
     function rejection(itemId){
-
-      var rejectionInfo ={
+var confirmation = window.confirm("Are you sure you want to Reject this item?");
+if(confirmation){
+        var rejectionInfo ={
         itemId : itemId,
         status:"Rejected",
         acceptationStat: false,
@@ -77,7 +83,7 @@ console.log("Items:",Items)
       // $(accepSelector).html("Accept");
       dispatch(itemActions(rejectionInfo));
     }
-
+  }
     var butStatus = useSelector(state => state.Items)
     console.log("butStatussss:",butStatus[0])
     // var x= butStatus[0];
