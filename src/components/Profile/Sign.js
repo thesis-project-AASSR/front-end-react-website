@@ -1,5 +1,5 @@
-import React, {useState,useEffect} from 'react';
-import {useSelector} from 'react-redux';
+import React, {useState} from 'react';
+
 import { useDispatch } from 'react-redux';
 import { createUser } from '../../actions/index';
 import { checkUser } from '../../actions/index';

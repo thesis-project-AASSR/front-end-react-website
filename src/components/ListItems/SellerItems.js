@@ -1,8 +1,16 @@
-import React, { useEffect , useState } from 'react';
+
+import React, { useEffect  } from 'react';
+
+
 import { getALLItems } from '../../actions';
 import { useDispatch,useSelector } from 'react-redux';
 import {  Link} from "react-router-dom" ;
-import { updateOrder,deleteOrder } from '../../actions/index';
+import { deleteOrder } from '../../actions/index';
+
+import {withRouter} from 'react-router-dom';
+import ItemsNav from '../Navbar/itemsNav';
+// import AdminItemsNav from '../Navbar/adminItemsNav';
+
 
 import {withRouter} from 'react-router-dom';
 import ItemsNav from '../Navbar/itemsNav';
@@ -21,20 +29,18 @@ const SellerItems =({currentId}) =>{
     }, [dispatch]);
 
 
-    
 
-    const onSubmit = async (e) => {
- 
+      const onSubmit = async (e) => {
       dispatch(deleteOrder(e))
       window.location.href = '/SellerItems'
-
- };
+      };
  
-   return (
-<div>
-      <ItemsNav/>
+     return (
+        <div>
+        <ItemsNav/>
   
-          {orders.map((post) => (
+        {orders.map((post) => (
+
         <div style={{ border: '1px solid black', margin: "6px" }} >
 
         category: {post.category}
@@ -49,15 +55,13 @@ const SellerItems =({currentId}) =>{
 
 
         <div>
-        <Link to ={"/EditItems/"+post.itemID} >update</Link>
-                <button  type="submit" onClick={() => onSubmit(post.itemID) }>Delete</button>
-                </div>
- </div>
-       
-          ))}
-           </div>
-    )
 
-}
+        <Link to ={"/EditItems/"+post.itemID} >Edit</Link>
+        <button  type="submit" onClick={() => onSubmit(post.itemID) }>Delete</button>
+        </div>
+        </div>
+        ))}
+        </div>
+         ) }
 
-export default withRouter(SellerItems);
+      export default withRouter(SellerItems);

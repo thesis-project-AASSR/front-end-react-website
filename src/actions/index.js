@@ -14,7 +14,7 @@ export const getALLItems = () => async (dispatch) => {
 //create items 
 export const createOrder = (order) => async (dispatch) => {
   try {
-    const { data } = await api.createOrder(order);
+    // const { data } = await api.createOrder(order);
 
     dispatch({ type: "CREATE", payload: order });
     console.log( "DISPAATCH(ACTION) :",dispatch({ type: "CREATE", payload: order }))
@@ -27,7 +27,7 @@ export const createOrder = (order) => async (dispatch) => {
 //update the order
 export const updateOrder = (id, order) => async (dispatch) => {
   try {
-    const { data } = await api.updateOrder(id, order);
+    // const { data } = await api.updateOrder(id, order);
  
 
     dispatch({ type: "UPDATE", payload: id, order });
@@ -49,7 +49,7 @@ export const deleteOrder = (id) => async (dispatch) => {
 //action to add a new user
 export const createUser = (user) => async (dispatch) => {
   try {
-    const {data} = await api.createUser(user)
+    // const {data} = await api.createUser(user)
     dispatch({ type: "ADD", payload: user});
     console.log("DISPATCH(ADD) : ", dispatch({ type: "ADD", payload: user}))
     alert('Congrats, you are registered successfully, you can login now')
@@ -137,6 +137,20 @@ export const purchaseProcess = (purchaseInfo) => async (dispatch) => {
   }
 };
 
+
+
+//update user 
+export const updateUser = (id, Info) => async (dispatch) => {
+  try {
+    // const { data } = await api.updateUser(id, Info);
+ 
+
+
+    dispatch({ type: "UPDATEUSER", payload: id, Info });
+  } catch (error) {
+    console.log(error.message);
+  }
+};
 
 
 

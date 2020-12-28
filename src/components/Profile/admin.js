@@ -1,8 +1,11 @@
-import React, { useEffect } from 'react';
+import React , { useEffect }from 'react';
 import { getAdmin } from '../../actions';
-import { useDispatch,useSelector } from 'react-redux';
-import Button from 'react-bootstrap/Button';
+
+import { useDispatch,useSelector} from 'react-redux';
+
 import AdminNav from '../Navbar/adminNav'
+import {  Link} from "react-router-dom" ;
+
 // we are retreiving all the admin items 
 const AdminProfile =() =>{
     // we are dipatching th state
@@ -20,17 +23,19 @@ const AdminProfile =() =>{
            <AdminNav/>
           {AdminProfile.map((Info) => (
         <div style={{ border: '1px solid black', margin: "6px" }} >
+          profile picture : <img src = {Info.image} alt=''/>
+            <br/>
 
          username: {Info.username}
         <br></br>
         email:   {Info.email}
         <br></br>
-        phoneNummber:  {Info.phoneNummber}
+        phoneNumber:  {Info.phoneNumber}
         <br></br>
         location:   {Info.location}
         <br></br>
-        image:   {Info.image}
-        <Button variant="outline-primary">Primary</Button>{' '}
+      
+        <Link to ={"/EditUser/"+Info.userID} >Edit</Link>
         </div>
        
           ))}
