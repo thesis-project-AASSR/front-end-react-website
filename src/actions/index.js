@@ -138,11 +138,13 @@ export const purchaseProcess = (purchaseInfo) => async (dispatch) => {
 };
 
 
+
 //update user 
 export const updateUser = (id, Info) => async (dispatch) => {
   try {
     // const { data } = await api.updateUser(id, Info);
  
+
 
     dispatch({ type: "UPDATEUSER", payload: id, Info });
   } catch (error) {

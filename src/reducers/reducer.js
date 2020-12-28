@@ -5,6 +5,7 @@
        case "CREATE":
       return [...state, action.payload];
       case "UPDATE":
+
        case "DELETE":
       case "PURCHASE":
         return action.payload;

@@ -1,7 +1,9 @@
 import React, { useState ,useEffect} from 'react';
+
 import {getALLItems} from '../../actions/index';
 import { getPrice } from '../../actions';
 import {updateOrder} from '../../actions/index';
+
 
 
 import { useDispatch,useSelector } from 'react-redux';
@@ -113,7 +115,9 @@ console.log(props)
                     placeholder = " Insert a description "/>
                 </div>
                 <br />
+
                 Total: {Total}
+
               <br />
                 <div>
                 <button type="submit" onClick= {onSubmit} className="btn btn-deep-orange darken-4">Submit</button>

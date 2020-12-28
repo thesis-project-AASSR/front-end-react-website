@@ -41,7 +41,9 @@ const AdminItems =() =>{
         <br></br>
         description:  {Item.description}
         <br></br>
+
         image:  <img src={Item.image} alt=''/>
+
         <button type="primary" onClick= {()=> {purchaseFunc(Item.id,Item.price)}} >Buy </button>
         </div>
        

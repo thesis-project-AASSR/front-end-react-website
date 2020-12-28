@@ -17,7 +17,9 @@ export const createUser = (newUser) => axios.post(url+ '/signup', newUser);
 //checking the user to login 
 export const checkUser = (savedUser) => axios.post(url+ '/signin', savedUser)
 
+
 export const payPal = (purchaseInfo) => axios.post(url+ '/purchase', purchaseInfo)
 
 //update user 
 export const updateUser = (id, updateUser) => axios.put(`${url}/UsersUpdate/${id}`, updateUser);
+

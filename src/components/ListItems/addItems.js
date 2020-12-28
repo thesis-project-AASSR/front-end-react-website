@@ -7,7 +7,9 @@ import AddNav from '../Navbar/addNav';
 import {withRouter} from 'react-router-dom';
 
 
+
 var Total=0
+
 const AddItems = ({ currentId }) => {
     const [orderData, setOrderData] = useState({  category: '', quantity: '', weight: '', description: '', price:'',image:null,user_id:localStorage.getItem('user_id') });
     const dispatch = useDispatch();

@@ -1,4 +1,7 @@
+
 import React, { useEffect  } from 'react';
+
+
 import { getALLItems } from '../../actions';
 import { useDispatch,useSelector } from 'react-redux';
 import {  Link} from "react-router-dom" ;
@@ -7,6 +10,11 @@ import { deleteOrder } from '../../actions/index';
 import {withRouter} from 'react-router-dom';
 import ItemsNav from '../Navbar/itemsNav';
 // import AdminItemsNav from '../Navbar/adminItemsNav';
+
+
+import {withRouter} from 'react-router-dom';
+import ItemsNav from '../Navbar/itemsNav';
+import AdminItemsNav from '../Navbar/adminItemsNav';
 
 
 const SellerItems =({currentId}) =>{
@@ -21,6 +29,7 @@ const SellerItems =({currentId}) =>{
     }, [dispatch]);
 
 
+
       const onSubmit = async (e) => {
       dispatch(deleteOrder(e))
       window.location.href = '/SellerItems'
@@ -31,6 +40,7 @@ const SellerItems =({currentId}) =>{
         <ItemsNav/>
   
         {orders.map((post) => (
+
         <div style={{ border: '1px solid black', margin: "6px" }} >
 
         category: {post.category}
@@ -45,6 +55,7 @@ const SellerItems =({currentId}) =>{
 
 
         <div>
+
         <Link to ={"/EditItems/"+post.itemID} >Edit</Link>
         <button  type="submit" onClick={() => onSubmit(post.itemID) }>Delete</button>
         </div>

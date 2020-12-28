@@ -1,9 +1,11 @@
 import React , { useEffect }from 'react';
 import { getAdmin } from '../../actions';
+
 import { useDispatch,useSelector} from 'react-redux';
 
 import AdminNav from '../Navbar/adminNav'
 import {  Link} from "react-router-dom" ;
+
 // we are retreiving all the admin items 
 const AdminProfile =() =>{
     // we are dipatching th state
