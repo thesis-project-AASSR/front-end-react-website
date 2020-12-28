@@ -8,6 +8,13 @@
 	margin-left: 10px
 }
 
+#bgimage {
+	background-image: url("../src/images/nature-3294632_1280.jpg");
+	height: 500px;
+	  background-position: center;
+	  background-repeat: repeat;
+	  background-size: cover;
+}
 
 /* #image {
 	background-image: url("../src/images/nature-3294632_1280.jpg");
@@ -17,11 +24,4 @@
 	  background-size: cover;
 } */
 
-/* from sign component */
-#bg {
-	background-image: url('../src/images/green-2008580_1280.jpg');
-}
 
-body {
-	background-image: url('../src/images/recycling.jpg');
-}

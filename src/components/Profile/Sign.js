@@ -2,7 +2,9 @@ import React, {useState,useEffect} from 'react';
 import {useSelector} from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { createUser } from '../../actions/index';
-import { storage } from './firbase'
+import { storage } from './firbase';
+import Background from '../../images/lake-irene-1679708_1280.webp';
+import image6 from "../../images/1_x9sm3fjasQp8gXQp-Sd0pA.png";
 
 const Sign = ({ currentId }) => {
   ///this is for sign up
@@ -75,15 +77,51 @@ const Sign = ({ currentId }) => {
     }
    
     return (
+      <div>
+      <div>
+      <div className="collapse bg-dark" id="navbarHeader">
+        <div className="container">
+          <div className="row">
+            <div className="col-sm-8 col-md-7 py-4">
+              <h4 className="text-white">About</h4>
+              <p className="text-muted">Dawerha&copy; is a nonprofit website with free Membership. Everything posted must be free, legal and appropriate for all ages.
+               Dawerha is a recycling website which aims to encourage people to recycle more and recycle more often. Our  mission is to protect the environment by converting waste materials into new materials and objects.</p>
+            </div>
+            
+            <div className="col-sm-4 offset-md-1 py-4">
+              <h4 className="text-white">Contact</h4>
+                <a href="https://m.facebook.com/" className="text-white" class="contact" style={{color:"rgba(124,252,0)"}}><i class="fab fa-facebook-f fa-1x"></i></a>
+               <a href="https://twitter.com/?lang=en" className="text-white" class="contact" style={{color:"rgba(124,252,0)"}}><i class="fab fa-twitter fa-1x"></i></a>
+               <a href="https://www.youtube.com/" className="text-white" class="contact" style={{color:"rgba(124,252,0)"}}><i class="fab fa-youtube fa-1x"></i></a>
+               <a href="https://mail.google.com/" className="text-white" class="contact" style={{color:"rgba(124,252,0)"}}><i class="fas fa-envelope fa-1x"></i></a>
+               <a href="https://www.instagram.com/" className="text-white" class="contact" style={{color:"rgba(124,252,0)"}}><i class="fab fa-instagram fa-1x"></i></a> 
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="navbar navbar-dark bg-dark box-shadow">
+        <div className="container d-flex justify-content-between">
+          <a href="/" className="navbar-brand d-flex align-items-center">
+            <img src={image6} width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mr-2"></img>
+            <strong>Dawerha</strong>
+          </a>
+          <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+            <span className="navbar-toggler-icon"></span>
+          </button>
+
+        </div>
+      </div>
+    </div>
+    
+
+        <div style={{backgroundColor:"rgba(40,40,40, 2)"}}>
         <div>
-        <div id="bg">
-          <br/>
-        <div className = "container">
-          <form className="text-center border border-light p-1" action="#!"  >
-            <p className="h4 mb-2">Sign up</p>
-            <br/>
+        <div className = "container" >
+          <form className="text-center border border-dark p-9" action="#!" style={{background: `url(${Background})`, backgroundPosition: "center", backgroundRepeat: "no-repeat"}}>
+            <strong style={{fontWeight: "700", fontSize:"50px"}}>Sign up</strong>
+            <br/> <br/>
                 <div className="col-lg-6 col-xl-6 mx-auto">
-                <label>Username</label>
+                {/* <label>Username</label> */}
                 <input
                 required={true}
                   type = "text"
@@ -91,13 +129,12 @@ const Sign = ({ currentId }) => {
                    value = {userData.username}
                   onChange = {(e) => setUserData({ ...userData , username : e.target.value})}
                   text-align = "center"
-                  placeholder = "username"
-                  // style={{width: "200px"}}
+                  placeholder = "Username"
                   />
                 </div>
                 <br />
                 <div className="col-lg-6 col-xl-6 mx-auto">
-                <label>Email</label>
+                {/* <label>Email</label> */}
                 <input
                 required={true}
                   type = "email"
@@ -105,22 +142,22 @@ const Sign = ({ currentId }) => {
                    value = {userData.email}
                   onChange = {(e) => setUserData({ ...userData ,email : e.target.value})}
                   text-align = "center"
-                  placeholder = "Your Email should be valid"/>
+                  placeholder = "Email - should be valid"/>
                 </div>
                 <br />
                 <div className = "col-lg-6 col-xl-6 mx-auto">
-                  <label>Password</label>
+                  {/* <label>Password</label> */}
                   <input
                     type = "password"
                     required={true}
                     className = "form-control"
                      value = {userData.password}
                   onChange = {(e) => setUserData({ ...userData ,password : e.target.value})}
-                    placeholder = "Your password should contain at least one lowercase letter, one uppercase letter, one numeric digit, and one special character"/>
+                    placeholder = "Password 8-char, numbers, symbols, uppercase letter"/>
                 </div>
                 <br/>
                 <div className="col-lg-6 col-xl-6 mx-auto">
-                <label>Phone Number</label>
+                {/* <label>Phone number</label> */}
                 <input
                 required={true}
                   type = "tel"
@@ -128,36 +165,25 @@ const Sign = ({ currentId }) => {
                    value = {userData.phoneNumber}
                   onChange = {(e) => setUserData({ ...userData ,phoneNumber : e.target.value})}
                   text-align = "center"
-                  placeholder = "Your phone number should be valid"/>
-                </div>
-              <br />
-              <div className="col-lg-6 col-xl-6 mx-auto">
-                <label>Location</label>
-                <input
-                required={true}
-                  type = "text"
-                  className = "form-control"
-                   value = {userData.location}
-                  onChange = {(e) => setUserData({ ...userData ,location : e.target.value})}
-                  text-align = "center"
-                  placeholder = "Insert Location"/>
+                  placeholder = "Phone number - should be valid"/>
                 </div>
                 <br/>
                 <div className="col-lg-6 col-xl-6 mx-auto">
-                <label>image</label>
+                {/* <label>Image</label> */}
                 <input 
                   required={true}
                   type='file' 
                   className = "form-control"
                   onChange = {handleChangeImage}
                   />
-                   <button type="submit" onClick= {imageUpload} className="btn btn-deep-orange darken-4">upload Image</button>
+             <button type="submit" onClick= {imageUpload} className="btn btn-dark btn-sm">upload your profile picture</button>
                 </div>
                 <br/>
                 <div>
-                <button type="submit" onClick= {onSubmit} className="btn btn-deep-orange darken-4">Sign Up</button>
+                <button type="submit" onClick= {onSubmit} className="btn btn-dark btn-lg">Sign Up</button>
                 </div>
           </form>
+        </div>
         </div>
         </div>
         </div>

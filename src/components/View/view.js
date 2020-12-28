@@ -8,7 +8,9 @@ import image5 from "../../images/recycling.jpg";
 import image6 from "../../images/1_x9sm3fjasQp8gXQp-Sd0pA.png";
 import image7 from "../../images/forest-56930_1280.webp";
 import image8 from "../../images/lake-irene-1679708_1280.webp";
-
+import Background from '../../images/lake-irene-1679708_1280.webp';
+import image9 from '../../images/kisspng-environmentally-friendly-sustainability-sustainabl-caring-for-the-earth-protection-of-trees-5aa2a52905d3d0.2344978715206085530239.jpg';
+import image10 from '../../images/pexels-mali-maeder-802221.jpg';
 
 export default class Viewpage extends Component {
   constructor(props) {
@@ -33,11 +35,11 @@ export default class Viewpage extends Component {
             
             <div className="col-sm-4 offset-md-1 py-4">
               <h4 className="text-white">Contact</h4>
-                <a href="https://m.facebook.com/" className="text-white" class="contact" style={{color:"rgba(124,252,0)"}}><i class="fab fa-facebook-square fa-1x"></i></a>
-               <a href="https://twitter.com/?lang=en" className="text-white" class="contact" style={{color:"rgba(124,252,0)"}}><i class="fab fa-twitter-square fa-1x"></i></a>
+                <a href="https://m.facebook.com/" className="text-white" class="contact" style={{color:"rgba(124,252,0)"}}><i class="fab fa-facebook-f fa-1x"></i></a>
+               <a href="https://twitter.com/?lang=en" className="text-white" class="contact" style={{color:"rgba(124,252,0)"}}><i class="fab fa-twitter fa-1x"></i></a>
                <a href="https://www.youtube.com/" className="text-white" class="contact" style={{color:"rgba(124,252,0)"}}><i class="fab fa-youtube fa-1x"></i></a>
-               <a href="https://mail.google.com/" className="text-white" class="contact" style={{color:"rgba(124,252,0)"}}><i class="fas fa-envelope-square fa-1x"></i></a>
-               <a href="https://www.instagram.com/" className="text-white" class="contact" style={{color:"rgba(124,252,0)"}}><i class="fab fa-instagram-square fa-1x"></i></a> 
+               <a href="https://mail.google.com/" className="text-white" class="contact" style={{color:"rgba(124,252,0)"}}><i class="fas fa-envelope fa-1x"></i></a>
+               <a href="https://www.instagram.com/" className="text-white" class="contact" style={{color:"rgba(124,252,0)"}}><i class="fab fa-instagram fa-1x"></i></a> 
             </div>
           </div>
         </div>
@@ -57,17 +59,20 @@ export default class Viewpage extends Component {
     </div>
     
   <div>
-      <section className="jumbotron text-center" id="img">
+      <section className="jumbotron text-center" id="img" style={{background: `url(${image8})`, backgroundPosition: "center", backgroundRepeat: "no-repeat"}}>
         <div className="container">
-          <h1 className="jumbotron-heading" style={{color:"black"}}>Dawerha</h1>
-          <p className="lead text-muted">can benefit our community and the environment, by collecting and processing materials that would otherwise be thrown away as trash and turning them into new products.</p>
+      
+          <p className="lead "  style={{color:"white"}}>Dawerha can benefit our community and the environment, by collecting and processing materials that would otherwise be thrown away as trash and turning them into new products.</p>
           <p>
             <a href="/sign" className="btn btn-outline-success">Join Us</a>
             <a href="/login" className="btn btn-outline-success" id="button">Sign in</a>
           </p>
+          {/* <br/><br/><br/><br/><br/><br/> */}
         </div>
+        <br/><br/><br/><br/><br/><br/> <br/><br/><br/><br/><br/><br/>
       </section>
     </div>
+
 
 
    </div>
