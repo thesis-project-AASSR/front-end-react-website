@@ -1,0 +1,27 @@
+/* from view component */
+
+#button {
+	margin-left: 20px;
+}
+
+.contact {
+	margin-left: 10px
+}
+
+#bgimage {
+	background-image: url("../src/images/nature-3294632_1280.jpg");
+	height: 500px;
+	  background-position: center;
+	  background-repeat: repeat;
+	  background-size: cover;
+}
+
+/* #image {
+	background-image: url("../src/images/nature-3294632_1280.jpg");
+	height: 500px;
+	  background-position: center;
+	  background-repeat: repeat;
+	  background-size: cover;
+} */
+
+

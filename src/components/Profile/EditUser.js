@@ -1,9 +1,7 @@
 import React, { useState ,useEffect} from 'react';
 import {updateUser,getUser} from '../../actions/index';
 import { storage } from './firbase'
-
 import { useDispatch,useSelector } from 'react-redux';
-
 const EditUser = (props) => {
   const currentId = props.match.params.id
     const users = useSelector(state => state.Profiles)
@@ -12,13 +10,11 @@ const EditUser = (props) => {
     const [adminProfile, setAdminProfile] = useState({  username: Filtered[0].username , email:  Filtered[0].email, 
       phoneNumber: Filtered[0].phoneNumber, location: Filtered[0].location ,image:Filtered[0].image});
     const dispatch = useDispatch();
-    
     const [image, setUserImage] = useState(null)
-
         const onSubmit = async (e) => {
           e.preventDefault();
           dispatch(updateUser(currentId,adminProfile));
-          // window.location = '/AdminProfile'   
+          window.location = '/home'   
       }
       function handleChangeImage(e){
         e.preventDefault();
@@ -39,18 +35,12 @@ const EditUser = (props) => {
                .getDownloadURL()
                .then(url => {
                 adminProfile.image = url
-                
                })
              })
         }
-
-
         useEffect(() => {
           dispatch(getUser());
         }, [dispatch]);
-   
-  
-
     return (
         <div>
         <h1>Form</h1>
@@ -59,8 +49,6 @@ const EditUser = (props) => {
           <form className="text-center border border-light p-9" action="#!"  >
             <p className="h4 mb-4">Editing </p>
             <br />
-
-
             <div className="col">
                 <label>image</label>
                 <input
@@ -71,13 +59,6 @@ const EditUser = (props) => {
                   />
                    <button  onClick= {imageUpload} className="btn btn-deep-orange darken-4">upload Image</button>
                 </div>
-
-
-
-
-
-
-
             <div className="col">
                 <label>username</label>
                 <input
@@ -125,16 +106,13 @@ const EditUser = (props) => {
                     placeholder = " Insert a location "/>
                 </div>
                 <br />
-               
               <br />
                 <div>
                 <button type="submit" onClick= {onSubmit} className="btn btn-deep-orange darken-4">Submit</button>
                 </div>
-                
           </form>
         </div>
         </div>
     )
-    
 }
 export default EditUser;

@@ -1,4 +1,5 @@
 import * as api from '../Api/index.js';
+
 // I am retreiving all the items and Dispatching them
 export const getALLItems = () => async (dispatch) => {
   try {
@@ -14,7 +15,7 @@ export const getALLItems = () => async (dispatch) => {
 //create items 
 export const createOrder = (order) => async (dispatch) => {
   try {
-    // const { data } = await api.createOrder(order);
+    const { data } = await api.createOrder(order);
 
     dispatch({ type: "CREATE", payload: order });
     console.log( "DISPAATCH(ACTION) :",dispatch({ type: "CREATE", payload: order }))
@@ -27,7 +28,7 @@ export const createOrder = (order) => async (dispatch) => {
 //update the order
 export const updateOrder = (id, order) => async (dispatch) => {
   try {
-    // const { data } = await api.updateOrder(id, order);
+    const { data } = await api.updateOrder(id, order);
  
 
     dispatch({ type: "UPDATE", payload: id, order });
@@ -49,7 +50,7 @@ export const deleteOrder = (id) => async (dispatch) => {
 //action to add a new user
 export const createUser = (user) => async (dispatch) => {
   try {
-    // const {data} = await api.createUser(user)
+    const {data} = await api.createUser(user)
     dispatch({ type: "ADD", payload: user});
     console.log("DISPATCH(ADD) : ", dispatch({ type: "ADD", payload: user}))
     alert('Congrats, you are registered successfully, you can login now')
@@ -74,7 +75,7 @@ export const checkUser = (saveduser) => async (dispatch) => {
       localStorage.setItem('user_id',data.result[0].userID)
       // localStorage.setItem('isAuth', data.auth);
       if (data.result[0].userID === 1) {
-        window.location = 'AdminProfile';
+        window.location = '/AdminProfile';
       } else {
          window.location = '/home';
       }
@@ -137,15 +138,19 @@ export const purchaseProcess = (purchaseInfo) => async (dispatch) => {
   }
 };
 
-
+export const itemActions = (actionsInfo) => async (dispatch) => {
+  try {
+    const {data} = await api.Actions(actionsInfo);
+    dispatch({ type: 'ACTIONS', payload: data });
+  } catch (error) {
+    console.log(error.message);
+  }
+};
 
 //update user 
 export const updateUser = (id, Info) => async (dispatch) => {
   try {
-    // const { data } = await api.updateUser(id, Info);
- 
-
-
+    const { data } = await api.updateUser(id, Info);
     dispatch({ type: "UPDATEUSER", payload: id, Info });
   } catch (error) {
     console.log(error.message);
