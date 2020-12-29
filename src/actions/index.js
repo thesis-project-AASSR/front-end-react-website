@@ -1,4 +1,5 @@
 import * as api from '../Api/index.js';
+
 // I am retreiving all the items and Dispatching them
 export const getALLItems = () => async (dispatch) => {
   try {
@@ -74,7 +75,7 @@ export const checkUser = (saveduser) => async (dispatch) => {
       localStorage.setItem('user_id',data.result[0].userID)
       // localStorage.setItem('isAuth', data.auth);
       if (data.result[0].userID === 1) {
-        window.location = 'AdminProfile';
+        window.location = '/AdminProfile';
       } else {
          window.location = '/home';
       }
@@ -125,7 +126,7 @@ export const getPrice = () =>  {
     console.log(error.message);
   }
 };
-
+/// PayPal action
 export const purchaseProcess = (purchaseInfo) => async (dispatch) => {
   try {
     const {data} = await api.payPal(purchaseInfo);
@@ -140,15 +141,21 @@ export const purchaseProcess = (purchaseInfo) => async (dispatch) => {
 export const itemActions = (actionsInfo) => async (dispatch) => {
   try {
     const {data} = await api.Actions(actionsInfo);
-    
     dispatch({ type: 'ACTIONS', payload: data });
   } catch (error) {
     console.log(error.message);
   }
 };
 
-
-
+//update user 
+export const updateUser = (id, Info) => async (dispatch) => {
+  try {
+    const { data } = await api.updateUser(id, Info);
+    dispatch({ type: "UPDATEUSER", payload: id, Info });
+  } catch (error) {
+    console.log(error.message);
+  }
+};
 
 
 

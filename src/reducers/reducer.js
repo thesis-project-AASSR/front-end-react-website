@@ -5,12 +5,10 @@
        case "CREATE":
       return [...state, action.payload];
       case "UPDATE":
-  
       case "DELETE":
         case "PURCHASE":
-        
-        case "ACTIONS":
-          
+        return action.payload;
+       case "ACTIONS":
       default:
         return state;
 

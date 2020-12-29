@@ -1,44 +1,58 @@
-import React, { useEffect,useState } from 'react';
-import { getALLItems, purchaseProcess,itemActions } from '../../actions';
+import React, { useState,useEffect } from 'react';
+import { getALLItems, purchaseProcess } from '../../actions';
 import { useDispatch,useSelector } from 'react-redux';
-import {Button} from 'react-bootstrap';
+import {  Link} from "react-router-dom" ;
+// import { updateOrder,deleteOrder } from '../../actions/index';
+// import {Button} from 'react-bootstrap';
+import {withRouter} from 'react-router-dom';
+import ItemsNav from '../Navbar/itemsNav';
 import AdminItemsNav from '../Navbar/adminItemsNav';
+import image6 from "../../images/1_x9sm3fjasQp8gXQp-Sd0pA.png";
+import {itemActions } from '../../actions';
 import $ from "jquery";
-// import con from '../../../../server/app/models/db';
-// we are retreiving all the admin items 
-const AdminItems =() =>{
-  const [status, setStatus] = useState({accepSelectorStat:false,selectorStat:false})
+
+const AdminItems =({currentId}) =>{
+const TableItems = props => (
+  
+                <tr>
+                     <td>{props.Item.category}</td>
+                     <td>{props.Item.quantity}</td>
+                     <td class="form-row justify-content-center">{props.Item.weight}</td>
+                     <td>{props.Item.description}</td>
+                     <td>
+                     <img src= {props.Item.image} width="120" height="120" class="w3-round" />
+                     {console.log(props.Item.image)}
+                     </td>
+                     <td class="form-row justify-content-center">{props.Item.price}</td>
+                     <td>
+                     <button className={props.Item.itemID} type="primary" disabled={props.Item.rejectionStat} onClick= {()=> {purchaseFunc(props.Item.itemID,props.Item.price)}} >Buy </button>
+                    <button className={props.Item.itemID} type="primary" disabled={props.Item.rejectionStat} onClick= {()=> {rejection(props.Item.itemID)}} > Reject </button>
+                    <button id={props.Item.itemID} type="primary" disabled={props.Item.acceptationStat} onClick= {()=> {acceptation(props.Item.itemID,props.Item.status)}} > Accept </button></td>
+                      </tr>
+                     /* <Link herf = "#"  onClick={() => onSubmit(Item.itemID) }>Reject</Link></td> */
+        // <a href="#" onClick={() => { props.deleteStudent(props.student.studentId) }}>delete</a>
+)
+
+
+
+  const [status, setStatus] = useState({accepSelectorStat:false,selectorStat:false});
     // we are dipatching th state
     const dispatch = useDispatch();
     //we are declaring a new const called items which will save all the items in it 
     const Items = useSelector(state => state.Items)
-console.log("Items:",Items)
+    const [itemData, setItemData] = useState({  category: ''})
+    const [filteredData, setFilterData] = useState({ filteredItems: [] })
+    console.log(itemData)
+    console.log(filteredData.filteredItems)
+    // const Items = useSelector(state => state.Items)
+    // const filters = ["Iron", "wood", "glass","plastic"]
     // we are rendering the whole items instantly when we load our page 
     useEffect(() => {
       dispatch(getALLItems());
-    
     }, [dispatch]);
-//       for(var i = 1; i < 5;i++){
 
-//       var getStatus =localStorage.getItem(i)
-//       var strToArr = getStatus.split(",")
-//       // var strToArr = [true, false]
-//       for(var i= 0; i < 2; i++){
-//        if(strToArr[i]==="false") 
-//         strToArr[i]=false
-//       strToArr[i]=true 
-//       }
-//       console.log("strToArr:",strToArr)
-//       var idToStr = i +""
-//       console.log("idToStr:",idToStr)
-//       var  accepSelector= "#"+idToStr
-//       var selector= "."+idToStr
-//       $(accepSelector).prop('disabled', strToArr[0]);
-//       $(selector).prop('disabled', strToArr[1]);
 
-// }
-
-    function purchaseFunc(itemId,price){
+function purchaseFunc(itemId,price){
       var confirmation = window.confirm("Are you sure you want to Purchase this item?");
        if(confirmation){
         var purchaseInfo ={
@@ -59,127 +73,145 @@ console.log("Items:",Items)
     }
     else
       alert('Your purchase has been cancelled,Thank you!');
-
   }
 
-    function rejection(itemId){
-var confirmation = window.confirm("Are you sure you want to Reject this item?");
-if(confirmation){
-        var rejectionInfo ={
-        itemId : itemId,
-        status:"Rejected",
-        acceptationStat: false,
-        rejectionStat: true
-     
+
+    function itemsList() {
+      let listedItems = (filteredData.filteredItems.length > 0)? filteredData.filteredItems : Items 
+      console.log(filteredData.filteredItems)
+      return listedItems.map(currentItem => {
+          return <TableItems Item = { currentItem } key = { currentItem._id }/>; 
+      })
+  }
+
+
+  function onChangeCategory(e) {
+    let string = e.target.value
+    setItemData({category: e.target.value }
+    ) 
+    let filteredItems = Items.filter(item => item.category.includes(string))
+    setFilterData({filteredItems:filteredItems})
+    console.log(filteredItems)
+}
+
+function rejection(itemId){
+  var confirmation = window.confirm("Are you sure you want to Reject this item?");
+  if(confirmation){
+          var rejectionInfo ={
+          itemId : itemId,
+          status:"Rejected",
+          acceptationStat: false,
+          rejectionStat: true
+        }
+        var idToStr =rejectionInfo.itemId +""
+        var selector= "."+idToStr
+        var accepSelector= "#"+idToStr
+        $(selector).prop('disabled', true);
+        $(accepSelector).prop('disabled', false);
+        dispatch(itemActions(rejectionInfo));
       }
-   
-      var idToStr =rejectionInfo.itemId +""
-      var selector= "."+idToStr
-      var accepSelector= "#"+idToStr
-      // document.getElementByclassName(rejectionInfo.itemId +"").disabled = status;
-      // $(selector).html("Rejected");
-      $(selector).prop('disabled', true);
-      $(accepSelector).prop('disabled', false);
-      // $(accepSelector).html("Accept");
-      dispatch(itemActions(rejectionInfo));
     }
-  }
-    var butStatus = useSelector(state => state.Items)
-    console.log("butStatussss:",butStatus[0])
-    // var x= butStatus[0];
-    // // console.log(x.status)
-    // var y = butStatus[0];
-    // console.log("falseeeeeeee",typeof(y));
-    // console.log("yyyyyyyyy",y)
-    // console.log("xxxxxxxxxxxxx",x)
-    function acceptation(itemId,status){
-      
-    // if(status==="Accepted"){
-    //   setStatus(true)
-    //   }
 
-      // console.log("strToArr:",strToArr[0])
+    function acceptation(itemId,status){
+      console.log("acc cliked")
       var acceptationInfo ={
         itemId : itemId,
         status:"Accepted",
         acceptationStat: true,
         rejectionStat: false
       }
-      // setStatus(true)
-      setStatus({ ...status ,acceptationStat : true})
-      // var accepSelectorStat =true
-      // var selectorStat = false
-          // localStorage.setItem(itemId, [accepSelectorStat,selectorStat])
-      // butStatus=true
       var idToStr =acceptationInfo.itemId +""
       var accepSelector= "#"+idToStr
       var selector= "."+idToStr
-      // $(accepSelector).html("Accepted");
       $(accepSelector).prop('disabled', true);
       $(selector).prop('disabled', false);
-      dispatch(itemActions(acceptationInfo));
-
       
+      // setStatus({ ...status ,acceptationStat : true})
+      dispatch(itemActions(acceptationInfo));
+      console.log(acceptationInfo)
     }
 
 
+   return (
+<div>
 
-    // function acceptation(itemId,status){
-    
-    //   setStatus(true)
-      
-    //     console.log("status:",status)
-    //     var acceptationInfo ={
-    //       itemId : itemId,
-    //       status:"Accepted"
-    //     }
-    //     // setStatus(true)
-     
-    //     // butStatus=true
-    //     // var idToStr =acceptationInfo.itemId +""
-    //     // var accepSelector= "#"+idToStr
-    //     // var selector= "."+idToStr
-    //     // $(accepSelector).html("Accepted");
-    //     // $(accepSelector).prop('disabled', status);
-    //     // $(selector).prop('disabled', false);
-    //     dispatch(itemActions(acceptationInfo));
-  
-        
-    //   }
-    
-    // console.log("out:",status)
-    return (
-         <div>
-           <AdminItemsNav/>
-          {Items.map((Item) => (
-        <div style={{ border: '1px solid black', margin: "6px" }} >
 
-        category: {Item.category}
-        <br></br>
-        quantity:  {Item.quantity}
-        <br></br>
-        weight:  {Item.weight}
-        <br></br>
-        description:  {Item.description}
-        <br></br>
-        image:  <img src={Item.image}/>
-        {/* <button className={Item.id} type="primary" onClick= {()=> {purchaseFunc(Item.id,Item.price)}} >Buy </button>
-        <button className={Item.id} type="primary" onClick= {()=> {rejection(Item.id)}} > Reject </button>
-        <button id={Item.id} type="primary"   onClick= {()=> {acceptation(Item.id,Item.status)}} > Accept </button> */}
-
-        <button className={Item.id} type="primary" disabled={Item.rejectionStat} onClick= {()=> {purchaseFunc(Item.id,Item.price)}} >Buy </button>
-        <button className={Item.id} type="primary" disabled={Item.rejectionStat} onClick= {()=> {rejection(Item.id)}} > Reject </button>
-   
-        <button id={Item.id} type="primary" disabled={Item.acceptationStat} onClick= {()=> {acceptation(Item.id,Item.status)}} > Accept </button>
+<div>
+      <div className="collapse bg-dark" id="navbarHeader">
+        <div className="container">
+          <div className="row">
+            <div className="col-sm-8 col-md-7 py-4">
+              <h4 className="text-white">About</h4>
+              <p className="text-muted">Dawerha&copy; is a nonprofit website with free Membership. Everything posted must be free, legal and appropriate for all ages.
+               Dawerha is a recycling website which aims to encourage people to recycle more and recycle more often. Our  mission is to protect the environment by converting waste materials into new materials and objects.</p>
+            </div>
+            
+            <div className="col-sm-4 offset-md-1 py-4">
+              <h4 className="text-white">Contact</h4>
+                <a href="https://m.facebook.com/" className="text-white" class="contact" style={{color:"rgba(124,252,0)"}}><i class="fab fa-facebook-f fa-1x"></i></a>
+               <a href="https://twitter.com/?lang=en" className="text-white" class="contact" style={{color:"rgba(124,252,0)"}}><i class="fab fa-twitter fa-1x"></i></a>
+               <a href="https://www.youtube.com/" className="text-white" class="contact" style={{color:"rgba(124,252,0)"}}><i class="fab fa-youtube fa-1x"></i></a>
+               <a href="https://mail.google.com/" className="text-white" class="contact" style={{color:"rgba(124,252,0)"}}><i class="fas fa-envelope fa-1x"></i></a>
+               <a href="https://www.instagram.com/" className="text-white" class="contact" style={{color:"rgba(124,252,0)"}}><i class="fab fa-instagram fa-1x"></i></a> <br/><br/>
+               <button onClick={() => {localStorage.removeItem('token'); localStorage.removeItem('user_id'); window.location=('/')}}  style={{color:"white"}} className="btn btn-outline-success"> Sign out </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="navbar navbar-dark bg-dark box-shadow">
+        <div className="container d-flex justify-content-between">
+          <a href="/" className="navbar-brand d-flex align-items-center">
+            <img src={image6} width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mr-2"></img>
+            <strong>Dawerha</strong>
+          </a>
+          <a href="/AdminProfile" style={{color:"white"}}> Profile </a>
+          <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+            <span className="navbar-toggler-icon"></span>
+          </button>
 
         </div>
-       
-          ))}
+      </div>
+    </div>
+
+
+
+
+<br/>
+                <div className="col">
+                {/* <label>Select Category</label> */}
+                {/* <p>Filter by category</p> */}
+                <select
+                required="true"
+                  className = "form-control"
+                  onChange = {onChangeCategory }
+                  // onChange = {(e) =>setItemData({category: e.target.value}) }
+                  text-align = "center"
+                  style={{width:"300px"}}
+                 >
+                   <option value = "">Select a category</option>
+                    <option value = "Iron">Iron</option>
+                    <option value = "wood">wood</option>
+                    <option value = "glass">glass</option>
+                    <option value = "plastic">plastic</option>
+                    </select>
+                    </div><br></br>
+      <table className = "table" >
+               <thead className = "thead">
+                   <tr>
+                       <th>Category</th>
+                       <th>Quantity</th>
+                       <th>Weight</th>
+                       <th>Description</th>
+                       <th>Image</th>
+                       <th>Enviroment support</th>
+                       <th>Action</th> 
+                   </tr>
+               </thead>
+               <tbody>
+               {itemsList()}
+              </tbody>
+               </table>
            </div>
     )
-
 }
-
-export default AdminItems;
-
-// disabled={status}
+export default withRouter(AdminItems);

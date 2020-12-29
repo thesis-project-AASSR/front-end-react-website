@@ -11,11 +11,14 @@ import { getALLItems } from './actions';
 import { useDispatch } from 'react-redux';
 import {useSelector} from 'react-redux';
 import ProtectedRoute from './ProtectedRoute';
-
+import Login from './components/Profile/login';
 import Viewpage from './components/View/view';
 import {useState} from 'react';
 import homeNav from './components/Navbar/homeNav';
-import EditItems from './components/ListItems/EditItems'
+import EditItems from './components/ListItems/EditItems';
+import EditUser from './components/Profile/EditUser';
+import LocationSearchModal from './components/map';
+
 function App() {
 //   // we need to define this dispatch using hooks
 //   const dispatch = useDispatch();
@@ -32,14 +35,17 @@ return (
     <div>
       {/* the user can't access admin's pages */}
       <Route path="/" exact component={Viewpage} />
+      <Route path="/map"  component={LocationSearchModal} />
       <Route path="/home" component={Homepage} />
       <Route path="/sign" exact component={Sign}/>
+      <Route path="/login" exact component={Login}/>
       <ProtectedRoute path="/EditItems/:id" component={EditItems} token = {token} />
+      <ProtectedRoute path="/EditUser/:id" component={EditUser} token = {token} />
       <ProtectedRoute path="/SellerItems" component={SellerItems} token = {token}/>
       <ProtectedRoute path="/SellerProfile" component={SellerProfile} token = {token} />
       <ProtectedRoute path = "/AddItems" component = {AddItems} token = {token}/>
       <ProtectedRoute path = "/AdminProfile"  component = {AdminProfile} token = {token}   id={1}/>
-      <Route path="/AdminItems" component={AdminItems} />
+      <ProtectedRoute path="/AdminItems" component={AdminItems} token = {token} id={1}/>
     </div>
   </Router>
 </div>
