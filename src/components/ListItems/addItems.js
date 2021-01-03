@@ -161,7 +161,7 @@ const AddItems = (props) => {
                    value = {orderData.weight}
                   onChange = {(e) => setOrderData({ ...orderData ,weight : e.target.value})}
                   text-align = "center"
-                  placeholder = "Insert Wights"/>
+                  placeholder = "Insert Weight/Unit (g)"/>
                 </div>
                 <br />
                 <div className="col">
