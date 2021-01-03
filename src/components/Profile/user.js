@@ -5,11 +5,7 @@ import { useDispatch,useSelector } from 'react-redux';
 import Button from 'react-bootstrap/Button';
 import ProfileNav from '../Navbar/profileNav'
 import image6 from "../../images/1_x9sm3fjasQp8gXQp-Sd0pA.png";
-<<<<<<< HEAD
 import {Link} from "react-router-dom" ;
-=======
-import {  Link} from "react-router-dom" ;
->>>>>>> 8384dc30ad454d0e3c1720c78fe91c162fedc37c
 import image10 from '../../images/pexels-mali-maeder-802221.jpg';
 import image11 from '../../images/background-recycle-symbol-260nw-110941127.webp';
 import image12 from '../../images/crumpled-2537807_1280.jpg';
