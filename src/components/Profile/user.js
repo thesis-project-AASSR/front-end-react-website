@@ -23,7 +23,7 @@ const UserProfile =() =>{
     var Userb=localStorage.getItem('user_id')
     console.log(Userb);
   //   const [loggedin,setLoggedin] = useState(Userb)
-  // console.log(loggedin)
+  // console.log(loggedin);
     const UserProfile = useSelector(state => state.Profiles)
     
     // we are rendering the whole items instantly when we load our page 
