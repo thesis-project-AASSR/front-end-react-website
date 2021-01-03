@@ -5,7 +5,7 @@ import { checkUser } from '../../actions/index';
 import { storage } from './firbase';
 import Background from '../../images/lake-irene-1679708_1280.webp';
 import image6 from "../../images/1_x9sm3fjasQp8gXQp-Sd0pA.png";
-
+import image10 from '../../images/pexels-mali-maeder-802221.jpg';
 const Login = ({ currentId }) => {
   ///this is for sign up
   
@@ -62,9 +62,9 @@ const Login = ({ currentId }) => {
         <div>
 
         <div className = "container">
-          <form className="text-center border border-dark p-9" action="#!" style={{background: `url(${Background})`, backgroundPosition: "center", backgroundRepeat: "no-repeat"}}>
+          <form className="text-center border border-dark p-9" action="#!" style={{background: `url(${image10})`, backgroundPosition: "center", backgroundRepeat: "no-repeat",backgroundSize:"cover"}}>
           <br/> 
-           <strong style={{fontWeight: "700", fontSize:"50px"}}>Sign in</strong>
+           <strong style={{color:"white",fontWeight: "700", fontSize:"50px"}}>Sign in</strong>
                 <br/> <br/> <br/> <br/>
                 <div className="col-lg-6 col-xl-6 mx-auto">
      

@@ -5,10 +5,16 @@ import { createUser } from '../../actions/index';
 import { storage } from './firbase';
 import Background from '../../images/lake-irene-1679708_1280.webp';
 import image6 from "../../images/1_x9sm3fjasQp8gXQp-Sd0pA.png";
+import image10 from '../../images/pexels-mali-maeder-802221.jpg';
+import image11 from '../../images/background-recycle-symbol-260nw-110941127.webp';
+import image12 from '../../images/crumpled-2537807_1280.jpg';
+import image13 from '../../images/42-18260830edit.jpg';
+import image14 from '../../images/wp2529177.jpg';
+import image15 from '../../images/wp2529191.jpg';
 
 const Sign = ({ currentId }) => {
   ///this is for sign up
-    const [userData, setUserData] = useState({  username: '', email: '', password: '', phoneNumber: '', location: '', image: '', iBan: ''});
+    const [userData, setUserData] = useState({  username: '', email: '', password: '', phoneNumber: '', location: '', image: null});
   ////this is for sign in
   const [image, setUserImage] = useState(null)
    
@@ -117,8 +123,8 @@ const Sign = ({ currentId }) => {
         <div style={{backgroundColor:"rgba(40,40,40, 2)"}}>
         <div>
         <div className = "container" >
-          <form className="text-center border border-dark p-9" action="#!" style={{background: `url(${Background})`, backgroundPosition: "center", backgroundRepeat: "no-repeat"}}>
-            <strong style={{fontWeight: "700", fontSize:"50px"}}>Sign up</strong>
+          <form className="text-center border border-dark p-9" action="#!" style={{background: `url(${image10})`, backgroundSize: "center", backgroundRepeat: "no-repeat",backgroundSize:"cover"}}>
+            <strong style={{color:"white",fontWeight: "700", fontSize:"50px"}}>Sign up</strong>
             <br/> <br/>
                 <div className="col-lg-6 col-xl-6 mx-auto">
                 {/* <label>Username</label> */}

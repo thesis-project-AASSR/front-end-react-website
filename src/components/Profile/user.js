@@ -5,6 +5,13 @@ import { useDispatch,useSelector } from 'react-redux';
 import Button from 'react-bootstrap/Button';
 import ProfileNav from '../Navbar/profileNav'
 import image6 from "../../images/1_x9sm3fjasQp8gXQp-Sd0pA.png";
+import {Link} from "react-router-dom" ;
+import image10 from '../../images/pexels-mali-maeder-802221.jpg';
+import image11 from '../../images/background-recycle-symbol-260nw-110941127.webp';
+import image12 from '../../images/crumpled-2537807_1280.jpg';
+import image13 from '../../images/42-18260830edit.jpg';
+import image14 from '../../images/wp2529177.jpg';
+import image15 from '../../images/wp2529191.jpg';
 
 // we are retreiving all the admin items 
 const UserProfile =() =>{
@@ -14,21 +21,18 @@ const UserProfile =() =>{
     // authInreducers
     // const loggedin = useSelector(state => state.authInReducer)
     var Userb=localStorage.getItem('user_id')
-    console.log(Userb)
+    console.log(Userb);
   //   const [loggedin,setLoggedin] = useState(Userb)
   // console.log(loggedin)
     const UserProfile = useSelector(state => state.Profiles)
     
-  
-   
-  
     // we are rendering the whole items instantly when we load our page 
     useEffect(() => {
       dispatch(getUser());
     }, [dispatch]);
     
     return (
-         <div>
+         <div style={{background: `url(${image15})`, backgroundPosition: "center", backgroundRepeat: "no-repeat", backgroundSize:"cover"}}>
 
 <div>
       <div className="collapse bg-dark" id="navbarHeader">
@@ -69,30 +73,37 @@ const UserProfile =() =>{
       </div>
     </div>
 
-
     <div>
-  
+    <br/>
               {UserProfile.filter (Users  => Users.userID == Userb
          ).map((Info) => (
-        <div style={{ border: '1px solid black', margin: "6px" }} >
-
-         username: {Info.username}
-        <br></br>
-        email:   {Info.email}
-        <br></br>
-        phoneNummber:  {Info.phoneNummber}
-        <br></br>
-        location:   {Info.location}
-        <br></br>
-        image:   {Info.image}
-        <Button variant="outline-primary">Primary</Button>{' '}
-        </div>
+        
+<div class="card mx-auto" style={{width: "18rem"}} >
+  <img class="card-img-top" src={Info.image} alt="Card image cap"/>
+  <div class="card-body">
+    <h5 class="card-title">{Info.username}</h5>
+    <p class="card-text">There is no such thing as 'away' when we throw anything away it must go somewhere!</p>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">{Info.email}</li>
+    <li class="list-group-item">{Info.phoneNumber}</li>
+    {/* <li class="list-group-item">{Info.location}</li> */}
+  </ul>
+  <div class="card-body">
+  <Link to="/" class="card-link">Location</Link>
+  <Link to ={"/EditUser/"+Info.userID} class="card-link">Edit Profile</Link>
+  </div>
+</div>
        
           ))}
-    </div>
+          <br/>
+
+      </div>
+
+      </div>
 
 
-           </div>
+ 
     )
 
 }

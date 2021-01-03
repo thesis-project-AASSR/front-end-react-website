@@ -6,16 +6,22 @@ import { storage } from '../Profile/firbase'
 import AddNav from '../Navbar/addNav';
 import {withRouter} from 'react-router-dom';
 import image6 from "../../images/1_x9sm3fjasQp8gXQp-Sd0pA.png";
+import Background from '../../images/lake-irene-1679708_1280.webp';
+import {Link} from "react-router-dom" ;
+import image10 from '../../images/pexels-mali-maeder-802221.jpg';
 
-var Total
-const AddItems = ({ currentId }) => {
-    const [orderData, setOrderData] = useState({  category: '', quantity: '', weight: '', description: '', price:'',image:null,user_id:localStorage.getItem('user_id') });
+var Total=0
+const AddItems = (props) => {
+    const [orderData, setOrderData] = useState({  category: '', quantity: '', weight: '', description: '', price:'',image:null, location:localStorage.getItem('location'),status:"Pending", user_id:localStorage.getItem('user_id')});
     const dispatch = useDispatch();
     const [image, setUserImage] = useState(null)
+
+//
     const onSubmit = async (e) => {
         e.preventDefault();
     
           dispatch(createOrder(orderData));
+          localStorage.removeItem('location');
          window.location='/SellerItems'
 
     }
@@ -108,14 +114,17 @@ const AddItems = ({ currentId }) => {
 
 
 
-        <h1>Form</h1>
-        <br />
+       
+        <div style={{backgroundColor:"rgba(40,40,40, 2)"}}>
+
         <div className = "container">
-          <form className="text-center border border-light p-9" action="#!"  >
-            <p className="h4 mb-4">Help your environment by recycling trash</p>
+          <form className="text-center border border-light p-9" action="#!" style={{background: `url(${image10})`, backgroundPosition: "center", backgroundRepeat: "no-repeat"}}>
+            <p className="h4 mb-4" style={{color:"white"}}>Add an item</p>
             <br />
+            <Link to ={"/map/"} style={{ fontSize:"20px"}} className="btn btn-secondary">choose your location</Link>
                 <div className="col">
-                <label>Select Category</label>
+                <br/>
+                {/* <label>Select Category</label> */}
                 <select
                 required="true"
                   className = "form-control"
@@ -123,6 +132,7 @@ const AddItems = ({ currentId }) => {
                   onChange = {(e) => setOrderData({ ...orderData ,category : e.target.value})}
                   text-align = "center"
                  >
+                   <option value = "Iron">Select Category</option>
                      <option value = "Iron">Iron</option>
                     <option value = "wood">wood</option>
                     <option value = "glass">glass</option>
@@ -131,7 +141,7 @@ const AddItems = ({ currentId }) => {
                     </div>
                      <br />
                 <div className="col">
-                <label>Quantity</label>
+                {/* <label>Quantity</label> */}
                 <input
                 required="true"
                   type = "text"
@@ -143,7 +153,7 @@ const AddItems = ({ currentId }) => {
                 </div>
                 <br />
                 <div className="col">
-                <label>weight</label>
+                {/* <label>weight</label> */}
                 <input
                 required="true"
                   type = "text"
@@ -151,23 +161,23 @@ const AddItems = ({ currentId }) => {
                    value = {orderData.weight}
                   onChange = {(e) => setOrderData({ ...orderData ,weight : e.target.value})}
                   text-align = "center"
-                  placeholder = "Insert Wights"/>
+                  placeholder = "Insert Weight/Unit (g)"/>
                 </div>
                 <br />
                 <div className="col">
-                <label>image</label>
+                {/* <label>image</label> */}
                 <input
                   required={true}
                   type='file'
                   className = "form-control"
                   onChange = {handleChangeImage}
                   />
-                   <button  onClick= {imageUpload} className="btn btn-deep-orange darken-4">upload Image</button>
+                   <button  onClick= {imageUpload} className="btn btn-dark btn-sm">upload Image</button>
                 </div>
 
-
+<br/>
                 <div className = "col">
-                  <label>Description  </label>
+                  {/* <label>Description  </label> */}
                   <input
                     type = "text"
                     required="true"
@@ -176,15 +186,21 @@ const AddItems = ({ currentId }) => {
                   onChange = {(e) => setOrderData({ ...orderData ,description : e.target.value})}
                     placeholder = " Insert a description "/>
                 </div>
-                Total: {Total}
+                <br/>
+                <div style={{ color:"grey", fontSize:"30px"}}>
+                Environment Support: {Total}
+                </div>
                 <br />
                 
               <br />
                 <div>
-                <button type="submit" onClick= {onSubmit} className="btn btn-deep-orange darken-4">Submit</button>
+                <button type="submit" onClick= {onSubmit} className="btn btn-dark btn-lg">Submit</button>
                 </div>
           </form>
         </div>
+        </div>
+
+
         </div>
     )
     

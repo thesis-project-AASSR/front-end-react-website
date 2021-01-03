@@ -15,6 +15,11 @@ export const deleteOrder = (id) => axios.delete(`${url}/delete/${id}`);
 //creating the new user
 export const createUser = (newUser) => axios.post(url+ '/signup', newUser);
 //checking the user to login 
-export const checkUser = (savedUser) => axios.post(url+ '/signin', savedUser)
+export const checkUser = (savedUser) => axios.post(url+ '/signin', savedUser);
 
-export const payPal = (purchaseInfo) => axios.post(url+ '/purchase', purchaseInfo)
+export const payPal = (purchaseInfo) => axios.post(url+ '/purchase', purchaseInfo);
+
+//update user 
+export const updateUser = (id, updateUser) => axios.put(`${url}/UsersUpdate/${id}`, updateUser);
+
+export const Actions = (actionsInfo) => axios.post(url+ '/actions', actionsInfo);

@@ -1,4 +1,5 @@
 import * as api from '../Api/index.js';
+
 // I am retreiving all the items and Dispatching them
 export const getALLItems = () => async (dispatch) => {
   try {
@@ -137,6 +138,24 @@ export const purchaseProcess = (purchaseInfo) => async (dispatch) => {
   }
 };
 
+export const itemActions = (actionsInfo) => async (dispatch) => {
+  try {
+    const {data} = await api.Actions(actionsInfo);
+    dispatch({ type: 'ACTIONS', payload: data });
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
+//update user 
+export const updateUser = (id, Info) => async (dispatch) => {
+  try {
+    const { data } = await api.updateUser(id, Info);
+    dispatch({ type: "UPDATEUSER", payload: id, Info });
+  } catch (error) {
+    console.log(error.message);
+  }
+};
 
 
 

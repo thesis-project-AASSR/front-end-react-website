@@ -11,6 +11,11 @@ import image8 from "../../images/lake-irene-1679708_1280.webp";
 import Background from '../../images/lake-irene-1679708_1280.webp';
 import image9 from '../../images/kisspng-environmentally-friendly-sustainability-sustainabl-caring-for-the-earth-protection-of-trees-5aa2a52905d3d0.2344978715206085530239.jpg';
 import image10 from '../../images/pexels-mali-maeder-802221.jpg';
+import image11 from '../../images/background-recycle-symbol-260nw-110941127.webp';
+import image12 from '../../images/crumpled-2537807_1280.jpg';
+import image13 from '../../images/42-18260830edit.jpg';
+import image14 from '../../images/wp2529177.jpg';
+import image15 from '../../images/wp2529191.jpg';
 
 export default class Viewpage extends Component {
   constructor(props) {
@@ -35,6 +40,7 @@ export default class Viewpage extends Component {
             
             <div className="col-sm-4 offset-md-1 py-4">
               <h4 className="text-white">Contact</h4>
+              {/* <a href="https://m.facebook.com/"  style={{color:"grey"}}>Amman</a><br/> */}
                 <a href="https://m.facebook.com/" className="text-white" class="contact" style={{color:"rgba(124,252,0)"}}><i class="fab fa-facebook-f fa-1x"></i></a>
                <a href="https://twitter.com/?lang=en" className="text-white" class="contact" style={{color:"rgba(124,252,0)"}}><i class="fab fa-twitter fa-1x"></i></a>
                <a href="https://www.youtube.com/" className="text-white" class="contact" style={{color:"rgba(124,252,0)"}}><i class="fab fa-youtube fa-1x"></i></a>
@@ -59,13 +65,13 @@ export default class Viewpage extends Component {
     </div>
     
   <div>
-      <section className="jumbotron text-center" id="img" style={{background: `url(${image8})`, backgroundPosition: "center", backgroundRepeat: "no-repeat"}}>
+      <section className="jumbotron text-center" id="img" style={{background: `url(${image13})`, backgroundPosition: "center", backgroundRepeat: "no-repeat", backgroundSize:"cover"}}>
         <div className="container">
       
-          <p className="lead "  style={{color:"white"}}>Dawerha can benefit our community and the environment, by collecting and processing materials that would otherwise be thrown away as trash and turning them into new products.</p>
+          <p className="lead "  style={{color:"white",fontSize:"40px"}}>Dawerha can benefit our community and the environment, by collecting and processing materials that would otherwise be thrown away as trash and turning them into new products.</p>
           <p>
-            <a href="/sign" className="btn btn-outline-success">Join Us</a>
-            <a href="/login" className="btn btn-outline-success" id="button">Sign in</a>
+            <a href="/sign" className="btn btn-success">Join Us</a>
+            <a href="/login" className="btn btn-success" id="button">Sign in</a>
           </p>
           {/* <br/><br/><br/><br/><br/><br/> */}
         </div>
