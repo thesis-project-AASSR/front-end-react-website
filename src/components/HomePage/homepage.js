@@ -1,33 +1,25 @@
-import React, { useEffect } from 'react';
-import { getAdmin } from '../../actions';
-import { useDispatch,useSelector } from 'react-redux';
-import Button from 'react-bootstrap/Button';
-import AdminNav from '../Navbar/adminNav';
+import React, { Component } from "react";
+import HomeNav from '../Navbar/homeNav';
+import MapContainer from '../map.js';
 import image6 from "../../images/1_x9sm3fjasQp8gXQp-Sd0pA.png";
-import {Link} from "react-router-dom" ;
+import image8 from "../../images/lake-irene-1679708_1280.webp";
 import image10 from '../../images/pexels-mali-maeder-802221.jpg';
 import image11 from '../../images/background-recycle-symbol-260nw-110941127.webp';
 import image12 from '../../images/crumpled-2537807_1280.jpg';
 import image13 from '../../images/42-18260830edit.jpg';
 import image14 from '../../images/wp2529177.jpg';
 import image15 from '../../images/wp2529191.jpg';
-// we are retreiving all the admin items 
-const AdminProfile =() =>{
-    // we are dipatching th state
-    const dispatch = useDispatch();
-    //we are declaring a new const called items which will save all the items in it 
-    
-    const AdminProfile = useSelector(state => state.Profiles)
-    // we are rendering the whole items instantly when we load our page 
-    useEffect(() => {
-      dispatch(getAdmin());
-    }, [dispatch]);
 
+export default class Homepage extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+    }
+  }
+  render() {
     return (
-         <div style={{background: `url(${image15})`, backgroundPosition: "center", backgroundRepeat: "no-repeat", backgroundSize:"cover"}}>
-
-
-           <div>
+    <div>
+    <div>
       <div className="collapse bg-dark" id="navbarHeader">
         <div className="container">
           <div className="row">
@@ -55,7 +47,9 @@ const AdminProfile =() =>{
             <img src={image6} width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mr-2"></img>
             <strong>Dawerha</strong>
           </a>
-          <a href="/AdminItems" style={{color:"white"}}> All Items </a>
+          <a href="/SellerProfile" style={{color:"white"}}> Profile </a>
+          <a href="/AddItems" style={{color:"white"}}> Add Items </a>
+          <a href="/SellerItems" style={{color:"white"}}> All Items </a>
           <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
           </button>
@@ -63,31 +57,33 @@ const AdminProfile =() =>{
         </div>
       </div>
     </div>
-    <br/><br/>
-    {AdminProfile.map((Info) => (
-<div class="card mx-auto" style={{width: "22rem"}} >
-  <img class="card-img-top" src={Info.image} alt="Card image cap"/>
-  <div class="card-body">
-    <h5 class="card-title">{Info.username}</h5>
-    <p class="card-text">Admin</p>
-  </div>
-  <ul class="list-group list-group-flush">
-    <li class="list-group-item">{Info.email}</li>
-    <li class="list-group-item">{Info.phoneNumber}</li>
-    {/* <li class="list-group-item">{Info.location}</li> */}
-  </ul>
-  <div class="card-body">
-  <a href="https://www.ammancity.gov.jo/ar/main/index.aspx" class="card-link">Greater Amman Municipality</a>
-  <Link to ={"/EditUser/"+Info.userID} class="card-link">Edit Profile</Link>
-  </div>
-       </div>
-          ))}
-<br/><br/><br/><br/>
 
-        
-           </div>
-    )
+  
+    <div>
+      <section className="jumbotron text-center" id="img" style={{background: `url(${image13})`, backgroundPosition: "center", backgroundRepeat: "no-repeat",backgroundSize:"cover"}}>
+        <div className="container">
+      
+          {/* <p className="lead "  style={{color:"white",backgroundColor:"	rgb(48,48,48)", fontSize:"20px"}}>
+          Thank you for using our website and for being responsible the Environment
+Instructions of using this website:
+In the upper part of this page, you can navigate through the pages.
+In the Add Items page you need to select the category of your items, then you need to specify the weight, description, quantity and upload an image of these items, and at the end you need to pick your location in order to be able to reach you out for collection.
+Before submitting, the expected Environment support will be for you.
+In the profile page, you will be able to view your information and edit them.
+ In the All Items page, you will be able to watch all items that you have submitted in addition to the ability of editing and deleting each entry.
+          </p> */}
+          {/* <p className="lead "  style={{color:"white", fontSize:"60px",fontWeight:"50px"}}>
+          Welcome to Dawerha
+          </p> */}
+        </div>
+        <br/><br/><br/><br/><br/><br/> <br/><br/><br/><br/><br/><br/>
+      </section>
+    </div>
 
+
+
+
+    </div>
+    );
+  }
 }
-
-export default AdminProfile;

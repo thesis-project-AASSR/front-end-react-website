@@ -2,20 +2,14 @@ import React from 'react';
 import { withGoogleMap, GoogleMap, withScriptjs, InfoWindow, Marker } from "react-google-maps";
 import Geocode from "react-geocode";
 import Autocomplete from 'react-google-autocomplete';
-import { Button, Descriptions } from 'antd';
+import {  Descriptions } from 'antd';
 import GoogleMapReact from 'google-map-react';
-import Axios from "axios";
-
-
-
+import axios from "axios";
+import Button from 'react-bootstrap/Button';
 const { MarkerWithLabel } = require("react-google-maps/lib/components/addons/MarkerWithLabel");
-
-
 Geocode.setApiKey("AIzaSyDhdSw1QzkXBrYnLSt3EF3izfHEhUj6LMc");
 Geocode.enableDebug();
-
 class LocationSearchModal extends React.Component {
-  
     state = {
         address: '',
         city: '',
@@ -33,8 +27,6 @@ class LocationSearchModal extends React.Component {
             lng: 0,
         }
     }
-
-
     componentDidMount() {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(position => {
@@ -47,44 +39,35 @@ class LocationSearchModal extends React.Component {
                         lat: position.coords.latitude,
                         lng: position.coords.longitude,
                     }
-                  
                 },
-           
                     () => {
                         Geocode.fromLatLng(position.coords.latitude, position.coords.longitude).then(
                             response => {
-                                console.log (position.coords.latitude,position.coords.longitude)
                                 // console.log(`https://www.latlong.net/c/?lat=${position.coords.latitude}&long=${position.coords.longitude}`)
-                               
                                 this.setState({link:`https://www.latlong.net/c/?lat=${position.coords.latitude}&long=${position.coords.longitude}`})
-                                console.log(this.state.link)
                                 const address = response.results[0].formatted_address,
                                     addressArray = response.results[0].address_components,
                                     city = this.getCity(addressArray),
                                     area = this.getArea(addressArray),
                                     state = this.getState(addressArray);
-                                  
                                 console.log('city', city, area, state);
                                 this.setState({
                                     address: (address) ? address : '',
                                     area: (area) ? area : '',
                                     city: (city) ? city : '',
                                     state: (state) ? state : '',
-                                
                                 })
                             },
                             error => {
                                 console.error(error);
                             }
                         );
-
                     })
             });
         } else {
             console.error("Geolocation is not supported by this browser!");
         }
     };
-
     // shouldComponentUpdate(nextProps, nextState, nextContext) {
     //     if (
     //         this.state.markerPosition.lat !== this.state.center.lat ||
@@ -92,13 +75,12 @@ class LocationSearchModal extends React.Component {
     //         this.state.city !== nextState.city ||
     //         this.state.area !== nextState.area ||
     //         this.state.state !== nextState.state
-    //     ) {
+    //     ) {//
     //         return true
     //     } else if (this.state.mapPosition.lat === nextState.mapPosition.lat) {
     //         return false
     //     }
     // }
-
     getCity = (addressArray) => {
         let city = '';
         for (let i = 0; i < addressArray.length; i++) {
@@ -108,7 +90,6 @@ class LocationSearchModal extends React.Component {
             }
         }
     };
-
     getArea = (addressArray) => {
         let area = '';
         for (let i = 0; i < addressArray.length; i++) {
@@ -122,7 +103,6 @@ class LocationSearchModal extends React.Component {
             }
         }
     };
-
     getState = (addressArray) => {
         let state = '';
         for (let i = 0; i < addressArray.length; i++) {
@@ -134,18 +114,14 @@ class LocationSearchModal extends React.Component {
             }
         }
     };
-
     onChange = (event) => {
         this.setState({ [event.target.name]: event.target.value });
         // console.log(event.target.value)
     };
-
     onInfoWindowClose = (event) => { };
-
     onMarkerDragEnd = (event) => {
         let newLat = event.latLng.lat(),
             newLng = event.latLng.lng();
-
         Geocode.fromLatLng(newLat, newLng).then(
             response => {
                 const address = response.results[0].formatted_address,
@@ -173,7 +149,6 @@ class LocationSearchModal extends React.Component {
             }
         );
     };
-
     onPlaceSelected = (place) => {
         console.log('plc', place);
         const address = place.formatted_address,
@@ -184,10 +159,8 @@ class LocationSearchModal extends React.Component {
             latValue = place.geometry.location.lat(),
             lngValue = place.geometry.location.lng();
             console.log('latValue'+latValue)
-
         console.log('latvalue', latValue)
         console.log('lngValue', lngValue)
-
         // Set these values in the state.
         this.setState({
             address: (address) ? address : '',
@@ -204,21 +177,16 @@ class LocationSearchModal extends React.Component {
             },
         })
     };
-
     handleSubmit(){
-      console.log ("hiiiii");
-      var link = this.state.link;
-      console.log(this.state.link)
-
-      Axios.post("/insert", {
-        link: link,
-      })
-        .then((res) => console.log(res))
-        .catch((err) => console.log(err))
-        // window.location ='/additems'
-  
+      var location = this.state.link;
+      localStorage.setItem('location',location)
+    //   console.log(location)
+    //   var user_id= localStorage.getItem('user_id')
+    //   axios.post("http://localhost:5000/insertmap", {'location': location,"user_id":user_id})
+    //     .then((res) => console.log(res))
+    //     .catch((err) => console.log(err))
+        window.location ='/additems'
     }
-
     render() {
         const AsyncMap = withScriptjs(
             withGoogleMap(
@@ -228,7 +196,6 @@ class LocationSearchModal extends React.Component {
                         defaultCenter={{ lat: this.state.mapPosition.lat, lng: this.state.mapPosition.lng }}
                     >
                         {/* InfoWindow on top of marker */}
-
                         {/*Marker*/}
                         <Marker
                             google={this.props.google}
@@ -246,7 +213,6 @@ class LocationSearchModal extends React.Component {
                             </div>
                         </InfoWindow>
                         <Marker />
-
                         {/* <MarkerWithLabel
                             position={{ lat: -34.397, lng: 150.644 }}
                             labelAnchor={new google.maps.Point(0, 0)}
@@ -254,8 +220,6 @@ class LocationSearchModal extends React.Component {
                         >
                             <div>Hello There!</div>
                         </MarkerWithLabel> */}
-
-
                         {/* For Auto complete Search Box */}
                         <Autocomplete
                             style={{
@@ -272,7 +236,6 @@ class LocationSearchModal extends React.Component {
                 )
             )
         );
-
         return (
             <div style={{ padding: '1rem', margin: '0 auto', maxWidth: 1000 }}>
                 <h1>Google Map</h1>
@@ -283,7 +246,6 @@ class LocationSearchModal extends React.Component {
                     <Descriptions.Item label="State">{this.state.state}</Descriptions.Item>
                     <Descriptions.Item label="Address">{this.state.address}</Descriptions.Item>
                 </Descriptions>
-
                 <AsyncMap
                     googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyDhdSw1QzkXBrYnLSt3EF3izfHEhUj6LMc&libraries=places"
                     loadingElement={
@@ -296,11 +258,11 @@ class LocationSearchModal extends React.Component {
                         <div style={{ height: `100%` }} />
                     }
                 />
-              <button  type="submit" onClick={this.handleSubmit.bind(this)}>submit</button>
+                 <br/>
+                 <br/>
+              <button  type="submit" className='btn btn-primary btn-lg btn-block' onClick={this.handleSubmit.bind(this)}  >save location </button>
             </div>
         )
     }
-
 }
-
 export default LocationSearchModal;

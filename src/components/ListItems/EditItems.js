@@ -1,40 +1,40 @@
 import React, { useState ,useEffect} from 'react';
-import { createOrder,updateOrder} from '../../actions/index';
-// import { reducers }   from '../../reducers/index';
+import {getALLItems} from '../../actions/index';
+import { getPrice } from '../../actions';
+import {updateOrder} from '../../actions/index';
 import { useDispatch,useSelector } from 'react-redux';
-
+var Total=0
 const EditItems = (props) => {
-    
-    const [orderData, setOrderData] = useState({  category: '', quantity: '', weight: '', description: ''});
-    const dispatch = useDispatch();
-    const currentId =props.match.params.id
-
-    // fetch the data 
-//     const order = useSelector((state) => currentId ? state.orders.find((p) => p.itemID === currentId) : null);
-// console.log(order)
-// console.log(orderData)
-const orders = useSelector(state => state.orders)
-// var item =local
-const filteredItems = orders.filter(order=> currentId === order.itemID)
-console.log(filteredItems)
-
-    // we will use the useEffect to display the data
-    // useEffect(() => {
-    //     if (order) setOrderData(order);
-    //   }, [currentId,order]);
-   
-      const onSubmit = async (e) => {
-        e.preventDefault();
-     
+console.log(props)
+  const dispatch = useDispatch();
+    const currentId = props.match.params.id
+      const orders = useSelector( state => state.Items)
+      console.log(orders)
+      const Filter = orders.filter( items => items.itemID==currentId) 
+      useEffect( () => {
+        dispatch(getALLItems());
+      }, [dispatch]);
+    const [orderData, setOrderData] = useState({  category: Filter[0].category, quantity:  Filter[0].quantity , weight:Filter[0].weight, 
+      description :Filter[0].description, price:''});
+    const onSubmit =  (e) => {
+          e.preventDefault();
           dispatch(updateOrder(currentId,orderData));
-          console.log("orderData",orderData)
-
-        //   clear();
-        
+          window.location = '/SellerItems'   
       };
-      
-
-      
+      var priceObj = getPrice();
+      var category=orderData.category
+      /// to get the price for the entered material
+      for (var key in priceObj){
+        if(category===key)
+        var price = priceObj[key]
+      }
+      // to get the entered Quantity and Weight
+      var Quantity=orderData.quantity
+      var Weight=orderData.weight
+      //To calculate the total price for the order
+      Total = Weight*price*Quantity
+      //add the order price to the orderData object to save it on the database
+      orderData.price = Total
     return (
         <div>
         <h1>Form</h1>
@@ -52,6 +52,7 @@ console.log(filteredItems)
                   onChange = {(e) => setOrderData({ ...orderData ,category : e.target.value})}
                   text-align = "center"
                  >
+                    <option value = "">{Filter[0].category}</option>
                      <option value = "Iron">Iron</option>
                     <option value = "wood">wood</option>
                     <option value = "glass">glass</option>
@@ -77,7 +78,7 @@ console.log(filteredItems)
                 required="true"
                   type = "text"
                   className = "form-control"
-                   value = {orderData.wights}
+                   value = {orderData.weight}
                   onChange = {(e) => setOrderData({ ...orderData ,weight : e.target.value})}
                   text-align = "center"
                   placeholder = "Insert Wights"/>
@@ -94,29 +95,14 @@ console.log(filteredItems)
                     placeholder = " Insert a description "/>
                 </div>
                 <br />
-                {/* <div className = "col">
-                            <label>Image</label>
-                           <div  id='image' > <img src={this.state.url || "http://via.placeholder.com/50*50"}
-                            alt="firebase"  /></div>
-                           <input  type="file" onChange={this.handleChangeImage.bind(this)} className="btn btn-deep-orange darken-4" />
-                           <button  onClick={this.handleUpload.bind(this)} className="btn btn-deep-orange darken-4">Upload</button>
-                           </div>
-                            <br />
-                  <br /> */}
-                {/* <div className = "col">
-              <label>Image</label>
-              <FileBase type="file" multiple={true}
-               onDone={({ base64 }) => setOrderData({ ...orderData, selectedFile: base64 })} />
-                </div> */}
+                Total: {Total}
               <br />
                 <div>
                 <button type="submit" onClick= {onSubmit} className="btn btn-deep-orange darken-4">Submit</button>
                 </div>
-                
           </form>
         </div>
         </div>
     )
-    
 }
 export default EditItems;
