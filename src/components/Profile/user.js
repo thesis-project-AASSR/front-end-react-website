@@ -5,7 +5,7 @@ import { useDispatch,useSelector } from 'react-redux';
 import Button from 'react-bootstrap/Button';
 import ProfileNav from '../Navbar/profileNav'
 import image6 from "../../images/1_x9sm3fjasQp8gXQp-Sd0pA.png";
-import {  Link} from "react-router-dom" ;
+import {Link} from "react-router-dom" ;
 import image10 from '../../images/pexels-mali-maeder-802221.jpg';
 import image11 from '../../images/background-recycle-symbol-260nw-110941127.webp';
 import image12 from '../../images/crumpled-2537807_1280.jpg';
@@ -21,14 +21,11 @@ const UserProfile =() =>{
     // authInreducers
     // const loggedin = useSelector(state => state.authInReducer)
     var Userb=localStorage.getItem('user_id')
-    console.log(Userb)
+    console.log(Userb);
   //   const [loggedin,setLoggedin] = useState(Userb)
-  // console.log(loggedin)
+  // console.log(loggedin);
     const UserProfile = useSelector(state => state.Profiles)
     
-  
-   
-  
     // we are rendering the whole items instantly when we load our page 
     useEffect(() => {
       dispatch(getUser());
@@ -75,7 +72,6 @@ const UserProfile =() =>{
         </div>
       </div>
     </div>
-
 
     <div>
     <br/>

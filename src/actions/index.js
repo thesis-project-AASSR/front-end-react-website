@@ -126,7 +126,7 @@ export const getPrice = () =>  {
     console.log(error.message);
   }
 };
-/// PayPal action
+
 export const purchaseProcess = (purchaseInfo) => async (dispatch) => {
   try {
     const {data} = await api.payPal(purchaseInfo);

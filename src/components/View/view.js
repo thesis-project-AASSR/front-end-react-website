@@ -40,6 +40,7 @@ export default class Viewpage extends Component {
             
             <div className="col-sm-4 offset-md-1 py-4">
               <h4 className="text-white">Contact</h4>
+              {/* <a href="https://m.facebook.com/"  style={{color:"grey"}}>Amman</a><br/> */}
                 <a href="https://m.facebook.com/" className="text-white" class="contact" style={{color:"rgba(124,252,0)"}}><i class="fab fa-facebook-f fa-1x"></i></a>
                <a href="https://twitter.com/?lang=en" className="text-white" class="contact" style={{color:"rgba(124,252,0)"}}><i class="fab fa-twitter fa-1x"></i></a>
                <a href="https://www.youtube.com/" className="text-white" class="contact" style={{color:"rgba(124,252,0)"}}><i class="fab fa-youtube fa-1x"></i></a>
