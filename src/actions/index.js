@@ -57,7 +57,7 @@ export const createUser = (user) => async (dispatch) => {
     console.log("DISPATCH(ADD) : ", dispatch({ type: "ADD", payload: user}))
     alert('Congrats, you are registered successfully, you can login now')
   } catch (error) {
-    alert("email already exist");
+    console.log('email already exist')
   }
 };
 
@@ -83,9 +83,21 @@ export const checkUser = (saveduser) => async (dispatch) => {
     console.log(error.message);
     // console.log(saveduser.email);
      if (!saveduser.email || !saveduser.password) {
-      alert("email or password is empty");
+      swal({
+        title: "email or password is empty",
+        text: "Please fill all the fields",
+        icon: "info",
+        button: "Ok",
+      });
     }
-    else {alert("email or password is incorrect")};
+    else {   
+      swal({
+      title: "email or password is incorrect",
+      text: "Fill a valid email or password",
+      icon: "error",
+      button: "Ok",
+    });
+  };
   }
 };
 // getting the admin info
