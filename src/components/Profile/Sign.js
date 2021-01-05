@@ -11,13 +11,13 @@ import image12 from '../../images/crumpled-2537807_1280.jpg';
 import image13 from '../../images/42-18260830edit.jpg';
 import image14 from '../../images/wp2529177.jpg';
 import image15 from '../../images/wp2529191.jpg';
-
+import * as SpinnerBS from 'react-bootstrap';
 const Sign = ({ currentId }) => {
   ///this is for sign up
     const [userData, setUserData] = useState({  username: '', email: '', password: '', phoneNumber: '', location: '',image:null});
   ////this is for sign in
   const [image, setUserImage] = useState(null)
-   
+  const [loading, setloading] = useState(false)
 
     const dispatch = useDispatch();
    ////sigin up button
@@ -51,7 +51,7 @@ const Sign = ({ currentId }) => {
           alert("You have entered an invalid Phone Number!");
         }
          if ((/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(userData.email)) && (/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/.test(userData.password)) &&  (/^\d{10}$/.test(userData.phoneNumber))){
-          console.log("userData",userData);
+              console.log("userData",userData);
           //  dispatch(createUser(userData));
           // window.location = '/login';
        
@@ -85,6 +85,8 @@ const Sign = ({ currentId }) => {
              console.log(url)
              console.log("userData::::::::",userData)
              dispatch(createUser(userData));
+             setloading(true)
+             window.location = '/login';
            })
          })
       
@@ -194,7 +196,17 @@ const Sign = ({ currentId }) => {
                 </div>
                 <br/>
                 <div>
-                <button type="submit" onClick= {onSubmit} className="btn btn-dark btn-lg">Sign Up</button>
+                <button type="submit" onClick= {onSubmit} className="btn btn-dark btn-lg">     
+              {  loading && <SpinnerBS.Spinner
+                  as="span"
+                  animation="grow"
+                  size="sm"
+                  role="status"
+                  aria-hidden="true"
+                />}
+                Sign Up</button>
+              
+                {/* {loading && <SpinnerBS.Spinner animation="border" variant="success" />}  */}
                 </div>
           </form>
         </div>
