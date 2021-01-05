@@ -3,6 +3,7 @@ import {useSelector} from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { createUser } from '../../actions/index';
 import { storage } from './firbase';
+import swal from 'sweetalert';
 import Background from '../../images/lake-irene-1679708_1280.webp';
 import image6 from "../../images/1_x9sm3fjasQp8gXQp-Sd0pA.png";
 import image10 from '../../images/pexels-mali-maeder-802221.jpg';
@@ -12,9 +13,10 @@ import image13 from '../../images/42-18260830edit.jpg';
 import image14 from '../../images/wp2529177.jpg';
 import image15 from '../../images/wp2529191.jpg';
 import * as SpinnerBS from 'react-bootstrap';
+
 const Sign = ({ currentId }) => {
   ///this is for sign up
-    const [userData, setUserData] = useState({  username: '', email: '', password: '', phoneNumber: '', location: '',image:null});
+    const [userData, setUserData] = useState({  username: '', email: '', password: '', phoneNumber: '', location: '', image: null});
   ////this is for sign in
   const [image, setUserImage] = useState(null)
   const [loading, setloading] = useState(false)
@@ -23,10 +25,6 @@ const Sign = ({ currentId }) => {
    ////sigin up button
     const onSubmit = async (e) => {
         e.preventDefault();
-          // var result=  await  handleChangeImage()
-      
-     
-
         /*
         Input Email conditions:
         @ should present
@@ -38,24 +36,46 @@ const Sign = ({ currentId }) => {
         mysite()*@gmail.com [ here the regular expression only allows character, digit, underscore, and dash ]
         mysite..1234@yahoo.com [double dots are not allowed]
          */
-        
+        if (userData.username.length === 0) {
+          swal({
+            title: "username is empty",
+            text: "Please fill your username...",
+            icon: "info",
+            button: "Ok",
+          });
+        }
         if ( !(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(userData.email)) ) {
-          alert("You have entered an invalid email address!");
+          swal({
+            title: "Invalid Email",
+            text: "Please enter a valid email address...",
+            icon: "info",
+            button: "Ok",
+          });
         }
         //Input Password and Submit [8 to 15 characters which contain at least one lowercase letter, one uppercase letter, one numeric digit, and one special character
-        if ( !(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/.test(userData.password)) ) {
-          alert("You have entered weak password!");
+        if ( !(/^(?=.*\d)(?=.*[a-z])(?=.*[^a-zA-Z0-9])(?!.*\s).{6,30}$/.test(userData.password)) ) {
+          swal({
+            title: "Weak Password",
+            text: "Password must contain at least 6 characters, including lowercase,numbers and special character...",
+            icon: "info",
+            button: "Ok",
+          });
         }
         //Input PhoneNumber should be 10 digits with no comma, no spaces, no punctuation and there will be no + sign in front the number
         if ( !(/^\d{10}$/.test(userData.phoneNumber)) ) {
-          alert("You have entered an invalid Phone Number!");
+          swal({
+            title: "Invalid Phone Number",
+            text: "Please enter a valid phone number...",
+            icon: "info",
+            button: "Ok",
+          });
         }
-         if ((/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(userData.email)) && (/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/.test(userData.password)) &&  (/^\d{10}$/.test(userData.phoneNumber))){
-              console.log("userData",userData);
-          //  dispatch(createUser(userData));
-          // window.location = '/login';
-          imageUpload();
-        }
+        if ((/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(userData.email)) && (/^(?=.*\d)(?=.*[a-z])(?=.*[^a-zA-Z0-9])(?!.*\s).{6,30}$/.test(userData.password)) &&  (/^\d{10}$/.test(userData.phoneNumber)) && userData.username.length > 0) {
+          console.log("userData",userData);
+        //  dispatch(createUser(userData));
+        // window.location = '/login';
+      imageUpload();
+    }
       };
 
     
@@ -66,6 +86,7 @@ const Sign = ({ currentId }) => {
     }
     /// to get the image url and save it on the firebase 
     const imageUpload  = async () => {
+      if (image) {
       const imageLink = storage.ref(`images/${image.name}`).put(image)
       imageLink.on(
          "state_changed",
@@ -80,17 +101,23 @@ const Sign = ({ currentId }) => {
            .child(image.name)
            .getDownloadURL()
            .then(url => {
-   
             userData.image = url
-             console.log(url)
-             console.log("userData::::::::",userData)
+             console.log(url);
              dispatch(createUser(userData));
              setloading(true)
              window.location = '/login';
            })
          })
-      
-    }
+        } else {
+           swal({
+            title: "No file chosen for image",
+            text: "Please choose a file...",
+            icon: "info",
+            button: "Ok",
+          });
+        }
+        }
+  
    
     return (
       <div>
@@ -145,7 +172,7 @@ const Sign = ({ currentId }) => {
                    value = {userData.username}
                   onChange = {(e) => setUserData({ ...userData , username : e.target.value})}
                   text-align = "center"
-                  placeholder = "Username"
+                  placeholder = "Username..."
                   />
                 </div>
                 <br />
@@ -158,7 +185,7 @@ const Sign = ({ currentId }) => {
                    value = {userData.email}
                   onChange = {(e) => setUserData({ ...userData ,email : e.target.value})}
                   text-align = "center"
-                  placeholder = "Email - should be valid"/>
+                  placeholder = "Email Address..."/>
                 </div>
                 <br />
                 <div className = "col-lg-6 col-xl-6 mx-auto">
@@ -169,7 +196,7 @@ const Sign = ({ currentId }) => {
                     className = "form-control"
                      value = {userData.password}
                   onChange = {(e) => setUserData({ ...userData ,password : e.target.value})}
-                    placeholder = "Password 8-char, numbers, symbols, uppercase letter"/>
+                    placeholder = "Password..."/>
                 </div>
                 <br/>
                 <div className="col-lg-6 col-xl-6 mx-auto">
@@ -181,32 +208,31 @@ const Sign = ({ currentId }) => {
                    value = {userData.phoneNumber}
                   onChange = {(e) => setUserData({ ...userData ,phoneNumber : e.target.value})}
                   text-align = "center"
-                  placeholder = "Phone number - should be valid"/>
+                  placeholder = "Phone number..."/>
                 </div>
                 <br/>
                 <div className="col-lg-6 col-xl-6 mx-auto">
                 {/* <label>Image</label> */}
-                <input 
-                  required={true}
+                <input
                   type='file' 
                   className = "form-control"
                   onChange = {handleChangeImage}
                   />
-             {/* <button type="submit" onClick= {imageUpload} className="btn btn-dark btn-sm">upload your profile picture</button> */}
                 </div>
                 <br/>
                 <div>
-                <button type="submit" onClick= {onSubmit} className="btn btn-dark btn-lg">     
-              {  loading && <SpinnerBS.Spinner
+
+                <button type="submit" onClick= {onSubmit} className="btn btn-dark btn-lg">
+                    {  loading &&
+                 <SpinnerBS.Spinner
                   as="span"
                   animation="grow"
                   size="sm"
                   role="status"
                   aria-hidden="true"
-                />}
-                Sign Up</button>
-              
-                {/* {loading && <SpinnerBS.Spinner animation="border" variant="success" />}  */}
+                />}Sign Up
+                </button>
+
                 </div>
           </form>
         </div>
@@ -217,196 +243,3 @@ const Sign = ({ currentId }) => {
 }
 export default Sign;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// import React, {useState} from 'react';
-// import {useSelector} from 'react-redux';
-// import { useDispatch } from 'react-redux';
-// import { createUser } from '../../actions/index';
-// import { checkUser } from '../../actions/index';
-
-// const Sign = ({ currentId }) => {
-//     const [userData, setUserData] = useState({  username: '', email: '', password: '', phoneNumber: '', location: '', image: '', iBan: ''});
-//     ///////
-//     const [savedUserData, setSavedUserData] = useState({ email: '', password: ''});
-
-//     const dispatch = useDispatch();
-
-//     const onSubmit = async (e) => {
-//         e.preventDefault();
-    
-//           dispatch(createUser(userData));
-//           console.log("userData",userData)       
-//       };
-
-//       /////
-//       const onSignIn = async (e) => {
-//         e.preventDefault();
-    
-//           dispatch(checkUser(savedUserData));
-//           console.log("savedUserData",savedUserData)       
-//       };
-
-//     return (
-//         <div>
-//         <div>
-//         <h1>Sign Up</h1>
-//         <br />
-//         <div className = "container">
-//           <form className="text-center border border-light p-9" action="#!"  >
-//             <p className="h4 mb-4">Please register your Info</p>
-//             <br />
-//                 <div className="col-lg-6 col-xl-6 mx-auto">
-//                 <label>Username</label>
-//                 <input
-//                 required="true"
-//                   type = "text"
-//                   className = "form-control"
-//                    value = {userData.username}
-//                   onChange = {(e) => setUserData({ ...userData ,username : e.target.value})}
-//                   text-align = "center"
-//                   placeholder = "Insert Name"/>
-//                 </div>
-//                 <br />
-//                 <div className="col">
-//                 <label>Email</label>
-//                 <input
-//                 required="true"
-//                   type = "text"
-//                   className = "form-control"
-//                    value = {userData.email}
-//                   onChange = {(e) => setUserData({ ...userData ,email : e.target.value})}
-//                   text-align = "center"
-//                   placeholder = "Insert Email"/>
-//                 </div>
-//                 <br />
-//                 <div className = "col">
-//                   <label>Password</label>
-//                   <input
-//                     type = "text"
-//                     required="true"
-//                     className = "form-control"
-//                      value = {userData.password}
-//                   onChange = {(e) => setUserData({ ...userData ,password : e.target.value})}
-//                     placeholder = " Insert a password"/>
-//                 </div>
-//                 <br/>
-//                 <div className="col">
-//                 <label>Phone Number</label>
-//                 <input
-//                 required="true"
-//                   type = "text"
-//                   className = "form-control"
-//                    value = {userData.phoneNumber}
-//                   onChange = {(e) => setUserData({ ...userData ,phoneNumber : e.target.value})}
-//                   text-align = "center"
-//                   placeholder = "Insert Phone Number"/>
-//                 </div>
-//               <br />
-//               <div className="col">
-//                 <label>Location</label>
-//                 <input
-//                 required="true"
-//                   type = "text"
-//                   className = "form-control"
-//                    value = {userData.location}
-//                   onChange = {(e) => setUserData({ ...userData ,location : e.target.value})}
-//                   text-align = "center"
-//                   placeholder = "Insert Location"/>
-//                 </div>
-//                 <br/>
-//                 <div className="col">
-//                 <label>image</label>
-//                 <input
-//                 required="true"
-//                   type = "text"
-//                   className = "form-control"
-//                    value = {userData.image}
-//                   onChange = {(e) => setUserData({ ...userData ,image : e.target.value})}
-//                   text-align = "center"
-//                   placeholder = "Insert Image"/>
-//                 </div>
-//                 <br/>
-//                 <div className="col">
-//                 <label>iBan</label>
-//                 <input
-//                 required="true"
-//                   type = "text"
-//                   className = "form-control"
-//                    value = {userData.iBan}
-//                   onChange = {(e) => setUserData({ ...userData ,iBan : e.target.value})}
-//                   text-align = "center"
-//                   placeholder = "Insert iBan"/>
-//                 </div>
-//                 <div>
-//                 <button type="submit" onClick= {onSubmit} className="btn btn-deep-orange darken-4">Sign Up</button>
-//                 </div>
-//           </form>
-//         </div>
-//         </div>
-//         <div>
-//         <h1>Sign In</h1>
-//         <br />
-//         <div className = "container">
-//           <form className="text-center border border-light p-9" action="#!"  >
-//             <p className="h4 mb-4">Please enter your Info</p>
-//                 <br />
-//                 <div className="col">
-//                 <label>Email</label>
-//                 <input
-//                 required="true"
-//                   type = "text"
-//                   className = "form-control"
-//                    value = {savedUserData.email}
-//                   onChange = {(e) => setSavedUserData({ ...savedUserData ,email : e.target.value})}
-//                   text-align = "center"
-//                   placeholder = "Insert Email"/>
-//                 </div>
-//                 <br />
-//                 <div className = "col">
-//                   <label>Password</label>
-//                   <input
-//                     type = "text"
-//                     required="true"
-//                     className = "form-control"
-//                      value = {savedUserData.password}
-//                   onChange = {(e) => setSavedUserData({ ...savedUserData ,password : e.target.value})}
-//                     placeholder = " Insert a password"/>
-//                 </div>
-//                 <div>
-//                 <button type="submit" onClick= {onSignIn} className="btn btn-deep-orange darken-4">Sign In</button>
-//                 </div>
-//           </form>
-//         </div>
-//         </div>
-//         </div>
-//     )
-// }
-
-// export default Sign;
