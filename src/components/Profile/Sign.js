@@ -1,8 +1,10 @@
 import React, {useState,useEffect} from 'react';
+
 import {useSelector} from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { createUser } from '../../actions/index';
 import { storage } from './firbase';
+import swal from 'sweetalert';
 import Background from '../../images/lake-irene-1679708_1280.webp';
 import image6 from "../../images/1_x9sm3fjasQp8gXQp-Sd0pA.png";
 import image10 from '../../images/pexels-mali-maeder-802221.jpg';
@@ -35,19 +37,34 @@ const Sign = ({ currentId }) => {
         mysite..1234@yahoo.com [double dots are not allowed]
          */
         if ( !(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(userData.email)) ) {
-          alert("You have entered an invalid email address!");
+          swal({
+            title: "Invalid Email",
+            text: "Please enter a valid email address...",
+            icon: "info",
+            button: "Ok",
+          });
         }
         //Input Password and Submit [8 to 15 characters which contain at least one lowercase letter, one uppercase letter, one numeric digit, and one special character
-        if ( !(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/.test(userData.password)) ) {
-          alert("You have entered weak password!");
+        if ( !(/^(?=.*\d)(?=.*[a-z])(?=.*[^a-zA-Z0-9])(?!.*\s).{6,30}$/.test(userData.password)) ) {
+          swal({
+            title: "Weak Password",
+            text: "Password must contain at least 6 characters, including lowercase,numbers and special character...",
+            icon: "info",
+            button: "Ok",
+          });
         }
         //Input PhoneNumber should be 10 digits with no comma, no spaces, no punctuation and there will be no + sign in front the number
         if ( !(/^\d{10}$/.test(userData.phoneNumber)) ) {
-          alert("You have entered an invalid Phone Number!");
+          swal({
+            title: "Invalid Phone Number",
+            text: "Please enter a valid phone number...",
+            icon: "info",
+            button: "Ok",
+          });
         }
          if ((/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(userData.email)) && (/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/.test(userData.password)) &&  (/^\d{10}$/.test(userData.phoneNumber))){
           dispatch(createUser(userData));
-          window.location = '/login';
+          // window.location = '/login';
           console.log("userData",userData);
         }
       };
@@ -135,7 +152,7 @@ const Sign = ({ currentId }) => {
                    value = {userData.username}
                   onChange = {(e) => setUserData({ ...userData , username : e.target.value})}
                   text-align = "center"
-                  placeholder = "Username"
+                  placeholder = "Username..."
                   />
                 </div>
                 <br />
@@ -148,7 +165,7 @@ const Sign = ({ currentId }) => {
                    value = {userData.email}
                   onChange = {(e) => setUserData({ ...userData ,email : e.target.value})}
                   text-align = "center"
-                  placeholder = "Email - should be valid"/>
+                  placeholder = "Email Address..."/>
                 </div>
                 <br />
                 <div className = "col-lg-6 col-xl-6 mx-auto">
@@ -159,7 +176,7 @@ const Sign = ({ currentId }) => {
                     className = "form-control"
                      value = {userData.password}
                   onChange = {(e) => setUserData({ ...userData ,password : e.target.value})}
-                    placeholder = "Password 8-char, numbers, symbols, uppercase letter"/>
+                    placeholder = "Password..."/>
                 </div>
                 <br/>
                 <div className="col-lg-6 col-xl-6 mx-auto">
@@ -171,7 +188,7 @@ const Sign = ({ currentId }) => {
                    value = {userData.phoneNumber}
                   onChange = {(e) => setUserData({ ...userData ,phoneNumber : e.target.value})}
                   text-align = "center"
-                  placeholder = "Phone number - should be valid"/>
+                  placeholder = "Phone number..."/>
                 </div>
                 <br/>
                 <div className="col-lg-6 col-xl-6 mx-auto">

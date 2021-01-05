@@ -1,4 +1,5 @@
 import * as api from '../Api/index.js';
+import swal from 'sweetalert';
 
 // I am retreiving all the items and Dispatching them
 export const getALLItems = () => async (dispatch) => {
@@ -55,15 +56,11 @@ export const createUser = (user) => async (dispatch) => {
     console.log("DISPATCH(ADD) : ", dispatch({ type: "ADD", payload: user}))
     alert('Congrats, you are registered successfully, you can login now')
   } catch (error) {
-    if (!user.username || !user.email || !user.password || !user.phoneNumber || !user.location || !user.image) {
-      alert ("please fill all required feilds")
-    }
-   else {
-    console.log(user);
     alert("email already exist");
-   } 
   }
 };
+
+
 //action to check if user is saved to sign in
 export const checkUser = (saveduser) => async (dispatch) => {
   try {
