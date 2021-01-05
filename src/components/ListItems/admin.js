@@ -69,10 +69,10 @@ function purchaseFunc(itemId,price){
       $(selector).prop('disabled', true);
       dispatch(purchaseProcess(purchaseInfo));
       // window.location='/AdminItems'
-      alert('Great !! Your purchase was successful, you can check your PayPal account ');
+      // alert('Great !! Your purchase was successful, you can check your PayPal account ');
     }
-    else
-      alert('Your purchase has been cancelled,Thank you!');
+    // else
+      // alert('Your purchase has been cancelled,Thank you!');
   }
 
 
