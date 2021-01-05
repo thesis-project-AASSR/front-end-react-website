@@ -58,7 +58,7 @@ const AddItems = (props) => {
                  })
             }
             else
-            console.log("donne")
+            console.log("done")
           }
              /// to get the object of costs for each material(category)
     var priceObj = getPrice();
@@ -171,7 +171,7 @@ const AddItems = (props) => {
                    value = {orderData.weight}
                   onChange = {(e) => setOrderData({ ...orderData ,weight : e.target.value})}
                   text-align = "center"
-                  placeholder = "Insert Weight/Unit (g)"/>
+                  placeholder = "Insert Weight/Unit (Kg)"/>
                 </div>
                 <br />
                 <div className="col">
@@ -198,7 +198,7 @@ const AddItems = (props) => {
                 </div>
                 <br/>
                 <div style={{ color:"grey", fontSize:"30px"}}>
-                Environment Support: {Total}
+                Environment Support: {Total.toFixed(2)} JD
                 </div>
                 <br />
                 

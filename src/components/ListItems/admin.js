@@ -23,7 +23,11 @@ const TableItems = props => (
                      <img src= {props.Item.image} width="120" height="120" class="w3-round" />
                      {console.log(props.Item.image)}
                      </td>
+                     <td>
+                     {<a href={props.Item.location}> User Location</a>}
+                     </td>
                      <td class="form-row justify-content-center">{props.Item.price}</td>
+                     {/* <td> <Link to ={props.Item.location} class="card-link">User Location</Link> </td> */}
                      <td>
                      <button className={props.Item.itemID} type="primary" disabled={props.Item.rejectionStat} onClick= {()=> {purchaseFunc(props.Item.itemID,props.Item.price)}} >Buy </button>
                     <button className={props.Item.itemID} type="primary" disabled={props.Item.rejectionStat} onClick= {()=> {rejection(props.Item.itemID)}} > Reject </button>
@@ -204,6 +208,7 @@ function rejection(itemId){
                        <th>Description</th>
                        <th>Image</th>
                        <th>Enviroment support</th>
+                       <th>Location</th>
                        <th>Action</th> 
                    </tr>
                </thead>

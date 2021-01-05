@@ -90,7 +90,6 @@ const UserProfile =() =>{
     {/* <li class="list-group-item">{Info.location}</li> */}
   </ul>
   <div class="card-body">
-  <Link to="/" class="card-link">Location</Link>
   <Link to ={"/EditUser/"+Info.userID} class="card-link">Edit Profile</Link>
   </div>
 </div>
