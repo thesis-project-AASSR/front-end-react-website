@@ -62,7 +62,7 @@ const Sign = ({ currentId }) => {
             button: "Ok",
           });
         }
-         if ((/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(userData.email)) && (/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/.test(userData.password)) &&  (/^\d{10}$/.test(userData.phoneNumber))){
+        else {
           dispatch(createUser(userData));
           // window.location = '/login';
           console.log("userData",userData);
