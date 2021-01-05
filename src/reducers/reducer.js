@@ -7,7 +7,7 @@
       case "UPDATE":
       case "DELETE":
         case "PURCHASE":
-        return action.payload;
+        // return action.payload;
        case "ACTIONS":
       default:
         return state;
