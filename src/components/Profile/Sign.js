@@ -24,7 +24,7 @@ const Sign = ({ currentId }) => {
     const onSubmit = async (e) => {
         e.preventDefault();
           // var result=  await  handleChangeImage()
-       imageUpload();
+       
      
 
         /*
@@ -89,7 +89,7 @@ const Sign = ({ currentId }) => {
              window.location = '/login';
            })
          })
-      
+         imageUpload();
     }
    
     return (
