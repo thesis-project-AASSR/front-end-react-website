@@ -11,18 +11,22 @@ import image12 from '../../images/crumpled-2537807_1280.jpg';
 import image13 from '../../images/42-18260830edit.jpg';
 import image14 from '../../images/wp2529177.jpg';
 import image15 from '../../images/wp2529191.jpg';
-
+import * as SpinnerBS from 'react-bootstrap';
 const Sign = ({ currentId }) => {
   ///this is for sign up
-    const [userData, setUserData] = useState({  username: '', email: '', password: '', phoneNumber: '', location: '', image: null});
+    const [userData, setUserData] = useState({  username: '', email: '', password: '', phoneNumber: '', location: '',image:null});
   ////this is for sign in
   const [image, setUserImage] = useState(null)
-   
+  const [loading, setloading] = useState(false)
 
     const dispatch = useDispatch();
    ////sigin up button
     const onSubmit = async (e) => {
         e.preventDefault();
+          // var result=  await  handleChangeImage()
+       imageUpload();
+     
+
         /*
         Input Email conditions:
         @ should present
@@ -34,6 +38,7 @@ const Sign = ({ currentId }) => {
         mysite()*@gmail.com [ here the regular expression only allows character, digit, underscore, and dash ]
         mysite..1234@yahoo.com [double dots are not allowed]
          */
+        
         if ( !(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(userData.email)) ) {
           alert("You have entered an invalid email address!");
         }
@@ -46,9 +51,10 @@ const Sign = ({ currentId }) => {
           alert("You have entered an invalid Phone Number!");
         }
          if ((/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(userData.email)) && (/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/.test(userData.password)) &&  (/^\d{10}$/.test(userData.phoneNumber))){
-          dispatch(createUser(userData));
-          window.location = '/login';
-          console.log("userData",userData);
+              console.log("userData",userData);
+          //  dispatch(createUser(userData));
+          // window.location = '/login';
+       
         }
       };
 
@@ -59,7 +65,7 @@ const Sign = ({ currentId }) => {
       setUserImage( e.target.files[0])      
     }
     /// to get the image url and save it on the firebase 
-    const imageUpload  = async (e) => {
+    const imageUpload  = async () => {
       const imageLink = storage.ref(`images/${image.name}`).put(image)
       imageLink.on(
          "state_changed",
@@ -77,6 +83,10 @@ const Sign = ({ currentId }) => {
    
             userData.image = url
              console.log(url)
+             console.log("userData::::::::",userData)
+             dispatch(createUser(userData));
+             setloading(true)
+             window.location = '/login';
            })
          })
       
@@ -182,11 +192,21 @@ const Sign = ({ currentId }) => {
                   className = "form-control"
                   onChange = {handleChangeImage}
                   />
-             <button type="submit" onClick= {imageUpload} className="btn btn-dark btn-sm">upload your profile picture</button>
+             {/* <button type="submit" onClick= {imageUpload} className="btn btn-dark btn-sm">upload your profile picture</button> */}
                 </div>
                 <br/>
                 <div>
-                <button type="submit" onClick= {onSubmit} className="btn btn-dark btn-lg">Sign Up</button>
+                <button type="submit" onClick= {onSubmit} className="btn btn-dark btn-lg">     
+              {  loading && <SpinnerBS.Spinner
+                  as="span"
+                  animation="grow"
+                  size="sm"
+                  role="status"
+                  aria-hidden="true"
+                />}
+                Sign Up</button>
+              
+                {/* {loading && <SpinnerBS.Spinner animation="border" variant="success" />}  */}
                 </div>
           </form>
         </div>
