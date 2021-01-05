@@ -36,6 +36,14 @@ const Sign = ({ currentId }) => {
         mysite()*@gmail.com [ here the regular expression only allows character, digit, underscore, and dash ]
         mysite..1234@yahoo.com [double dots are not allowed]
          */
+        if (userData.username.length === 0) {
+          swal({
+            title: "username is empty",
+            text: "Please fill your username...",
+            icon: "info",
+            button: "Ok",
+          });
+        }
         if ( !(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(userData.email)) ) {
           swal({
             title: "Invalid Email",
@@ -62,10 +70,10 @@ const Sign = ({ currentId }) => {
             button: "Ok",
           });
         }
-        if ((/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(userData.email)) && (/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/.test(userData.password)) &&  (/^\d{10}$/.test(userData.phoneNumber))) {
+        if ((/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(userData.email)) && (/^(?=.*\d)(?=.*[a-z])(?=.*[^a-zA-Z0-9])(?!.*\s).{6,30}$/.test(userData.password)) &&  (/^\d{10}$/.test(userData.phoneNumber)) && userData.username.length > 0) {
           console.log("userData",userData);
-      //  dispatch(createUser(userData));
-      // window.location = '/login';
+        //  dispatch(createUser(userData));
+        // window.location = '/login';
       imageUpload();
     }
       };
@@ -78,6 +86,7 @@ const Sign = ({ currentId }) => {
     }
     /// to get the image url and save it on the firebase 
     const imageUpload  = async () => {
+      if (image) {
       const imageLink = storage.ref(`images/${image.name}`).put(image)
       imageLink.on(
          "state_changed",
@@ -92,7 +101,6 @@ const Sign = ({ currentId }) => {
            .child(image.name)
            .getDownloadURL()
            .then(url => {
-   
             userData.image = url
              console.log(url);
              dispatch(createUser(userData));
@@ -100,8 +108,16 @@ const Sign = ({ currentId }) => {
              window.location = '/login';
            })
          })
-      
-    }
+        } else {
+           swal({
+            title: "No file chosen for image",
+            text: "Please choose a file...",
+            icon: "info",
+            button: "Ok",
+          });
+        }
+        }
+  
    
     return (
       <div>
@@ -197,8 +213,7 @@ const Sign = ({ currentId }) => {
                 <br/>
                 <div className="col-lg-6 col-xl-6 mx-auto">
                 {/* <label>Image</label> */}
-                <input 
-                  required={true}
+                <input
                   type='file' 
                   className = "form-control"
                   onChange = {handleChangeImage}
