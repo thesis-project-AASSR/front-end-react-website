@@ -9,29 +9,33 @@ import image6 from "../../images/1_x9sm3fjasQp8gXQp-Sd0pA.png";
 import Background from '../../images/lake-irene-1679708_1280.webp';
 import {Link} from "react-router-dom" ;
 import image10 from '../../images/pexels-mali-maeder-802221.jpg';
-
+import * as SpinnerBS from 'react-bootstrap';
 var Total=0
 const AddItems = (props) => {
     const [orderData, setOrderData] = useState({  category: '', quantity: '', weight: '', description: '', price:'',image:null, location:localStorage.getItem('location'),status:"Pending", user_id:localStorage.getItem('user_id')});
     const dispatch = useDispatch();
     const [image, setUserImage] = useState(null)
-
+    const [loading, setloading] = useState(false)
 //
     const onSubmit = async (e) => {
         e.preventDefault();
-    
-          dispatch(createOrder(orderData));
+        imageUpload()
+         
           localStorage.removeItem('location');
-         window.location='/SellerItems'
+         
 
     }
 
           function handleChangeImage(e){
             e.preventDefault();
-              setUserImage( e.target.files[0])
+        
+            setUserImage( e.target.files[0])
+             
             }
             const imageUpload  = async (e) => {
+             if(image){
               const imageLink = storage.ref(`images/${image.name}`).put(image)
+            
               imageLink.on(
                  "state_changed",
                  snapshot => {},
@@ -45,11 +49,17 @@ const AddItems = (props) => {
                    .getDownloadURL()
                    .then(url => {
                     orderData.image = url
+
                      console.log(url)
+                     dispatch(createOrder(orderData));
+                     setloading(true)
+                     window.location='/SellerItems'
                    })
                  })
             }
-           
+            else
+            console.log("done")
+          }
              /// to get the object of costs for each material(category)
     var priceObj = getPrice();
     var category=orderData.category
@@ -161,7 +171,7 @@ const AddItems = (props) => {
                    value = {orderData.weight}
                   onChange = {(e) => setOrderData({ ...orderData ,weight : e.target.value})}
                   text-align = "center"
-                  placeholder = "Insert Weight/Unit (g)"/>
+                  placeholder = "Insert Weight/Unit (Kg)"/>
                 </div>
                 <br />
                 <div className="col">
@@ -172,7 +182,7 @@ const AddItems = (props) => {
                   className = "form-control"
                   onChange = {handleChangeImage}
                   />
-                   <button  onClick= {imageUpload} className="btn btn-dark btn-sm">upload Image</button>
+                   {/* <button  onClick= {imageUpload} className="btn btn-dark btn-sm">upload Image</button> */}
                 </div>
 
 <br/>
@@ -188,13 +198,21 @@ const AddItems = (props) => {
                 </div>
                 <br/>
                 <div style={{ color:"grey", fontSize:"30px"}}>
-                Environment Support: {Total}
+                Environment Support: {Total.toFixed(2)} JD
                 </div>
                 <br />
                 
               <br />
                 <div>
-                <button type="submit" onClick= {onSubmit} className="btn btn-dark btn-lg">Submit</button>
+                <button type="submit" onClick= {onSubmit} className="btn btn-dark btn-lg">
+                {  loading && <SpinnerBS.Spinner
+                  as="span"
+                  animation="grow"
+                  size="sm"
+                  role="status"
+                  aria-hidden="true"
+                />}
+                  Submit</button>
                 </div>
           </form>
         </div>
