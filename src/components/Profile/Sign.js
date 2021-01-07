@@ -120,7 +120,9 @@ const Sign = ({ currentId }) => {
   
    
     return (
-      <div>
+      <div style={{background: `url(${image10})`}}>
+
+        
       <div>
       <div className="collapse bg-dark" id="navbarHeader">
         <div className="container">
@@ -155,89 +157,45 @@ const Sign = ({ currentId }) => {
         </div>
       </div>
     </div>
-    
+  
 
-        <div style={{backgroundColor:"rgba(40,40,40, 2)"}}>
         <div>
-        <div className = "container" >
-          <form className="text-center border border-dark p-9" action="#!" style={{background: `url(${image10})`, backgroundSize: "center", backgroundRepeat: "no-repeat",backgroundSize:"cover"}}>
-            <strong style={{color:"white",fontWeight: "700", fontSize:"50px"}}>Sign up</strong>
-            <br/> <br/>
-                <div className="col-lg-6 col-xl-6 mx-auto">
-                {/* <label>Username</label> */}
-                <input
-                required={true}
-                  type = "text"
-                  className = "form-control"
-                   value = {userData.username}
-                  onChange = {(e) => setUserData({ ...userData , username : e.target.value})}
-                  text-align = "center"
-                  placeholder = "Username..."
-                  />
-                </div>
-                <br />
-                <div className="col-lg-6 col-xl-6 mx-auto">
-                {/* <label>Email</label> */}
-                <input
-                required={true}
-                  type = "email"
-                  className = "form-control"
-                   value = {userData.email}
-                  onChange = {(e) => setUserData({ ...userData ,email : e.target.value})}
-                  text-align = "center"
-                  placeholder = "Email Address..."/>
-                </div>
-                <br />
-                <div className = "col-lg-6 col-xl-6 mx-auto">
-                  {/* <label>Password</label> */}
-                  <input
-                    type = "password"
-                    required={true}
-                    className = "form-control"
-                     value = {userData.password}
-                  onChange = {(e) => setUserData({ ...userData ,password : e.target.value})}
-                    placeholder = "Password..."/>
-                </div>
-                <br/>
-                <div className="col-lg-6 col-xl-6 mx-auto">
-                {/* <label>Phone number</label> */}
-                <input
-                required={true}
-                  type = "tel"
-                  className = "form-control"
-                   value = {userData.phoneNumber}
-                  onChange = {(e) => setUserData({ ...userData ,phoneNumber : e.target.value})}
-                  text-align = "center"
-                  placeholder = "Phone number..."/>
-                </div>
-                <br/>
-                <div className="col-lg-6 col-xl-6 mx-auto">
-                {/* <label>Image</label> */}
-                <input
-                  type='file' 
-                  className = "form-control"
-                  onChange = {handleChangeImage}
-                  />
-                </div>
-                <br/>
-                <div>
+<div class="signup-form">
+    <form>
+		<h2>Register</h2>
+		<p class="hint-text">Create your account. It's free and only takes a minute.</p>
+        <div class="form-group">
+			<div class="row">
+				<div class="col"><input type="text" class="form-control" placeholder="First Name" required={true}  value = {userData.username} onChange = {(e) => setUserData({ ...userData , username : e.target.value})}/></div>
+				<div class="col"><input type="text" class="form-control" name="last_name" placeholder="Last Name" required={true}/></div>
+			</div>        	
+        </div>
+        <div class="form-group">
+        	<input type="email" class="form-control"  placeholder="Email" required={true}  value = {userData.email} onChange = {(e) => setUserData({ ...userData ,email : e.target.value})}/>
+        </div>
+		<div class="form-group">
+            <input type="password" class="form-control"  placeholder="Password" required={true} value = {userData.password} onChange = {(e) => setUserData({ ...userData ,password : e.target.value})}/>
+        </div>
+		<div class="form-group">
+            <input type="tel" class="form-control" placeholder="Phone Number" required={true} value = {userData.phoneNumber} onChange = {(e) => setUserData({ ...userData ,phoneNumber : e.target.value})}/>
+        </div>  
+        <div class="form-group">
+            <input type='file' className = "form-control" onChange = {handleChangeImage}/>
+        </div>              
+        <div class="form-group">
+			<label class="form-check-label"><input type="checkbox" required="required"/> I accept the <a href="#">Terms of Use</a> &amp; <a href="#">Privacy Policy</a></label>
+		</div>
+		<div class="form-group">
+            <button type="submit" onClick= {onSubmit} class="btn btn-success btn-lg btn-block">  { loading && <SpinnerBS.Spinner as="span" animation="grow" size="sm" role="status" aria-hidden="true"/> } Register Now</button><br/>
+            <div class="text-center">Already have an account? <a href="/login">Sign in</a></div>
+        </div>
+    </form>
 
-                <button type="submit" onClick= {onSubmit} className="btn btn-dark btn-lg">
-                    {  loading &&
-                 <SpinnerBS.Spinner
-                  as="span"
-                  animation="grow"
-                  size="sm"
-                  role="status"
-                  aria-hidden="true"
-                />}Sign Up
-                </button>
+</div>
+</div>
 
-                </div>
-          </form>
-        </div>
-        </div>
-        </div>
+
+
         </div>
     )
 }
