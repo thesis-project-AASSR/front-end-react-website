@@ -14,7 +14,7 @@ const EditUser = (props) => {
         const onSubmit = async (e) => {
           e.preventDefault();
           dispatch(updateUser(currentId,adminProfile));
-          window.location = '/home'   
+          window.location = `/SellerProfile`   
       }
       function handleChangeImage(e){
         e.preventDefault();
@@ -95,7 +95,7 @@ const EditUser = (props) => {
                   placeholder = "Insert phoneNumber"/>
                 </div>
                 <br />
-                <div className = "col">
+                {/* <div className = "col">
                   <label>location </label>
                   <input
                     type = "text"
@@ -104,7 +104,7 @@ const EditUser = (props) => {
                      value = {adminProfile.location}
                   onChange = {(e) => setAdminProfile({ ...adminProfile ,location : e.target.value})}
                     placeholder = " Insert a location "/>
-                </div>
+                </div> */}
                 <br />
               <br />
                 <div>

@@ -70,9 +70,9 @@ const SellerItems =({currentId}) =>{
                        <th>Quantity</th>
                        <th>Weight</th>
                        <th>Description</th>
-                       <th>Image</th>
                        <th>Enviroment support</th>
                        <th>Status</th>
+                       <th>Image</th>
                        <th>Update</th>
                        <th>Delete</th> 
                    </tr>
@@ -84,12 +84,12 @@ const SellerItems =({currentId}) =>{
                      <td>{post.quantity}</td>
                      <td class="form-row justify-content-center">{post.weight}</td>
                      <td>{post.description}</td>
+                     <td class="form-row justify-content-center">{post.price}</td>
+                     <td>{post.status}</td>
                      <td>
                      <img src= {post.image} width="120" height="120" class="w3-round" />
                      {console.log(post.image)}
                      </td>
-                     <td class="form-row justify-content-center">{post.price}</td>
-                     <td>{post.status}</td>
                      <td>
                      <Link to ={"/EditItems/"+post.itemID} >update</Link></td>
                      <td><button  type="submit" onClick={() => onSubmit(post.itemID) }>Delete</button></td>

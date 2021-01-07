@@ -220,7 +220,7 @@ class LocationSearchModal extends React.Component {
                             <div>Hello There!</div>
                         </MarkerWithLabel> */}
                         {/* For Auto complete Search Box */}
-                        <Autocomplete
+                        {/* <Autocomplete
                             style={{
                                 width: '100%',
                                 height: '40px',
@@ -230,7 +230,7 @@ class LocationSearchModal extends React.Component {
                             }}
                             onPlaceSelected={this.onPlaceSelected}
                             types={['(regions)']}
-                        />
+                        /> */}
                     </GoogleMap>
                 )
             )

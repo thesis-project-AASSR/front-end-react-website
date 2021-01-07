@@ -35,8 +35,8 @@ return (
     <div>
       {/* the user can't access admin's pages */}
       <Route path="/" exact component={Viewpage} />
-      <Route path="/map"  component={LocationSearchModal} />
-      <Route path="/home" component={Homepage} />
+      <ProtectedRoute path="/map"  component={LocationSearchModal}  token = {token} />
+      <ProtectedRoute path="/home" component={Homepage}  token = {token} />
       <Route path="/sign" exact component={Sign}/>
       <Route path="/login" exact component={Login}/>
       <ProtectedRoute path="/EditItems/:id" component={EditItems} token = {token} />

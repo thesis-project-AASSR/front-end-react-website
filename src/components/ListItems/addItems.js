@@ -142,7 +142,7 @@ const AddItems = (props) => {
                   onChange = {(e) => setOrderData({ ...orderData ,category : e.target.value})}
                   text-align = "center"
                  >
-                   <option value = "Iron">Select Category</option>
+                   {/* <option value = "Select">Select Category</option> */}
                      <option value = "Iron">Iron</option>
                     <option value = "wood">wood</option>
                     <option value = "glass">glass</option>
