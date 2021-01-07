@@ -19,11 +19,13 @@ const AddItems = (props) => {
 //
     const onSubmit = async (e) => {
         e.preventDefault();
+        // if (orderData.category === '' && orderData.category === '' && orderData.category === '') {
+          
+        // } else {
         imageUpload()
-         
           localStorage.removeItem('location');
-         
 
+        // }
     }
 
           function handleChangeImage(e){
@@ -142,7 +144,7 @@ const AddItems = (props) => {
                   onChange = {(e) => setOrderData({ ...orderData ,category : e.target.value})}
                   text-align = "center"
                  >
-                   <option value = "Iron">Select Category</option>
+                   <option value = "">Select Category</option>
                      <option value = "Iron">Iron</option>
                     <option value = "wood">wood</option>
                     <option value = "glass">glass</option>
