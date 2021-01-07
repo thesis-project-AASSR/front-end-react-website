@@ -21,7 +21,8 @@ const Login = ({ currentId }) => {
 
    
     return (
-        <div>
+        <div style={{backgroundImage: `url(${image10})`}}>
+
 <div>
       <div className="collapse bg-dark" id="navbarHeader">
         <div className="container">
@@ -58,51 +59,27 @@ const Login = ({ currentId }) => {
     </div>
 
 
-        <div style={{backgroundColor:"rgba(40,40,40, 2)"}}>
-        <div>
-
-        <div className = "container">
-          <form className="text-center border border-dark p-9" action="#!" style={{background: `url(${image10})`, backgroundPosition: "center", backgroundRepeat: "no-repeat",backgroundSize:"cover"}}>
-          <br/> 
-           <strong style={{color:"white",fontWeight: "700", fontSize:"50px"}}>Sign in</strong>
-                <br/> <br/> <br/> <br/>
-                <div className="col-lg-6 col-xl-6 mx-auto">
-     
-                
-                <input
-                required={true}
-                  type = "email"
-                  className = "form-control"
-                   value = {savedUserData.email}
-                  onChange = {(e) => setSavedUserData({ ...savedUserData ,email : e.target.value})}
-                  text-align = "center"
-                  placeholder = "Email"/>
-                </div>
-                <br />
-                <div className = "col-lg-6 col-xl-6 mx-auto">
-             
-                  <input
-                    type = "password"
-                    required ={true}
-                    className = "form-control"
-                     value = {savedUserData.password}
-                  onChange = {(e) => setSavedUserData({ ...savedUserData ,password : e.target.value})}
-                    placeholder = "Password"/>
-                </div>
-                <div>
-                    <br/><br/>
-                <button type="submit" onClick= {onSignIn} className="btn btn-dark">Sign In</button>
-                </div>
-                <div className="col-lg-6 col-xl-6 mx-auto">
-                  <br/><br/><br/><br/><br/>
-
-
-                  <br/><br/><br/><br/>
-                </div>
-          </form>
+ <div>
+<div class="signup-form">
+    <form>
+		<h2>Log in</h2>
+        <div class="form-group">
+        <i class="fa fa-user"> Email </i>
+        	<input type="email" class="form-control"  required={true} value = {savedUserData.email} onChange = {(e) => setSavedUserData({ ...savedUserData ,email : e.target.value})} />
+         
         </div>
+		<div class="form-group">
+    <i class="fa fa-lock"> Password </i>
+            <input type="password" class="form-control"   required={true}  value = {savedUserData.password} onChange = {(e) => setSavedUserData({ ...savedUserData ,password : e.target.value})}/>
         </div>
+		<div class="form-group">
+            <button type="submit" onClick= {onSignIn} class="btn btn-success btn-lg btn-block">Log in</button><br/>
+            <div class="text-center">Don't have an account? <a href="/sign">Sign up</a></div>
         </div>
+    </form>
+</div>
+</div>
+<br/> <br/> <br/>
         </div>
     )
 }
