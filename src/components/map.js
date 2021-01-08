@@ -1,9 +1,11 @@
 import React from 'react';
+import swal from 'sweetalert'
 import { withGoogleMap, GoogleMap, withScriptjs, InfoWindow, Marker } from "react-google-maps";
 import Geocode from "react-geocode";
 import Autocomplete from 'react-google-autocomplete';
 import {  Descriptions } from 'antd';
 import GoogleMapReact from 'google-map-react';
+import image10 from '../images/pexels-mali-maeder-802221.jpg';
 import axios from "axios";
 const { MarkerWithLabel } = require("react-google-maps/lib/components/addons/MarkerWithLabel");
 Geocode.setApiKey("AIzaSyDhdSw1QzkXBrYnLSt3EF3izfHEhUj6LMc");
@@ -184,6 +186,12 @@ class LocationSearchModal extends React.Component {
     //   axios.post("http://localhost:5000/insertmap", {'location': location,"user_id":user_id})
     //     .then((res) => console.log(res))
     //     .catch((err) => console.log(err))
+    swal({
+        title: "Saved!",
+        text: "",
+        icon: "success",
+      button: "Done"
+      });
         window.location ='/additems'
     }
     render() {
@@ -236,14 +244,13 @@ class LocationSearchModal extends React.Component {
             )
         );
         return (
+            <div style={{background: `url(${image10})`}}>
             <div style={{ padding: '1rem', margin: '0 auto', maxWidth: 1000 }}>
-                <h1>Google Map</h1>
-                <h3>Find your location ..</h3>
+               <h4 style={{color:"white"}}>Save your current location..</h4> 
                 <Descriptions bordered>
-                    <Descriptions.Item label="City">{this.state.city}</Descriptions.Item>
-                    <Descriptions.Item label="Area">{this.state.area}</Descriptions.Item>
-                    <Descriptions.Item label="State">{this.state.state}</Descriptions.Item>
-                    <Descriptions.Item label="Address">{this.state.address}</Descriptions.Item>
+                    <Descriptions.Item label="Area:" style={{color:"white"}}>Jordan - {this.state.area}</Descriptions.Item><br/>
+                    <Descriptions.Item label="State:" style={{color:"white"}}>{this.state.state}</Descriptions.Item>
+                    <Descriptions.Item label="Address:" style={{color:"white"}}>{this.state.address}</Descriptions.Item><br/>
                 </Descriptions>
                 <AsyncMap
                     googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyDhdSw1QzkXBrYnLSt3EF3izfHEhUj6LMc&libraries=places"
@@ -257,9 +264,8 @@ class LocationSearchModal extends React.Component {
                         <div style={{ height: `100%` }} />
                     }
                 />
-                 <br/>
-                 <br/>
-              <button  type="submit" className='btn btn-primary btn-lg btn-block' onClick={this.handleSubmit.bind(this)}  >save location </button>
+              <button  type="submit" className='btn btn-outline-success btn-lg btn-block' onClick={this.handleSubmit.bind(this)} >save location </button>
+            </div>
             </div>
         )
     }

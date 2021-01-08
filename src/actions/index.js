@@ -126,10 +126,10 @@ export const getUser = () => async (dispatch) => {
 // making the price
 export const getPrice = () =>  {
   try {
-    const costs = {Iron: 0.25,
-                    wood:0.10,
-                    glass:0.15,
-                    plastic:0.12
+    const costs = {Iron: 1.25,
+                    copper:2.25,
+                    paper:0.035,
+                    plastic:0.09
                   }
    return costs
   } catch (error) {
