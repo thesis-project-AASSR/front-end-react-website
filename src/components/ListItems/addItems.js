@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { createOrder } from '../../actions/index';
-import { getPrice } from '../../actions';
+// import { getPrice } from '../../actions';
 import { storage } from '../Profile/firbase'
+import swal from 'sweetalert';
 import AddNav from '../Navbar/addNav';
 import {withRouter} from 'react-router-dom';
 import image6 from "../../images/1_x9sm3fjasQp8gXQp-Sd0pA.png";
@@ -12,20 +13,25 @@ import image10 from '../../images/pexels-mali-maeder-802221.jpg';
 import * as SpinnerBS from 'react-bootstrap';
 var Total=0
 const AddItems = (props) => {
-    const [orderData, setOrderData] = useState({  category: '', quantity: '', weight: '', description: '', price:'',image:null, location:localStorage.getItem('location'),status:"Pending", user_id:localStorage.getItem('user_id')});
+    const [orderData, setOrderData] = useState({  category: '', quantity: 0, weight: 0, description: '', price:0,image:null, location:localStorage.getItem('location'),status:"Pending", user_id:localStorage.getItem('user_id')});
     const dispatch = useDispatch();
     const [image, setUserImage] = useState(null)
     const [loading, setloading] = useState(false)
-//
+
     const onSubmit = async (e) => {
         e.preventDefault();
-        // if (orderData.category === '' && orderData.category === '' && orderData.category === '') {
-          
-        // } else {
+        if (orderData.category === '' || orderData.quantity === 0 || orderData.weight === 0 || orderData.description === '' ||  orderData.location === null) {
+          swal({
+            title: "Invalid input",
+            text: "Please fill all the fields...",
+            icon: "info",
+            button: "Ok",
+          });
+          localStorage.removeItem('location');
+        } else {
         imageUpload()
           localStorage.removeItem('location');
-
-        // }
+        }
     }
 
           function handleChangeImage(e){
@@ -59,18 +65,45 @@ const AddItems = (props) => {
                    })
                  })
             }
-            else
-            console.log("done")
+            else {
+              swal({
+                title: "Invalid input",
+                text: "Please fill all the fields...",
+                icon: "info",
+                button: "Ok",
+              });
+            }
+            
           }
              /// to get the object of costs for each material(category)
-    var priceObj = getPrice();
+   //  Iron: 1.25,
+//                     copper:2.25,
+//                     paper:0.035,
+//                     plastic:0.09
+
+    // var priceObj = getPrice();
     var category=orderData.category
     /// to get the price for the entered material
-    for (var key in priceObj){
-      if(category===key)
-      var price = priceObj[key]
+    // for (var key in priceObj){
+    //   if(category===key)
+    //   var price = priceObj[key]
+    // }
+    if (category === '') {
+      var price = 0;
     }
-    console.log("price:",price)
+    if (category === "Iron") {
+      var price = 1.25;
+    }
+    if (category === "copper") {
+      var price = 2.25;
+    }
+    if (category === "paper") {
+      var price = 0.035;
+    }
+    if (category === "plastic") {
+      var price = 0.09;
+    }
+    console.log("price:",price);
     // to get the entered Quantity and Weight
     var Quantity=orderData.quantity
     var Weight=orderData.weight
@@ -127,10 +160,10 @@ const AddItems = (props) => {
 
 
        
-        <div style={{backgroundColor:"rgba(40,40,40, 2)"}}>
+        <div>
 
         <div className = "container">
-          <form className="text-center border border-light p-9" action="#!" style={{background: `url(${image10})`, backgroundPosition: "center", backgroundRepeat: "no-repeat"}}>
+          <form className="text-center border border-light p-9">
             <p className="h4 mb-4" style={{color:"white"}}>Add an item</p>
             <br />
             <Link to ={"/map/"} style={{ fontSize:"20px"}} className="btn btn-secondary">choose your location</Link>
