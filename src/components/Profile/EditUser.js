@@ -2,6 +2,7 @@ import React, { useState ,useEffect} from 'react';
 import {updateUser,getUser} from '../../actions/index';
 import { storage } from './firbase'
 import { useDispatch,useSelector } from 'react-redux';
+import * as SpinnerBS from 'react-bootstrap';
 const EditUser = (props) => {
   const currentId = props.match.params.id
     const users = useSelector(state => state.Profiles)
@@ -11,16 +12,17 @@ const EditUser = (props) => {
       phoneNumber: Filtered[0].phoneNumber, location: Filtered[0].location ,image:Filtered[0].image});
     const dispatch = useDispatch();
     const [image, setUserImage] = useState(null)
+    const [loading, setloading] = useState(false)
         const onSubmit = async (e) => {
           e.preventDefault();
-          dispatch(updateUser(currentId,adminProfile));
-          window.location = `/SellerProfile`   
+          imageUpload()
       }
       function handleChangeImage(e){
         e.preventDefault();
           setUserImage( e.target.files[0])
         }
         const imageUpload  = async (e) => {
+          if(image){
           const imageLink = storage.ref(`images/${image.name}`).put(image)
           imageLink.on(
              "state_changed",
@@ -35,9 +37,16 @@ const EditUser = (props) => {
                .getDownloadURL()
                .then(url => {
                 adminProfile.image = url
+                dispatch(updateUser(currentId,adminProfile));
+                setloading(true)
+          window.location = `/SellerProfile`   
                })
              })
         }
+        else{
+        dispatch(updateUser(currentId,adminProfile));
+          window.location = `/SellerProfile`   }
+      }
         useEffect(() => {
           dispatch(getUser());
         }, [dispatch]);
@@ -57,7 +66,6 @@ const EditUser = (props) => {
                   className = "form-control"
                   onChange = {handleChangeImage}
                   />
-                   <button  onClick= {imageUpload} className="btn btn-deep-orange darken-4">upload Image</button>
                 </div>
             <div className="col">
                 <label>username</label>
@@ -108,7 +116,9 @@ const EditUser = (props) => {
                 <br />
               <br />
                 <div>
-                <button type="submit" onClick= {onSubmit} className="btn btn-deep-orange darken-4">Submit</button>
+                <button type="submit" onClick= {onSubmit} className="btn btn-deep-orange darken-4">
+                { loading && <SpinnerBS.Spinner as="span" animation="grow" size="sm" role="status" aria-hidden="true"/> }
+                  Submit</button>
                 </div>
           </form>
         </div>
