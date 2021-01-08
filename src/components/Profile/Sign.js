@@ -6,7 +6,7 @@ import { storage } from './firbase';
 import swal from 'sweetalert';
 import Background from '../../images/lake-irene-1679708_1280.webp';
 import image6 from "../../images/1_x9sm3fjasQp8gXQp-Sd0pA.png";
-import image10 from '../../images/modern-3d-geometry-shapes-black-lines-with-green-borders-dark-background_125759-3.jpg';
+import image10 from '../../images/pexels-mali-maeder-802221.jpg';
 import image11 from '../../images/background-recycle-symbol-260nw-110941127.webp';
 import image12 from '../../images/crumpled-2537807_1280.jpg';
 import image13 from '../../images/42-18260830edit.jpg';
@@ -124,7 +124,7 @@ const Sign = ({ currentId }) => {
 
         
       <div>
-      <div className="collapse" id="navbarHeader" style={{backgroundColor:"black"}}>
+      <div className="collapse bg-dark" id="navbarHeader">
         <div className="container">
           <div className="row">
             <div className="col-sm-8 col-md-7 py-4">
@@ -144,7 +144,7 @@ const Sign = ({ currentId }) => {
           </div>
         </div>
       </div>
-      <div className="navbar navbar-dark box-shadow" style={{backgroundColor:"black"}}>
+      <div className="navbar navbar-dark bg-dark box-shadow">
         <div className="container d-flex justify-content-between">
           <a href="/" className="navbar-brand d-flex align-items-center">
             <img src={image6} width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mr-2"></img>
