@@ -5,7 +5,7 @@ import Button from 'react-bootstrap/Button';
 import AdminNav from '../Navbar/adminNav';
 import image6 from "../../images/1_x9sm3fjasQp8gXQp-Sd0pA.png";
 import {Link} from "react-router-dom" ;
-import image10 from '../../images/pexels-mali-maeder-802221.jpg';
+import image10 from '../../images/pexels-matheus-bertelli-1144687.jpg';
 import image11 from '../../images/background-recycle-symbol-260nw-110941127.webp';
 import image12 from '../../images/crumpled-2537807_1280.jpg';
 import image13 from '../../images/42-18260830edit.jpg';
@@ -24,7 +24,7 @@ const AdminProfile =() =>{
     }, [dispatch]);
 
     return (
-         <div style={{background: `url(${image15})`, backgroundPosition: "center", backgroundRepeat: "no-repeat", backgroundSize:"cover"}}>
+         <div style={{background: `url(${image10})`,width:"100%",height:"1000px",backgroundRepeat:"no-repeat",backgroundSize:"cover"}}>
 
 
            <div>
@@ -76,10 +76,9 @@ const AdminProfile =() =>{
     <li class="list-group-item">{Info.phoneNumber}</li>
     {/* <li class="list-group-item">{Info.location}</li> */}
   </ul>
-  <div class="card-body">
+  {/* <div class="card-body">
   <a href="https://www.ammancity.gov.jo/ar/main/index.aspx" class="card-link">Greater Amman Municipality</a>
-  <Link to ={"/EditUser/"+Info.userID} class="card-link">Edit Profile</Link>
-  </div>
+  </div> */}
        </div>
           ))}
 <br/><br/><br/><br/>

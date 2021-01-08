@@ -57,8 +57,8 @@ const TableItems = props => (
 
 
 function purchaseFunc(itemId,price){
-      var confirmation = window.confirm("Are you sure you want to Purchase this item?");
-       if(confirmation){
+      // var confirmation = window.confirm("Are you sure you want to Purchase this item?");
+      //  if(confirmation){
         var purchaseInfo ={
         itemId : itemId,
         price: price,
@@ -74,7 +74,7 @@ function purchaseFunc(itemId,price){
       dispatch(purchaseProcess(purchaseInfo));
       // window.location='/AdminItems'
       // alert('Great !! Your purchase was successful, you can check your PayPal account ');
-    }
+    // }
     // else
       // alert('Your purchase has been cancelled,Thank you!');
   }
@@ -99,8 +99,8 @@ function purchaseFunc(itemId,price){
 }
 
 function rejection(itemId){
-  var confirmation = window.confirm("Are you sure you want to Reject this item?");
-  if(confirmation){
+  // var confirmation = window.confirm("Are you sure you want to Reject this item?");
+  // if(confirmation){
           var rejectionInfo ={
           itemId : itemId,
           status:"Rejected",
@@ -113,7 +113,7 @@ function rejection(itemId){
         $(selector).prop('disabled', true);
         $(accepSelector).prop('disabled', false);
         dispatch(itemActions(rejectionInfo));
-      }
+      // }
     }
 
     function acceptation(itemId,status){
@@ -194,9 +194,9 @@ function rejection(itemId){
                  >
                    <option value = "">Select a category</option>
                     <option value = "Iron">Iron</option>
-                    <option value = "wood">wood</option>
-                    <option value = "glass">glass</option>
-                    <option value = "plastic">plastic</option>
+                    <option value = "copper">Copper</option>
+                    <option value = "paper">Paper</option>
+                    <option value = "plastic">Plastic</option>
                     </select>
                     </div><br></br>
       <table className = "table" >

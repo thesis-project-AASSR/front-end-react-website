@@ -16,6 +16,7 @@ import image12 from '../../images/crumpled-2537807_1280.jpg';
 import image13 from '../../images/42-18260830edit.jpg';
 import image14 from '../../images/wp2529177.jpg';
 import image15 from '../../images/wp2529191.jpg';
+import image16 from '../../images/11703567_889577574430048_928422622931679891_o.jpg';
 
 export default class Viewpage extends Component {
   constructor(props) {
@@ -26,10 +27,10 @@ export default class Viewpage extends Component {
   render() {
     return (
 
-  <div>
+  <div style={{background: `url(${image16})`,width:"100%",height:"1000px",backgroundRepeat:"no-repeat",backgroundSize:"cover"}}>
   
  <div>
-      <div className="collapse bg-dark" id="navbarHeader">
+      <div className="collapse" id="navbarHeader" >
         <div className="container">
           <div className="row">
             <div className="col-sm-8 col-md-7 py-4">
@@ -40,7 +41,7 @@ export default class Viewpage extends Component {
             
             <div className="col-sm-4 offset-md-1 py-4">
               <h4 className="text-white">Contact</h4>
-              {/* <a href="https://m.facebook.com/"  style={{color:"grey"}}>Amman</a><br/> */}
+              {/* <a href="https://www.ammancity.gov.jo/"  style={{color:"grey"}}>https://www.ammancity.gov.jo</a><br/> */}
                 <a href="https://m.facebook.com/" className="text-white" class="contact" style={{color:"rgba(124,252,0)"}}><i class="fab fa-facebook-f fa-1x"></i></a>
                <a href="https://twitter.com/?lang=en" className="text-white" class="contact" style={{color:"rgba(124,252,0)"}}><i class="fab fa-twitter fa-1x"></i></a>
                <a href="https://www.youtube.com/" className="text-white" class="contact" style={{color:"rgba(124,252,0)"}}><i class="fab fa-youtube fa-1x"></i></a>
@@ -50,7 +51,7 @@ export default class Viewpage extends Component {
           </div>
         </div>
       </div>
-      <div className="navbar navbar-dark bg-dark box-shadow">
+      <div className="navbar navbar-dark  box-shadow">
         <div className="container d-flex justify-content-between">
           <a href="/sign" className="navbar-brand d-flex align-items-center">
             <img src={image6} width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mr-2"></img>
@@ -64,8 +65,10 @@ export default class Viewpage extends Component {
       </div>
     </div>
     
+
+
   <div>
-      <section className="jumbotron text-center" id="img" style={{background: `url(${image13})`, backgroundPosition: "center", backgroundRepeat: "no-repeat", backgroundSize:"cover"}}>
+
         <div className="container">
       
           <p className="lead "  style={{color:"white",fontSize:"40px"}}>Dawerha can benefit our community and the environment, by collecting and processing materials that would otherwise be thrown away as trash and turning them into new products.</p>
@@ -73,10 +76,8 @@ export default class Viewpage extends Component {
             <a href="/sign" className="btn btn-success">Join Us</a>
             <a href="/login" className="btn btn-success" id="button">Sign in</a>
           </p>
-          {/* <br/><br/><br/><br/><br/><br/> */}
         </div>
-        <br/><br/><br/><br/><br/><br/> <br/><br/><br/><br/><br/><br/>
-      </section>
+
     </div>
 
 
