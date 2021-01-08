@@ -9,7 +9,7 @@ import {withRouter} from 'react-router-dom';
 import image6 from "../../images/1_x9sm3fjasQp8gXQp-Sd0pA.png";
 import Background from '../../images/lake-irene-1679708_1280.webp';
 import {Link} from "react-router-dom" ;
-import image10 from '../../images/pexels-mali-maeder-802221.jpg';
+import image10 from '../../images/pexels-matheus-bertelli-1144687.jpg';
 import * as SpinnerBS from 'react-bootstrap';
 var Total=0
 const AddItems = (props) => {
@@ -40,6 +40,7 @@ const AddItems = (props) => {
             setUserImage( e.target.files[0])
              
             }
+
             const imageUpload  = async (e) => {
              if(image){
               const imageLink = storage.ref(`images/${image.name}`).put(image)
@@ -116,7 +117,7 @@ const AddItems = (props) => {
         
    
     return (
-        <div>
+        <div style={{background: `url(${image10})`,width:"100%",height:"1000px",backgroundRepeat:"no-repeat",backgroundSize:"cover"}}>
 
        
           <div>
@@ -159,18 +160,32 @@ const AddItems = (props) => {
 
 
 
-       
-        <div>
 
-        <div className = "container">
-          <form className="text-center border border-light p-9">
-            <p className="h4 mb-4" style={{color:"white"}}>Add an item</p>
-            <br />
-            <Link to ={"/map/"} style={{ fontSize:"20px"}} className="btn btn-secondary">choose your location</Link>
-                <div className="col">
-                <br/>
-                {/* <label>Select Category</label> */}
-                <select
+<div>
+        <div class="container-lg">
+	<div class="row">
+		<div class="col-md-8 mx-auto">
+			<div class="contact-form">
+				<h5 style={{color:"white"}}>New Item</h5>
+				<form>
+
+
+        <div class="row">
+            <div class="col-sm-6">
+							<div class="form-group">
+              {/* <label for="inputMessage">Location</label> */}
+              <Link to ={"/map/"} class="btn btn-primary">Click Here to submit your loation</Link>
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+
+
+						<div class="col-sm-6">
+							<div class="form-group">
+              <label for="inputEmail" style={{color:"white"}}>Select Category</label>
+              <select
                 required="true"
                   className = "form-control"
                    value = {orderData.category}
@@ -178,16 +193,21 @@ const AddItems = (props) => {
                   text-align = "center"
                  >
 
-                   <option value = "">Select Category</option>
+                   <option value = "">---</option>
                      <option value = "Iron">Iron</option>
-                    <option value = "wood">wood</option>
-                    <option value = "glass">glass</option>
-                    <option value = "plastic">plastic</option>
+                    <option value = "copper">Copper</option>
+                    <option value = "paper">Paper</option>
+                    <option value = "plastic">Plastic</option>
                     </select>
-                    </div>
-                     <br />
-                <div className="col">
-                {/* <label>Quantity</label> */}
+							</div>
+						</div>
+
+            </div>  
+
+            <div class="row">
+						<div class="col-sm-6">
+							<div class="form-group">
+								<label for="inputEmail" style={{color:"white"}}>Quantity</label>
                 <input
                 required="true"
                   type = "text"
@@ -196,10 +216,12 @@ const AddItems = (props) => {
                   onChange = {(e) => setOrderData({ ...orderData ,quantity : e.target.value})}
                   text-align = "center"
                   placeholder = "Insert Quantity"/>
-                </div>
-                <br />
-                <div className="col">
-                {/* <label>weight</label> */}
+							</div>
+						</div>
+
+            <div class="col-sm-6">
+							<div class="form-group">
+								<label for="inputEmail" style={{color:"white"}}>Weight of item (Kg)</label>
                 <input
                 required="true"
                   type = "text"
@@ -208,51 +230,49 @@ const AddItems = (props) => {
                   onChange = {(e) => setOrderData({ ...orderData ,weight : e.target.value})}
                   text-align = "center"
                   placeholder = "Insert Weight/Unit (Kg)"/>
-                </div>
-                <br />
-                <div className="col">
-                {/* <label>image</label> */}
-                <input
+							</div>
+						</div>
+</div>
+
+				
+
+
+					<div class="form-group">
+						<label for="inputSubject" style={{color:"white"}}>Photo for your items</label>
+            <input
                   required={true}
                   type='file'
                   className = "form-control"
                   onChange = {handleChangeImage}
                   />
-                   {/* <button  onClick= {imageUpload} className="btn btn-dark btn-sm">upload Image</button> */}
-                </div>
+					</div>
 
-<br/>
-                <div className = "col">
-                  {/* <label>Description  </label> */}
-                  <input
-                    type = "text"
-                    required="true"
-                    className = "form-control"
-                     value = {orderData.description}
-                  onChange = {(e) => setOrderData({ ...orderData ,description : e.target.value})}
-                    placeholder = " Insert a description "/>
-                </div>
-                <br/>
-                <div style={{ color:"grey", fontSize:"30px"}}>
-                Environment Support: {Total.toFixed(2)} JD
-                </div>
-                <br />
-                
-              <br />
-                <div>
-                <button type="submit" onClick= {onSubmit} className="btn btn-dark btn-lg">
-                {  loading && <SpinnerBS.Spinner
+
+					<div class="form-group">
+						<label for="inputMessage" style={{color:"white"}}>Description</label>
+						<textarea type = "text" class="form-control" id="inputMessage" rows="5" value = {orderData.description} onChange = {(e) => setOrderData({ ...orderData ,description : e.target.value})} required></textarea>
+					</div>
+
+
+
+					<div class="text-center" style={{color:"white"}}>
+         Environment Support: {Total.toFixed(2)} JD
+					<br/>	<button type="submit" onClick= {onSubmit} class="btn btn-primary"><i class="fa fa-paper-plane"></i> {  loading && <SpinnerBS.Spinner
                   as="span"
                   animation="grow"
                   size="sm"
                   role="status"
                   aria-hidden="true"
-                />}
-                  Submit</button>
-                </div>
-          </form>
-        </div>
-        </div>
+                />} Send</button>
+
+					</div>            
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+
 
 
         </div>
