@@ -11,6 +11,3 @@ import "firebase/storage";
     appId: "1:554223798562:web:dac0bc08d01bca91417d7b"
   };
   // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
-const storage = firebase.storage();
-export { storage, firebase as default};
