@@ -5,7 +5,7 @@ import Geocode from "react-geocode";
 import Autocomplete from 'react-google-autocomplete';
 import {  Descriptions } from 'antd';
 import GoogleMapReact from 'google-map-react';
-import image10 from '../images/pexels-mali-maeder-802221.jpg';
+import image10 from '../images/pexels-matheus-bertelli-1144687.jpg';
 import axios from "axios";
 const { MarkerWithLabel } = require("react-google-maps/lib/components/addons/MarkerWithLabel");
 Geocode.setApiKey("AIzaSyDhdSw1QzkXBrYnLSt3EF3izfHEhUj6LMc");
@@ -244,7 +244,7 @@ class LocationSearchModal extends React.Component {
             )
         );
         return (
-            <div style={{background: `url(${image10})`}}>
+            <div style={{background: `url(${image10})`,width:"100%",height:"1000px",backgroundRepeat:"no-repeat",backgroundSize:"cover"}}>
             <div style={{ padding: '1rem', margin: '0 auto', maxWidth: 1000 }}>
                <h4 style={{color:"white"}}>Save your current location..</h4> 
                 <Descriptions bordered>
@@ -264,7 +264,7 @@ class LocationSearchModal extends React.Component {
                         <div style={{ height: `100%` }} />
                     }
                 />
-              <button  type="submit" className='btn btn-outline-success btn-lg btn-block' onClick={this.handleSubmit.bind(this)} >save location </button>
+              <button  type="submit" className='btn btn-outline-primary btn-lg btn-block' onClick={this.handleSubmit.bind(this)} style={{backgroundColor:"rgba(45, 72, 58, 0.911)",color:"white"}}>save location </button>
             </div>
             </div>
         )
