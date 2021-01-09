@@ -59,6 +59,7 @@ console.log(props)
         dispatch(updateOrder(currentId,orderData));
           window.location = `/SellerItems`   }
       }
+      //
       var priceObj = getPrice();
       var category=orderData.category
       /// to get the price for the entered material
