@@ -5,6 +5,7 @@ import {  Link} from "react-router-dom" ;
 // import { updateOrder,deleteOrder } from '../../actions/index';
 // import {Button} from 'react-bootstrap';
 import {withRouter} from 'react-router-dom';
+import swal from 'sweetalert';
 import ItemsNav from '../Navbar/itemsNav';
 import AdminItemsNav from '../Navbar/adminItemsNav';
 import image6 from "../../images/1_x9sm3fjasQp8gXQp-Sd0pA.png";
@@ -59,6 +60,12 @@ const TableItems = props => (
 function purchaseFunc(itemId,price){
       // var confirmation = window.confirm("Are you sure you want to Purchase this item?");
       //  if(confirmation){
+        swal({
+          title: "Successful",
+          text: "Check your paypal account for the invoice!",
+          icon: "success",
+          button: "Ok",
+        })
         var purchaseInfo ={
         itemId : itemId,
         price: price,

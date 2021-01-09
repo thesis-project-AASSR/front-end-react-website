@@ -171,7 +171,7 @@ const Sign = ({ currentId }) => {
 			</div>        	
         </div>
         <div class="form-group">
-        	<input type="email" class="form-control"  placeholder="Email" required={true}  value = {userData.email} onChange = {(e) => setUserData({ ...userData ,email : e.target.value})}/>
+        	<input type="email" class="form-control"  placeholder="Email (Paypal account)" required={true}  value = {userData.email} onChange = {(e) => setUserData({ ...userData ,email : e.target.value})}/>
         </div>
 		<div class="form-group">
             <input type="password" class="form-control"  placeholder="Password" required={true} value = {userData.password} onChange = {(e) => setUserData({ ...userData ,password : e.target.value})}/>
