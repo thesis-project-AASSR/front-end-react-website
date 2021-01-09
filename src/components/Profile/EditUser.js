@@ -4,7 +4,7 @@ import { storage } from './firbase'
 import { useDispatch,useSelector } from 'react-redux';
 import * as SpinnerBS from 'react-bootstrap';
 import image6 from "../../images/1_x9sm3fjasQp8gXQp-Sd0pA.png";
-import image10 from '../../images/pexels-matheus-bertelli-1144687.jpg';
+import image10 from '../../images/pexels-mali-maeder-802221.jpg';
 
 const EditUser = (props) => {
   const currentId = props.match.params.id
@@ -104,7 +104,7 @@ const EditUser = (props) => {
 	<div class="row">
 		<div class="col-md-8 mx-auto">
 			<div class="contact-form">
-				<h4 style={{color:"white"}}>Edit Profile</h4>
+				{/* <h4 style={{color:"white"}}>Edit Profile</h4> */}
 				<form>
 
 

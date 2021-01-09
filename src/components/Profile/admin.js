@@ -5,7 +5,7 @@ import Button from 'react-bootstrap/Button';
 import AdminNav from '../Navbar/adminNav';
 import image6 from "../../images/1_x9sm3fjasQp8gXQp-Sd0pA.png";
 import {Link} from "react-router-dom" ;
-import image10 from '../../images/pexels-matheus-bertelli-1144687.jpg';
+import image10 from '../../images/pexels-mali-maeder-802221.jpg';
 import image11 from '../../images/background-recycle-symbol-260nw-110941127.webp';
 import image12 from '../../images/crumpled-2537807_1280.jpg';
 import image13 from '../../images/42-18260830edit.jpg';

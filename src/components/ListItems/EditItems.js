@@ -6,7 +6,7 @@ import { useDispatch,useSelector } from 'react-redux';
 import { storage } from '../Profile/firbase'
 import * as SpinnerBS from 'react-bootstrap';
 import image6 from "../../images/1_x9sm3fjasQp8gXQp-Sd0pA.png";
-import image10 from '../../images/pexels-matheus-bertelli-1144687.jpg';
+import image10 from '../../images/pexels-mali-maeder-802221.jpg';
 var Total=0
 const EditItems = (props) => {
 console.log(props)
@@ -79,7 +79,7 @@ console.log(props)
 
     return (
 
-        <div style={{background: `url(${image10})`,width:"100%",height:"1000px",backgroundRepeat:"no-repeat",backgroundSize:"cover"}}>
+        <div style={{background: `url(${image10})`}}>
 
 
 <div>
