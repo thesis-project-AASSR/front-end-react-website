@@ -8,6 +8,8 @@ import {withRouter} from 'react-router-dom';
 import ItemsNav from '../Navbar/itemsNav';
 import AdminItemsNav from '../Navbar/adminItemsNav';
 import image6 from "../../images/1_x9sm3fjasQp8gXQp-Sd0pA.png";
+import image10 from '../../images/pexels-matheus-bertelli-1144687.jpg';
+
 
 const SellerItems =({currentId}) =>{
     const dispatch = useDispatch();
@@ -16,6 +18,7 @@ const SellerItems =({currentId}) =>{
     useEffect(() => {
       dispatch(getALLItems());
     }, [dispatch]);
+
     const onSubmit = async (e) => {
         dispatch(deleteOrder(e))
         window.location.href = '/SellerItems'
@@ -52,6 +55,7 @@ const SellerItems =({currentId}) =>{
             <img src={image6} width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mr-2"></img>
             <strong>Dawerha</strong>
           </a>
+          <a href="/home" style={{color:"white"}}> Home </a>
           <a href="/SellerProfile" style={{color:"white"}}> Profile </a>
           <a href="/AddItems" style={{color:"white"}}> Add Items </a>
           <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
@@ -90,9 +94,8 @@ const SellerItems =({currentId}) =>{
                      <img src= {post.image} width="120" height="120" class="w3-round" />
                      {console.log(post.image)}
                      </td>
-                     <td>
-                     <Link to ={"/EditItems/"+post.itemID} >update</Link></td>
-                     <td><button  type="submit" onClick={() => onSubmit(post.itemID) }>Delete</button></td>
+                     <td><Link to ={"/EditItems/"+post.itemID} className="btn btn-secondary">update</Link></td>
+                     <td><button  type="submit" onClick={() => onSubmit(post.itemID) } className="btn btn-secondary">Delete</button></td>
                  </tr>
           ))}  
               </tbody>

@@ -21,7 +21,7 @@ const Login = ({ currentId }) => {
 
    
     return (
-        <div style={{backgroundImage: `url(${image10})`}}>
+        <div style={{background: `url(${image10})`}}>
 
 <div>
       <div className="collapse bg-dark" id="navbarHeader">

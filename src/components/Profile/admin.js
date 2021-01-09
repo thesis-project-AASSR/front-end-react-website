@@ -24,7 +24,7 @@ const AdminProfile =() =>{
     }, [dispatch]);
 
     return (
-         <div style={{background: `url(${image15})`, backgroundPosition: "center", backgroundRepeat: "no-repeat", backgroundSize:"cover"}}>
+         <div style={{background: `url(${image10})`,width:"100%",height:"1000px",backgroundRepeat:"no-repeat",backgroundSize:"cover"}}>
 
 
            <div>
@@ -76,10 +76,9 @@ const AdminProfile =() =>{
     <li class="list-group-item">{Info.phoneNumber}</li>
     {/* <li class="list-group-item">{Info.location}</li> */}
   </ul>
-  <div class="card-body">
+  {/* <div class="card-body">
   <a href="https://www.ammancity.gov.jo/ar/main/index.aspx" class="card-link">Greater Amman Municipality</a>
-  <Link to ={"/EditUser/"+Info.userID} class="card-link">Edit Profile</Link>
-  </div>
+  </div> */}
        </div>
           ))}
 <br/><br/><br/><br/>

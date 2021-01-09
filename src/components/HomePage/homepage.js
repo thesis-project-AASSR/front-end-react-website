@@ -2,10 +2,10 @@ import React, { Component } from "react";
 import HomeNav from '../Navbar/homeNav';
 import MapContainer from '../map.js';
 import image6 from "../../images/1_x9sm3fjasQp8gXQp-Sd0pA.png";
-import image8 from "../../images/lake-irene-1679708_1280.webp";
+import image1 from "../../images/pexels-catherine-sheila-2409022.jpg";
+import image2 from '../../images/pexels-pixabay-159751.jpg';
+import image3 from '../../images/pexels-brotin-biswas-518543 (1).jpg';
 import image10 from '../../images/pexels-mali-maeder-802221.jpg';
-import image11 from '../../images/background-recycle-symbol-260nw-110941127.webp';
-import image12 from '../../images/crumpled-2537807_1280.jpg';
 import image13 from '../../images/42-18260830edit.jpg';
 import image14 from '../../images/wp2529177.jpg';
 import image15 from '../../images/wp2529191.jpg';
@@ -18,7 +18,9 @@ export default class Homepage extends Component {
   }
   render() {
     return (
-    <div>
+    <div style={{background: `url(${image10})`,width:"100%",height:"1000px",backgroundRepeat:"no-repeat",backgroundSize:"cover"}}>
+
+
     <div>
       <div className="collapse bg-dark" id="navbarHeader">
         <div className="container">
@@ -60,28 +62,76 @@ export default class Homepage extends Component {
 
   
     <div>
-      <section className="jumbotron text-center" id="img" style={{background: `url(${image13})`, backgroundPosition: "center", backgroundRepeat: "no-repeat",backgroundSize:"cover"}}>
-        <div className="container">
-      
-          {/* <p className="lead "  style={{color:"white",backgroundColor:"	rgb(48,48,48)", fontSize:"20px"}}>
-          Thank you for using our website and for being responsible the Environment
-Instructions of using this website:
-In the upper part of this page, you can navigate through the pages.
-In the Add Items page you need to select the category of your items, then you need to specify the weight, description, quantity and upload an image of these items, and at the end you need to pick your location in order to be able to reach you out for collection.
-Before submitting, the expected Environment support will be for you.
-In the profile page, you will be able to view your information and edit them.
- In the All Items page, you will be able to watch all items that you have submitted in addition to the ability of editing and deleting each entry.
-          </p> */}
-          {/* <p className="lead "  style={{color:"white", fontSize:"60px",fontWeight:"50px"}}>
-          Welcome to Dawerha
-          </p> */}
+        <div className="container" style={{marginTop:"80px"}}>
+        {/* <div className="container" style={{textAlign:"center",marginTop:"80px"}}> */}
+          {/* <p className="lead "  style={{color:"white",fontSize:"30px",fontFamily:"Lucida Console"}}></p> */}
+
+
+          <div class="row">
+
+            <div class="col-md-4">
+              <div class="card mb-4 box-shadow">
+                <img class="card-img-top" src={image1} alt="Card image cap"/>
+                <div class="card-body">
+                  <p class="card-text" style={{fontFamily:"cursive"}}>This website aims to help our community to reduce waste in the first place, and to encourage all citizens to acquire the RECYCLING behavior.
+People at homes, organizations & institutions, schools & colleges are all invited to join our website and start participating! 
+Let’s all be responsible about enhancing our ENVIROMENT.</p>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                      {/* <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                      <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button> */}
+                    </div>
+                    <small class="text-muted">9 mins</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <div class="card mb-4 box-shadow">
+                <img class="card-img-top" src={image2} alt="Card image cap"/>
+                <div class="card-body">
+                  <p class="card-text" style={{fontFamily:"cursive"}}>
+User is able to add new items by clicking the add Item tab from the drop down menu, all fields are required to be filled:
+Category (We accept Iron, Copper, Plastic & Paper), Quantity, Weight of each item (Kg), a brief description of the item (i.e bottles, plates, etc..)
+And finally the Government Environmental Rebate will be calculated in the last field.
+The user can view all items that user added and they can edit or delete them.</p>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                      {/* <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                      <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button> */}
+                    </div>
+                    <small class="text-muted">9 mins</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <div class="card mb-4 box-shadow">
+                <img class="card-img-top" src={image3} alt="Card image cap"/>
+                <div class="card-body">
+                  <p class="card-text" style={{fontFamily:"cursive"}}>we will receive your form and elaborate immediately. Within 48 hours, we will send each user weather we accepted or rejected their form.
+In case of acceptance, it means that we will visit the user location upon a schedule and evaluate the items. After the evaluation, if items got accepted, we will collect them and send the payment (electronic payment), users will receive emails to confirm payment.</p>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                      {/* <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                      <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button> */}
+                    </div>
+                    <small class="text-muted">9 mins</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
         </div>
-        <br/><br/><br/><br/><br/><br/> <br/><br/><br/><br/><br/><br/>
-      </section>
-    </div>
 
 
+      </div>
 
+
+    
 
     </div>
     );

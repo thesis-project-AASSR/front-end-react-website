@@ -9,7 +9,8 @@ import {withRouter} from 'react-router-dom';
 import image6 from "../../images/1_x9sm3fjasQp8gXQp-Sd0pA.png";
 import Background from '../../images/lake-irene-1679708_1280.webp';
 import {Link} from "react-router-dom" ;
-import image10 from '../../images/pexels-matheus-bertelli-1144687.jpg';
+// import image10 from '../../images/pexels-matheus-bertelli-1144687.jpg';
+import image10 from '../../images/pexels-mali-maeder-802221.jpg';
 import * as SpinnerBS from 'react-bootstrap';
 var Total=0
 const AddItems = (props) => {
@@ -117,7 +118,7 @@ const AddItems = (props) => {
         
    
     return (
-        <div style={{background: `url(${image10})`,width:"100%",height:"1000px",backgroundRepeat:"no-repeat",backgroundSize:"cover"}}>
+        <div style={{background: `url(${image10})`}}>
 
        
           <div>
@@ -148,6 +149,7 @@ const AddItems = (props) => {
             <img src={image6} width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mr-2"></img>
             <strong>Dawerha</strong>
           </a>
+          <a href="/home" style={{color:"white"}}> Home </a>
           <a href="/SellerProfile" style={{color:"white"}}> Profile </a>
           <a href="/SellerItems" style={{color:"white"}}> All Items </a>
           <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">

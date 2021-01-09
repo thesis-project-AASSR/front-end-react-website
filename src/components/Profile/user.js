@@ -32,7 +32,7 @@ const UserProfile =() =>{
     }, [dispatch]);
     
     return (
-         <div style={{background: `url(${image15})`, backgroundPosition: "center", backgroundRepeat: "no-repeat", backgroundSize:"cover"}}>
+         <div style={{background: `url(${image10})`,width:"100%",height:"1000px",backgroundRepeat:"no-repeat",backgroundSize:"cover"}}>
 
 <div>
       <div className="collapse bg-dark" id="navbarHeader">
@@ -87,10 +87,9 @@ const UserProfile =() =>{
   <ul class="list-group list-group-flush">
     <li class="list-group-item">{Info.email}</li>
     <li class="list-group-item">{Info.phoneNumber}</li>
-    {/* <li class="list-group-item">{Info.location}</li> */}
   </ul>
   <div class="card-body">
-  <Link to ={"/EditUser/"+Info.userID} class="card-link">Edit Profile</Link>
+  <Link to ={"/EditUser/"+Info.userID} className="btn btn-secondary">Edit Profile</Link>
   </div>
 </div>
        
