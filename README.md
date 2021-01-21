@@ -16,12 +16,12 @@
 ### Description
 This website aims to help our community to reduce waste in the first place, and to encourage all citizens to acquire the RECYCLING behavior.
 People at homes, organizations & institutions, schools & colleges are all invited to join our website and start participating!
-Let's all be responsible about enhancing our ENVIROMENT.
+Let's all be responsible about enhancing our ENVIRONMENT.
 -------------------------------------------------------------
 Each user who joined our website will have an access to his/her profile and is able to update any related personal information.
 User is able to add new items by clicking the add Item tab from the drop down menu, all fields are required to be filled:
 Category (We accept Iron, Copper, Plastic & Paper), Quantity, Weight of each item (Kg), a brief description of the item (i.e bottles, plates, etc..)
-And finally the Government Environmental Rebate will be calculated in the last field.
+And finally the Government Environnmental Rebate will be calculated in the last field.
 The user can view all items that he/she added and they can edit and delete them.
 ---------------------------------------------------------------
 As soon as the submit button is pressed, we will receive your form and elaborate immediately and the user will receive a pending status. Within 48 hours, we will send each user weather we accepted or rejected their form. In case of rejection, the user can resubmit their form with bigger quantity later on.
