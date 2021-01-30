@@ -1,9 +1,6 @@
-# Website
+# Dawerha Website
 
-# project Name :
-### Dawerha
-
-## Table of Contents
+## Table of Contents:
 
 ### Description
 ### How To Use
@@ -11,9 +8,8 @@
 ### License
 ### Author Info
 
+## Idea
 
-
-### Description
 This website aims to help our community to reduce waste in the first place, and to encourage all citizens to acquire the RECYCLING behavior.
 People at homes, organizations & institutions, schools & colleges are all invited to join our website and start participating!
 Let's all be responsible about enhancing our ENVIRONMENT.
@@ -27,31 +23,37 @@ The user can view all items that he/she added and they can edit and delete them.
 As soon as the submit button is pressed, we will receive your form and elaborate immediately and the user will receive a pending status. Within 48 hours, we will send each user weather we accepted or rejected their form. In case of rejection, the user can resubmit their form with bigger quantity later on.
 In case of acceptance, it means that we will visit the user location upon a schedule and evaluate the items. After the evaluation, if items got accepted, we will collect them and send the payment (electronic payment), users will receive emails to confirm payment.
 
-### Technologies
+## Technologies
 Technology1: Express.js
 Technology2: Node.js
 Technology3: Mysql for database
 
 
-### How To Use
- # Installation:
+## How To Use
 
-  ## Available Scripts
+### Available Scripts
+
 In the project directory, you can run:
 
-# node modules
-### `npm install`
+### node modules
 
-To open the server on the heroku
-### `heroku run node server.js`
+```bash
+npm install
+```
 
-After completing each feature
-### `git add .`
-### `git commit -m ""`
-### `git push heroku main`
+To open the server on the heroku:
+```bash
+heroku run node server.js
+```
 
+After completing each feature:
+```bash
+ git add .
+ git commit -m ""
+ git push heroku main
+```
 
-  ### References
+  ## References
   for react native : https://reactnative.dev/
   for react :  https://reactjs.org/
   for expo : https://expo.io/
@@ -60,7 +62,7 @@ After completing each feature
   for nodejs : https://nodejs.org/en/
 
 
-### License
+## License
    Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
    The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
