@@ -24,10 +24,11 @@ As soon as the submit button is pressed, we will receive your form and elaborate
 In case of acceptance, it means that we will visit the user location upon a schedule and evaluate the items. After the evaluation, if items got accepted, we will collect them and send the payment (electronic payment), users will receive emails to confirm payment.
 
 ## Technologies
+```python
 Technology1: Express.js
 Technology2: Node.js
 Technology3: Mysql for database
-
+```
 
 ## How To Use
 
