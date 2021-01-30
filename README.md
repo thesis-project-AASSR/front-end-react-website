@@ -2,11 +2,11 @@
 
 ## Table of Contents:
 
-### Description
-### How To Use
-### References
-### License
-### Author Info
+ Description
+ How To Use
+ References
+ License
+ Author Info
 
 ## Idea
 
