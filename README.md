@@ -24,6 +24,7 @@ The user can view all items that he/she added and they can edit and delete them.
 As soon as the submit button is pressed, we will receive your form and elaborate immediately and the user will receive a pending status. Within 48 hours, we will send each user weather we accepted or rejected their form. In case of rejection, the user can resubmit their form with bigger quantity later on.
 In case of acceptance, it means that we will visit the user location upon a schedule and evaluate the items. After the evaluation, if items got accepted, we will collect them and send the payment (electronic payment), users will receive emails to confirm payment.
 
+🔗 Demo: [Watch the demo on YouTube]( https://www.youtube.com/watch?v=vKgwIltD_Ro)
 
 ## Technologies
 ```python
